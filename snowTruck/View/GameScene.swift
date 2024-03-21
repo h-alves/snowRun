@@ -12,7 +12,9 @@ class GameScene: SKScene {
     
     var truck: TruckNode!
     var targetPosition: CGPoint?
+    
     var cameraNode: SKCameraNode!
+    let cameraSpeed: CGFloat = 0.1
     
     override func didMove(to view: SKView) {
         setUpBackground()
@@ -34,6 +36,7 @@ class GameScene: SKScene {
     
     func setUpTruck() {
         truck = TruckNode(size: CGSize(width: 50, height: 100), color: .red)
+        truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         
         addChild(truck)
@@ -41,7 +44,11 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
-        targetPosition = touch.location(in: self)
+        let touchLocation = touch.location(in: self)
+        
+        let truckLocation = convert(touchLocation, to: truck)
+        
+        targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -54,6 +61,11 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
+        moveTruck()
+        moveCamera()
+    }
+    
+    func moveTruck() {
         if let targetPosition = targetPosition {
             let dx = targetPosition.x - truck.position.x
             let dy = targetPosition.y - truck.position.y
@@ -80,6 +92,14 @@ class GameScene: SKScene {
                 
                 truck.zRotation = angle - CGFloat.pi / 2
             }
+        }
+    }
+    
+    func moveCamera() {
+        if let truckPosition = truck?.position {
+            let desiredCameraY = truckPosition.y + 350
+            let dy = desiredCameraY - cameraNode.position.y
+            cameraNode.position.y += dy * cameraSpeed
         }
     }
     
