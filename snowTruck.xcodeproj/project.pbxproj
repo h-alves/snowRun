@@ -15,6 +15,7 @@
 		786E27362BACA58700F73394 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 786E27352BACA58700F73394 /* Assets.xcassets */; };
 		786E27392BACA58700F73394 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 786E27382BACA58700F73394 /* Base */; };
 		786E27422BACA6B400F73394 /* TruckNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27412BACA6B400F73394 /* TruckNode.swift */; };
+		786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27432BACBE5F00F73394 /* LandslideNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		786E27352BACA58700F73394 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		786E27382BACA58700F73394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		786E27412BACA6B400F73394 /* TruckNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckNode.swift; sourceTree = "<group>"; };
+		786E27432BACBE5F00F73394 /* LandslideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
+				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,

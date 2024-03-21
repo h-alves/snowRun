@@ -11,6 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var truck: TruckNode!
+    var landslide: LandslideNode!
     var targetPosition: CGPoint?
     
     var cameraNode: SKCameraNode!
@@ -19,7 +20,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         setUpBackground()
         setUpCamera()
-        setUpTruck()
+        setUpNodes()
     }
     
     func setUpBackground() {
@@ -34,12 +35,15 @@ class GameScene: SKScene {
         addChild(cameraNode)
     }
     
-    func setUpTruck() {
-        truck = TruckNode(size: CGSize(width: 50, height: 100), color: .red)
+    func setUpNodes() {
         truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         
+        landslide = LandslideNode(size: CGSize(width: frame.width, height: 400))
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY)
+        
         addChild(truck)
+        addChild(landslide)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,6 +67,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         moveTruck()
         moveCamera()
+        moveLandslide()
     }
     
     func moveTruck() {
@@ -100,6 +105,21 @@ class GameScene: SKScene {
             let desiredCameraY = truckPosition.y + 350
             let dy = desiredCameraY - cameraNode.position.y
             cameraNode.position.y += dy * cameraSpeed
+        }
+    }
+    
+    func moveLandslide() {
+        let positionDifference = abs(truck.position.y - landslide.position.y)
+        
+        if truck.position.y > landslide.position.y && positionDifference > 400 {
+            if positionDifference > 700 {
+                landslide.position.y += 20
+            } else {
+                landslide.position.y += 6
+            }
+            
+        } else if landslide.position.y < cameraNode.position.y + 500 {
+            landslide.position.y += 6
         }
     }
     
