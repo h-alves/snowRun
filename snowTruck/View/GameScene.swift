@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     
     var truck: TruckNode!
     var landslide: LandslideNode!
@@ -17,10 +17,14 @@ class GameScene: SKScene {
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
     
+    var gameIsOver: Bool = false
+    
     override func didMove(to view: SKView) {
         setUpBackground()
         setUpCamera()
         setUpNodes()
+        
+        physicsWorld.contactDelegate = self
     }
     
     func setUpBackground() {
@@ -38,6 +42,7 @@ class GameScene: SKScene {
     func setUpNodes() {
         truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
+        truck.delegate = self
         
         landslide = LandslideNode(size: CGSize(width: frame.width, height: 400))
         landslide.position = CGPoint(x: frame.midX, y: frame.minY)
@@ -65,8 +70,12 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        moveTruck()
-        moveCamera()
+        super.update(currentTime)
+        
+        if !gameIsOver {
+            moveTruck()
+            moveCamera()
+        }
         moveLandslide()
     }
     
@@ -113,7 +122,7 @@ class GameScene: SKScene {
         
         if truck.position.y > landslide.position.y && positionDifference > 400 {
             if positionDifference > 700 {
-                landslide.position.y += 20
+                landslide.position.y += 40
             } else {
                 landslide.position.y += 6
             }
@@ -123,4 +132,24 @@ class GameScene: SKScene {
         }
     }
     
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.categoryBitMask == PhysicsCategory.player || contact.bodyB.categoryBitMask == PhysicsCategory.player {
+            if let truckNode = contact.bodyA.node as? TruckNode {
+                truckNode.beganContact(with: contact.bodyB.node!)
+            } else if let truckNode = contact.bodyB.node as? TruckNode {
+                truckNode.beganContact(with: contact.bodyA.node!)
+            }
+        }
+    }
+    
+    func gameOver() {
+        gameIsOver = true
+        print(gameIsOver)
+    }
+    
+}
+
+protocol GameOverDelegate: AnyObject {
+    func gameOver()
 }

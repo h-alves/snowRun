@@ -16,7 +16,13 @@ class LandslideNode: SKShapeNode {
         self.fillColor = .white
         
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
-        self.physicsBody?.isDynamic = false
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.categoryBitMask = PhysicsCategory.landslide
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.player
+        self.physicsBody?.collisionBitMask = PhysicsCategory.none
+        
+        self.name = "landslide"
     }
     
     required init?(coder aDecoder: NSCoder) {

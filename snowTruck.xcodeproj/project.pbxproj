@@ -16,6 +16,7 @@
 		786E27392BACA58700F73394 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 786E27382BACA58700F73394 /* Base */; };
 		786E27422BACA6B400F73394 /* TruckNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27412BACA6B400F73394 /* TruckNode.swift */; };
 		786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27432BACBE5F00F73394 /* LandslideNode.swift */; };
+		786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27452BACF5E600F73394 /* PhysicsCategory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		786E27382BACA58700F73394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		786E27412BACA6B400F73394 /* TruckNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckNode.swift; sourceTree = "<group>"; };
 		786E27432BACBE5F00F73394 /* LandslideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideNode.swift; sourceTree = "<group>"; };
+		786E27452BACF5E600F73394 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,10 +86,19 @@
 		786E27402BACA5F100F73394 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				786E27472BACF5EC00F73394 /* Nodes */,
+				786E27452BACF5E600F73394 /* PhysicsCategory.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		786E27472BACF5EC00F73394 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
 			);
-			path = Model;
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
+				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 			);
@@ -326,7 +338,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,7 +367,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
