@@ -50,10 +50,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         truck.delegate = self
         
-        landslide = LandslideNode(size: CGSize(width: frame.width, height: 400))
-        landslide.position = CGPoint(x: frame.midX, y: frame.minY)
+        landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100))
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY - 700)
+        
+        let block = LandslideNode(size: CGSize(width: 60, height: 60))
+        block.fillColor = .blue
+        block.position = CGPoint(x: frame.midX, y: 600)
+        
+        let block1 = LandslideNode(size: CGSize(width: 60, height: 60))
+        block1.fillColor = .blue
+        block1.position = CGPoint(x: frame.midX, y: 1200)
+        
+        let block2 = LandslideNode(size: CGSize(width: 60, height: 60))
+        block2.fillColor = .blue
+        block2.position = CGPoint(x: frame.midX, y: 1800)
         
         addChild(truck)
+        addChild(block)
+        addChild(block1)
+        addChild(block2)
         addChild(landslide)
     }
     
@@ -134,37 +149,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         if let targetPosition = targetPosition {
             let dx = targetPosition.x - truck.position.x
             let dy = targetPosition.y - truck.position.y
-            let distance = sqrt(dx * dx + dy * dy)
-            
-            let movementThreshold: CGFloat = 100.0
-            if distance < movementThreshold {
-                truck.removeAllActions()
-                return
-            }
-            
-            let maxSpeed: CGFloat = 20.0
-            let minSpeed: CGFloat = 5.0
-            let distanceThreshold: CGFloat = 1000.0
-            
-            let speed = minSpeed + (maxSpeed - minSpeed) * (1 - min(distance / distanceThreshold, 1))
-            
-            if distance > 0 {
-                let angle = atan2(dy, dx)
-                let deltaX = cos(angle) * speed
-                let deltaY = sin(angle) * speed
-                truck.position.x += deltaX
-                truck.position.y += deltaY
+            if dy > -18 {
+                let distance = sqrt(dx * dx + dy * dy)
                 
-                truck.zRotation = angle - CGFloat.pi / 2
+                let movementThreshold: CGFloat = 100.0
+                if distance < movementThreshold {
+                    truck.removeAllActions()
+                    return
+                }
+                
+                let maxSpeed: CGFloat = 12.0
+                let minSpeed: CGFloat = 6.0
+                let distanceThreshold: CGFloat = 1000.0
+                
+                let speed = minSpeed + (maxSpeed - minSpeed) * (1 - min(distance / distanceThreshold, 1))
+                
+                if distance > 0 {
+                    let angle = atan2(dy, dx)
+                    let deltaX = cos(angle) * speed
+                    let deltaY = sin(angle) * speed
+                    truck.position.x += deltaX
+                    truck.position.y += deltaY
+                    
+                    truck.zRotation = angle - CGFloat.pi / 2
+                }
+            } else {
+                truck.zRotation = CGFloat.pi
+                truck.position.y += 10
             }
+        } else {
+            truck.zRotation = CGFloat.pi
+            truck.position.y += 10
         }
     }
     
     func moveCamera() {
         if let truckPosition = truck?.position {
-            let desiredCameraY = truckPosition.y + 350
-            let dy = desiredCameraY - cameraNode.position.y
-            cameraNode.position.y += dy * cameraSpeed
+            cameraNode.position.y = truckPosition.y + 100
             overlayNode.position.y = cameraNode.position.y
             gameOverLabel.position.y = cameraNode.position.y
             restartButton.position.y = cameraNode.position.y - 100
@@ -172,17 +193,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     }
     
     func moveLandslide() {
-        let positionDifference = abs(truck.position.y - landslide.position.y)
-        
-        if truck.position.y > landslide.position.y && positionDifference > 400 {
-            if positionDifference > 700 {
-                landslide.position.y += 40
-            } else {
-                landslide.position.y += 6
+        if gameIsOver {
+            if landslide.position.y < cameraNode.position.y {
+                landslide.position.y += 12
             }
+        } else {
+            let bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
+            landslide.position.y = bottomOfScreen
             
-        } else if landslide.position.y < cameraNode.position.y + 500 {
-            landslide.position.y += 6
+            let positionDifference = abs(truck.position.y - landslide.position.y)
+            
+            if truck.position.y > landslide.position.y && positionDifference > 400 {
+                if positionDifference > 1500 {
+                    landslide.position.y += 40
+                } else {
+                    landslide.position.y += 6
+                }
+            }
         }
     }
     
