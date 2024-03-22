@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     
     var truck: TruckNode!
     var landslide: LandslideNode!
@@ -16,12 +16,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
+    var cameraDistance: CGFloat = 100
     
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
     var restartButton: RestartButtonNode!
     
     var gameIsOver: Bool = false
+    var isSpeedReduced: Bool = false
     
     override func didMove(to view: SKView) {
         setUpBackground()
@@ -65,6 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         block2.fillColor = .blue
         block2.position = CGPoint(x: frame.midX, y: 1800)
         
+        let hole1 = HoleNode(size: CGSize(width: 70, height: 70))
+        hole1.fillColor = .green
+        hole1.position = CGPoint(x: frame.midX, y: 2400)
+        
+        addChild(hole1)
         addChild(truck)
         addChild(block)
         addChild(block1)
@@ -143,6 +150,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
             moveCamera()
         }
         moveLandslide()
+        
+        if isSpeedReduced {
+            if cameraDistance < 300 {
+                cameraDistance += 5
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                self.isSpeedReduced = false
+            }
+        } else {
+            if cameraDistance > 100 {
+                cameraDistance -= 1
+            }
+        }
     }
     
     func moveTruck() {
@@ -158,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
                     return
                 }
                 
-                let maxSpeed: CGFloat = 12.0
+                let maxSpeed: CGFloat = isSpeedReduced ? 7.0 : 12.0
                 let minSpeed: CGFloat = 6.0
                 let distanceThreshold: CGFloat = 1000.0
                 
@@ -185,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     
     func moveCamera() {
         if let truckPosition = truck?.position {
-            cameraNode.position.y = truckPosition.y + 100
+            cameraNode.position.y = truckPosition.y + cameraDistance
             overlayNode.position.y = cameraNode.position.y
             gameOverLabel.position.y = cameraNode.position.y
             restartButton.position.y = cameraNode.position.y - 100
@@ -235,8 +255,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         changeToGameOverScene()
     }
     
+    func reduceSpeed() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.isSpeedReduced = true
+        }
+    }
+    
 }
 
-protocol GameOverDelegate: AnyObject {
+protocol PlayerContactDelegate: AnyObject {
     func gameOver()
+    func reduceSpeed()
 }

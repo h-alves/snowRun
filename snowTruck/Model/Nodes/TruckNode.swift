@@ -9,7 +9,7 @@ import SpriteKit
 
 class TruckNode: SKShapeNode {
     
-    weak var delegate: GameOverDelegate?
+    weak var delegate: PlayerContactDelegate?
     
     init(size: CGSize, color: UIColor) {
         super.init()
@@ -21,7 +21,7 @@ class TruckNode: SKShapeNode {
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.landslide
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.landslide | PhysicsCategory.hole
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         
         self.name = "truck"
@@ -38,6 +38,8 @@ extension TruckNode {
     func beganContact(with node: SKNode) {
         if node is LandslideNode {
             delegate?.gameOver()
+        } else if node is HoleNode {
+            delegate?.reduceSpeed()
         }
     }
     
