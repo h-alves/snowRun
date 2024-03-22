@@ -17,6 +17,7 @@
 		786E27422BACA6B400F73394 /* TruckNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27412BACA6B400F73394 /* TruckNode.swift */; };
 		786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27432BACBE5F00F73394 /* LandslideNode.swift */; };
 		786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27452BACF5E600F73394 /* PhysicsCategory.swift */; };
+		786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* RestartButtonNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		786E27412BACA6B400F73394 /* TruckNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckNode.swift; sourceTree = "<group>"; };
 		786E27432BACBE5F00F73394 /* LandslideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideNode.swift; sourceTree = "<group>"; };
 		786E27452BACF5E600F73394 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		786E274C2BADBA9500F73394 /* RestartButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButtonNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
+				786E274C2BADBA9500F73394 /* RestartButtonNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
+				786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 			);

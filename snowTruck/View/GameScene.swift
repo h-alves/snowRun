@@ -17,12 +17,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
     
+    var overlayNode: SKShapeNode!
+    var gameOverLabel: SKLabelNode!
+    var restartButton: RestartButtonNode!
+    
     var gameIsOver: Bool = false
     
     override func didMove(to view: SKView) {
         setUpBackground()
         setUpCamera()
         setUpNodes()
+        
+        setUpGameOver()
         
         physicsWorld.contactDelegate = self
     }
@@ -51,13 +57,58 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         addChild(landslide)
     }
     
+    func setUpGameOver() {
+        overlayNode = SKShapeNode(rectOf: CGSize(width: frame.width, height: frame.height))
+        overlayNode.position = CGPoint(x: frame.midX, y: frame.midY)
+        overlayNode.fillColor = UIColor.black
+        overlayNode.alpha = 0.5
+        overlayNode.zPosition = 1
+        overlayNode.isHidden = true
+        self.addChild(overlayNode)
+        
+        gameOverLabel = SKLabelNode(text: "Game Over")
+        gameOverLabel.fontName = "Arial"
+        gameOverLabel.fontSize = 40
+        gameOverLabel.fontColor = .white
+        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        gameOverLabel.alpha = 2.0
+        gameOverLabel.zPosition = 1
+        gameOverLabel.isHidden = true
+        self.addChild(gameOverLabel)
+        
+        restartButton = RestartButtonNode(size: CGSize(width: 200, height: 50), text: "restart", color: .yellow)
+        restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
+        restartButton.zPosition = 1
+        restartButton.isHidden = true
+        self.addChild(restartButton)
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         
-        let truckLocation = convert(touchLocation, to: truck)
+        if restartButton.contains(touchLocation) {
+            restartGame()
+        }
+        else {
+            let truckLocation = convert(touchLocation, to: truck)
+            targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
+        }
+    }
+    
+    func restartGame() {
+        gameOverLabel.isHidden = true
+        overlayNode.isHidden = true
+        restartButton.isHidden = true
+        gameIsOver = false
         
-        targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
+        resetPositions()
+    }
+    
+    func resetPositions() {
+        cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
+        truck.position = CGPoint(x: frame.midX, y: frame.midY)
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -114,6 +165,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
             let desiredCameraY = truckPosition.y + 350
             let dy = desiredCameraY - cameraNode.position.y
             cameraNode.position.y += dy * cameraSpeed
+            overlayNode.position.y = cameraNode.position.y
+            gameOverLabel.position.y = cameraNode.position.y
+            restartButton.position.y = cameraNode.position.y - 100
         }
     }
     
@@ -132,6 +186,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
         }
     }
     
+    func changeToGameOverScene() {
+        overlayNode.isHidden = false
+        gameOverLabel.isHidden = false
+        restartButton.isHidden = false
+    }
     
     func didBegin(_ contact: SKPhysicsContact) {
         if contact.bodyA.categoryBitMask == PhysicsCategory.player || contact.bodyB.categoryBitMask == PhysicsCategory.player {
@@ -146,6 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameOverDelegate {
     func gameOver() {
         gameIsOver = true
         print(gameIsOver)
+        changeToGameOverScene()
     }
     
 }
