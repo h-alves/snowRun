@@ -14,6 +14,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     var landslide: LandslideNode!
     var targetPosition: CGPoint?
     
+    var obstacleFactory: ObstacleFactory!
+    
+    var obstacleGenerationTimer: Timer?
+    let obstacleGenerationInterval: TimeInterval = 2.0
+    
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
     var cameraDistance: CGFloat = 350
@@ -34,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         setUpGameOver()
         
         physicsWorld.contactDelegate = self
+        
+        startObstacleGenerationTimer()
     }
     
     func setUpBackground() {
@@ -49,6 +56,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     }
     
     func setUpNodes() {
+        obstacleFactory = ObstacleFactory(frame: frame, cameraY: cameraNode.position.y)
+        
         truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         truck.delegate = self
@@ -76,13 +85,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         hole2.fillColor = .green
         hole2.position = CGPoint(x: frame.midX, y: 3000)
         
-        addChild(hole1)
-        addChild(hole2)
         addChild(truck)
-//        addChild(block)
-        addChild(block1)
-        addChild(block2)
         addChild(landslide)
+    }
+    
+    func startObstacleGenerationTimer() {
+        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
+    }
+    
+    @objc func generateObstacle() {
+        addChild(obstacleFactory.createBlock())
     }
     
     func setUpGameOver() {
@@ -215,6 +227,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
             overlayNode.position.y = cameraNode.position.y
             gameOverLabel.position.y = cameraNode.position.y
             restartButton.position.y = cameraNode.position.y - 100
+            
+            obstacleFactory.cameraY = cameraNode.position.y
         }
     }
     
