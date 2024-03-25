@@ -174,34 +174,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     func moveTruck() {
         if let targetPosition = targetPosition {
             let dx = targetPosition.x - truck.position.x
-            let dy = targetPosition.y - truck.position.y
-            if dy > -18 {
-                let distance = sqrt(dx * dx + dy * dy)
+            var dy = targetPosition.y - truck.position.y
+            
+            if dy <= 0 {
+                dy = 200
+            }
+            
+            let distance = sqrt(dx * dx + dy * dy)
+            
+            let movementThreshold: CGFloat = 100.0
+            if distance < movementThreshold {
+                truck.removeAllActions()
+                return
+            }
+            
+            let maxSpeed: CGFloat = isSpeedReduced ? 7.0 : 12.0
+            let minSpeed: CGFloat = 6.0
+            let distanceThreshold: CGFloat = 1000.0
+            
+            let speed = minSpeed + (maxSpeed - minSpeed) * (1 - min(distance / distanceThreshold, 1))
+            
+            if distance > 0 {
+                let angle = atan2(dy, dx)
+                let deltaX = cos(angle) * speed
+                let deltaY = sin(angle) * speed
+                truck.position.x += deltaX
+                truck.position.y += deltaY
                 
-                let movementThreshold: CGFloat = 100.0
-                if distance < movementThreshold {
-                    truck.removeAllActions()
-                    return
-                }
-                
-                let maxSpeed: CGFloat = isSpeedReduced ? 7.0 : 12.0
-                let minSpeed: CGFloat = 6.0
-                let distanceThreshold: CGFloat = 1000.0
-                
-                let speed = minSpeed + (maxSpeed - minSpeed) * (1 - min(distance / distanceThreshold, 1))
-                
-                if distance > 0 {
-                    let angle = atan2(dy, dx)
-                    let deltaX = cos(angle) * speed
-                    let deltaY = sin(angle) * speed
-                    truck.position.x += deltaX
-                    truck.position.y += deltaY
-                    
-                    truck.zRotation = angle - CGFloat.pi / 2
-                }
-            } else {
-                truck.zRotation = CGFloat.pi
-                truck.position.y += 10
+                truck.zRotation = angle - CGFloat.pi / 2
             }
         } else {
             truck.zRotation = CGFloat.pi
