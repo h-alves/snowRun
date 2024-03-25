@@ -176,8 +176,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
             let dx = targetPosition.x - truck.position.x
             var dy = targetPosition.y - truck.position.y
             
-            if dy <= 0 {
-                dy = 200
+            if dy < 100 {
+                dy = 100
             }
             
             let distance = sqrt(dx * dx + dy * dy)
