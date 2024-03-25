@@ -20,6 +20,7 @@
 		786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* RestartButtonNode.swift */; };
 		786E27512BAE13A100F73394 /* HoleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27502BAE13A100F73394 /* HoleNode.swift */; };
 		78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */; };
+		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		786E274C2BADBA9500F73394 /* RestartButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButtonNode.swift; sourceTree = "<group>"; };
 		786E27502BAE13A100F73394 /* HoleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleNode.swift; sourceTree = "<group>"; };
 		78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleFactory.swift; sourceTree = "<group>"; };
+		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
 				786E27502BAE13A100F73394 /* HoleNode.swift */,
+				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
 				786E274C2BADBA9500F73394 /* RestartButtonNode.swift */,
 			);
 			path = Nodes;
@@ -183,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
+				78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,

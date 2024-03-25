@@ -1,13 +1,13 @@
 //
-//  HoleNode.swift
+//  BlockNode.swift
 //  snowTruck
 //
-//  Created by Henrique Semmer on 22/03/24.
+//  Created by Henrique Semmer on 25/03/24.
 //
 
 import SpriteKit
 
-class HoleNode: SKShapeNode {
+class BlockNode: SKShapeNode {
     
     init(size: CGSize) {
         super.init()
@@ -18,11 +18,11 @@ class HoleNode: SKShapeNode {
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = PhysicsCategory.hole
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.player | PhysicsCategory.landslide | PhysicsCategory.hole | PhysicsCategory.block
+        self.physicsBody?.categoryBitMask = PhysicsCategory.block
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.player | PhysicsCategory.landslide | PhysicsCategory.block | PhysicsCategory.hole
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         
-        self.name = "hole"
+        self.name = "block"
     }
     
     required init?(coder aDecoder: NSCoder) {

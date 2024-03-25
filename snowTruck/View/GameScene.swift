@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, ObstacleContactDelegate {
     
     var truck: TruckNode!
     var landslide: LandslideNode!
@@ -66,6 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100))
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - 700)
         landslide.zPosition = 2.1
+        landslide.delegate = self
         
         addChild(truck)
         addChild(landslide)
@@ -83,7 +84,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         list.append(newHole)
         list.append(newBlock)
         
-        addChild(list.randomElement()!)
+        let child = list.randomElement()!
+        
+        addChild(child)
+        
+        print("\(child) adicionado na posição: x = \(child.position.x) & y = \(child.position.y)")
     }
     
     func setUpGameOver() {
@@ -129,6 +134,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         resetVariables()
         
         resetPositions()
+        
+        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
     }
     
     func resetPositions() {
@@ -261,6 +268,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
             } else if let truckNode = contact.bodyB.node as? TruckNode {
                 truckNode.beganContact(with: contact.bodyA.node!)
             }
+        } else if contact.bodyA.categoryBitMask == PhysicsCategory.landslide || contact.bodyB.categoryBitMask == PhysicsCategory.landslide {
+            if let landslideNode = contact.bodyA.node as? LandslideNode {
+                landslideNode.beganContact(with: contact.bodyB.node!)
+            } else if let landslideNode = contact.bodyB.node as? LandslideNode {
+                landslideNode.beganContact(with: contact.bodyA.node!)
+            }
         }
     }
     
@@ -282,9 +295,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         }
     }
     
+    func deleteObstacle(obstacle: SKShapeNode) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            obstacle.removeFromParent()
+            print("apagado trouxa")
+        }
+    }
+    
 }
 
 protocol PlayerContactDelegate: AnyObject {
     func gameOver()
     func reduceSpeed()
+}
+
+protocol ObstacleContactDelegate: AnyObject {
+    func deleteObstacle(obstacle: SKShapeNode)
 }

@@ -21,7 +21,7 @@ class TruckNode: SKShapeNode {
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.landslide | PhysicsCategory.hole
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.landslide | PhysicsCategory.hole | PhysicsCategory.block
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         
         self.name = "truck"
@@ -36,7 +36,7 @@ class TruckNode: SKShapeNode {
 extension TruckNode {
     
     func beganContact(with node: SKNode) {
-        if node is LandslideNode {
+        if node is LandslideNode || node is BlockNode {
             delegate?.gameOver()
         } else if node is HoleNode {
             delegate?.reduceSpeed()

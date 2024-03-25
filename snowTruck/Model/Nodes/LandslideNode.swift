@@ -9,6 +9,8 @@ import SpriteKit
 
 class LandslideNode: SKShapeNode {
     
+    weak var delegate: ObstacleContactDelegate?
+    
     init(size: CGSize) {
         super.init()
         
@@ -27,6 +29,16 @@ class LandslideNode: SKShapeNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+}
+
+extension LandslideNode {
+    
+    func beganContact(with node: SKNode) {
+        if node is HoleNode || node is BlockNode {
+            delegate?.deleteObstacle(obstacle: node as! SKShapeNode)
+        }
     }
     
 }

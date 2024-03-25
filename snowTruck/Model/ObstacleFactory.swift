@@ -17,14 +17,14 @@ class ObstacleFactory {
         self.cameraY = cameraY
     }
     
-    func createBlock() -> LandslideNode {
+    func createBlock() -> BlockNode {
         let width = CGFloat.random(in: 100...300)
         let height = 100.0
         
-        let xPosition = CGFloat.random(in: frame.minX...frame.maxX)
+        let xPosition = CGFloat.random(in: (frame.minX + width)...(frame.maxX - width))
         let yPosition = cameraY + CGFloat.random(in: frame.height...(frame.height * 1.1)) + height / 2
         
-        let newBlock = LandslideNode(size: CGSize(width: width, height: height))
+        let newBlock = BlockNode(size: CGSize(width: width, height: height))
         newBlock.position = CGPoint(x: xPosition, y: yPosition)
         newBlock.fillColor = .blue
         newBlock.zPosition = 1
@@ -36,7 +36,7 @@ class ObstacleFactory {
         let width = 50.0
         let height = 50.0
         
-        let xPosition = CGFloat.random(in: (frame.minX + width/2)...(frame.maxX - width/2))
+        let xPosition = CGFloat.random(in: (frame.minX + width)...(frame.maxX - width))
         let yPosition = cameraY + CGFloat.random(in: frame.minY...frame.maxY)
         
         let newHole = HoleNode(size: CGSize(width: width, height: height))
