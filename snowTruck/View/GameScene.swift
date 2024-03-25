@@ -41,6 +41,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         physicsWorld.contactDelegate = self
         
         startObstacleGenerationTimer()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(enterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc func enterBackground() {
+        obstacleGenerationTimer?.invalidate()
+        obstacleGenerationTimer = nil
+    }
+    
+    @objc func enterForeground() {
+        startObstacleGenerationTimer()
     }
     
     func setUpBackground() {
