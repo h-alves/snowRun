@@ -60,30 +60,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         
         truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
+        truck.zPosition = 2
         truck.delegate = self
         
         landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100))
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - 700)
-        
-        let block = LandslideNode(size: CGSize(width: 60, height: 60))
-        block.fillColor = .blue
-        block.position = CGPoint(x: frame.midX, y: 3000)
-        
-        let block1 = LandslideNode(size: CGSize(width: 60, height: 60))
-        block1.fillColor = .blue
-        block1.position = CGPoint(x: frame.midX, y: 1200)
-        
-        let block2 = LandslideNode(size: CGSize(width: 60, height: 60))
-        block2.fillColor = .blue
-        block2.position = CGPoint(x: frame.midX, y: 1800)
-        
-        let hole1 = HoleNode(size: CGSize(width: 70, height: 70))
-        hole1.fillColor = .green
-        hole1.position = CGPoint(x: frame.midX, y: 2400)
-        
-        let hole2 = HoleNode(size: CGSize(width: 70, height: 70))
-        hole2.fillColor = .green
-        hole2.position = CGPoint(x: frame.midX, y: 3000)
+        landslide.zPosition = 2.1
         
         addChild(truck)
         addChild(landslide)
@@ -94,7 +76,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     }
     
     @objc func generateObstacle() {
-        addChild(obstacleFactory.createBlock())
+        let newBlock = obstacleFactory.createBlock()
+        let newHole = obstacleFactory.createHole()
+        var list: [SKShapeNode] = [SKShapeNode]()
+        
+        list.append(newHole)
+        list.append(newBlock)
+        
+        addChild(list.randomElement()!)
     }
     
     func setUpGameOver() {
@@ -102,7 +91,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         overlayNode.position = CGPoint(x: frame.midX, y: frame.midY)
         overlayNode.fillColor = UIColor.black
         overlayNode.alpha = 0.5
-        overlayNode.zPosition = 1
+        overlayNode.zPosition = 3
         overlayNode.isHidden = true
         self.addChild(overlayNode)
         
@@ -112,13 +101,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         gameOverLabel.fontColor = .white
         gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         gameOverLabel.alpha = 2.0
-        gameOverLabel.zPosition = 1
+        gameOverLabel.zPosition = 3
         gameOverLabel.isHidden = true
         self.addChild(gameOverLabel)
         
         restartButton = RestartButtonNode(size: CGSize(width: 200, height: 50), text: "restart", color: .yellow)
         restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
-        restartButton.zPosition = 1
+        restartButton.zPosition = 3
         restartButton.isHidden = true
         self.addChild(restartButton)
     }
@@ -228,7 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
             gameOverLabel.position.y = cameraNode.position.y
             restartButton.position.y = cameraNode.position.y - 100
             
-            obstacleFactory.cameraY = cameraNode.position.y
+            obstacleFactory.cameraY = cameraNode.position.y + frame.height
         }
     }
     
@@ -279,6 +268,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         if gameIsOver == false {
             gameIsOver = true
             changeToGameOverScene()
+            obstacleGenerationTimer?.invalidate()
         }
     }
     
