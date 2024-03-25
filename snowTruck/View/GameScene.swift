@@ -16,7 +16,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
-    var cameraDistance: CGFloat = 100
+    var cameraDistance: CGFloat = 350
     
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     
     var gameIsOver: Bool = false
     var isSpeedReduced: Bool = false
+    var secondPass: Bool = false
     
     override func didMove(to view: SKView) {
         setUpBackground()
@@ -57,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         
         let block = LandslideNode(size: CGSize(width: 60, height: 60))
         block.fillColor = .blue
-        block.position = CGPoint(x: frame.midX, y: 600)
+        block.position = CGPoint(x: frame.midX, y: 3000)
         
         let block1 = LandslideNode(size: CGSize(width: 60, height: 60))
         block1.fillColor = .blue
@@ -71,9 +72,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         hole1.fillColor = .green
         hole1.position = CGPoint(x: frame.midX, y: 2400)
         
+        let hole2 = HoleNode(size: CGSize(width: 70, height: 70))
+        hole2.fillColor = .green
+        hole2.position = CGPoint(x: frame.midX, y: 3000)
+        
         addChild(hole1)
+        addChild(hole2)
         addChild(truck)
-        addChild(block)
+//        addChild(block)
         addChild(block1)
         addChild(block2)
         addChild(landslide)
@@ -130,7 +136,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     func resetPositions() {
         cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
-        landslide.position = CGPoint(x: frame.midX, y: frame.minY)
+        landslide.position = CGPoint(x: frame.midX, y: cameraNode.position.y - (frame.height/1.1))
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -152,15 +158,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         moveLandslide()
         
         if isSpeedReduced {
-            if cameraDistance < 300 {
-                cameraDistance += 5
-            }
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
                 self.isSpeedReduced = false
-            }
-        } else {
-            if cameraDistance > 100 {
-                cameraDistance -= 1
+                self.secondPass = false
             }
         }
     }
@@ -218,17 +218,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
                 landslide.position.y += 12
             }
         } else {
-            let bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
-            landslide.position.y = bottomOfScreen
+            let originalPosition = cameraNode.position.y - (frame.height)
+            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
             
-            let positionDifference = abs(truck.position.y - landslide.position.y)
+            if secondPass {
+                bottomOfScreen = cameraNode.position.y
+            }
             
-            if truck.position.y > landslide.position.y && positionDifference > 400 {
-                if positionDifference > 1500 {
-                    landslide.position.y += 40
-                } else {
-                    landslide.position.y += 6
+            if isSpeedReduced {
+                if landslide.position.y < bottomOfScreen {
+                    landslide.position.y += 12
                 }
+                landslide.position.y = min(landslide.position.y, bottomOfScreen)
+            } else {
+                if landslide.position.y > originalPosition {
+                    landslide.position.y -= 6
+                }
+                landslide.position.y = max(landslide.position.y, originalPosition)
             }
         }
     }
@@ -256,6 +262,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     }
     
     func reduceSpeed() {
+        if isSpeedReduced {
+            secondPass = true
+        }
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.isSpeedReduced = true
         }
