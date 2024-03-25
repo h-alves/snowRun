@@ -125,10 +125,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     }
     
     func restartGame() {
-        gameOverLabel.isHidden = true
-        overlayNode.isHidden = true
-        restartButton.isHidden = true
-        gameIsOver = false
+        resetVariables()
         
         resetPositions()
     }
@@ -137,6 +134,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
         cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         landslide.position = CGPoint(x: frame.midX, y: cameraNode.position.y - (frame.height/1.1))
+    }
+    
+    func resetVariables() {
+        gameOverLabel.isHidden = true
+        overlayNode.isHidden = true
+        restartButton.isHidden = true
+        isSpeedReduced = false
+        secondPass = false
+        gameIsOver = false
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -218,7 +224,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
                 landslide.position.y += 12
             }
         } else {
-            let originalPosition = cameraNode.position.y - (frame.height)
+            let originalPosition = cameraNode.position.y - (frame.height/0.9)
             var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
             
             if secondPass {
