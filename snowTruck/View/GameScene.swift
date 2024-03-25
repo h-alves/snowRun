@@ -262,9 +262,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate {
     }
     
     func gameOver() {
-        gameIsOver = true
-        print(gameIsOver)
-        changeToGameOverScene()
+        if gameIsOver == false {
+            gameIsOver = true
+            changeToGameOverScene()
+        }
     }
     
     func reduceSpeed() {
