@@ -10,34 +10,41 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, ObstacleContactDelegate {
     
+    // MARK: - Objects
+    
     var truck: TruckNode!
     var truckDistance: CGFloat = 350
     var landslide: LandslideNode!
     var landslideDistance: CGFloat = 0
+    
     var targetPosition: CGPoint?
     
-    var obstacleFactory: ObstacleFactory!
+    // MARK: - Obstacle Generation
     
+    var obstacleFactory: ObstacleFactory!
     var obstacleGenerationTimer: Timer?
     let obstacleGenerationInterval: TimeInterval = 2.0
     
-    var cameraNode: SKCameraNode!
-    let cameraSpeed: CGFloat = 0.1
+    // MARK: - Reset Screen
     
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
     var restartButton: RestartButtonNode!
     
+    // MARK: -
+    
     var gameIsOver: Bool = false
-    var secondPass: Bool = false
+    var holeCollision: Int = 0
+    var reduceTimer: Timer?
+    
+    // MARK: - SKScene Functions
     
     override func didMove(to view: SKView) {
         truckDistance = (frame.height/3.4)
         landslideDistance = (frame.height/0.9)
-//        landslideDistance = (frame.height/2.3)
+        landslideDistance = (frame.height/2.3)
         
         setUpBackground()
-        setUpCamera()
         setUpNodes()
         
         setUpGameOver()
@@ -50,6 +57,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         NotificationCenter.default.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
     }
     
+    // MARK: UIApplication
+    
     @objc func enterBackground() {
         obstacleGenerationTimer?.invalidate()
         obstacleGenerationTimer = nil
@@ -59,20 +68,66 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         startObstacleGenerationTimer()
     }
     
+    // MARK: Touch
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let touchLocation = touch.location(in: self)
+        
+        if restartButton.contains(touchLocation) {
+            restartGame()
+        }
+        else {
+            let truckLocation = convert(touchLocation, to: truck)
+            targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        targetPosition = touch.location(in: self)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        targetPosition = nil
+    }
+    
+    // MARK: Update
+    
+    override func update(_ currentTime: TimeInterval) {
+        super.update(currentTime)
+        
+        if !gameIsOver {
+            truck.move(targetPosition: targetPosition ?? nil)
+        }
+    }
+    
+    // MARK: Collision
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        if contact.bodyA.categoryBitMask == PhysicsCategory.player || contact.bodyB.categoryBitMask == PhysicsCategory.player {
+            if let truckNode = contact.bodyA.node as? TruckNode {
+                truckNode.beganContact(with: contact.bodyB.node!)
+            } else if let truckNode = contact.bodyB.node as? TruckNode {
+                truckNode.beganContact(with: contact.bodyA.node!)
+            }
+        } else if contact.bodyA.categoryBitMask == PhysicsCategory.landslide || contact.bodyB.categoryBitMask == PhysicsCategory.landslide {
+            if let landslideNode = contact.bodyA.node as? LandslideNode {
+                landslideNode.beganContact(with: contact.bodyB.node!)
+            } else if let landslideNode = contact.bodyB.node as? LandslideNode {
+                landslideNode.beganContact(with: contact.bodyA.node!)
+            }
+        }
+    }
+    
+    // MARK: - Set Up Functions
+    
     func setUpBackground() {
         backgroundColor = .gray
     }
     
-    func setUpCamera() {
-        cameraNode = SKCameraNode()
-        cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
-        self.camera = cameraNode
-        
-        addChild(cameraNode)
-    }
-    
     func setUpNodes() {
-        obstacleFactory = ObstacleFactory(frame: frame, cameraY: cameraNode.position.y)
+//        obstacleFactory = ObstacleFactory(frame: frame, cameraY: frame.midY)
         
         truck = TruckNode(size: CGSize(width: 80, height: 160), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
@@ -86,25 +141,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         addChild(truck)
         addChild(landslide)
-    }
-    
-    func startObstacleGenerationTimer() {
-        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
-    }
-    
-    @objc func generateObstacle() {
-        let newBlock = obstacleFactory.createBlock()
-        let newHole = obstacleFactory.createHole()
-        var list: [SKShapeNode] = [SKShapeNode]()
-        
-        list.append(newHole)
-        list.append(newBlock)
-        
-        let child = list.randomElement()!
-        
-        addChild(child)
-        
-        print("\(child) adicionado na posição: x = \(child.position.x) & y = \(child.position.y)")
     }
     
     func setUpGameOver() {
@@ -133,18 +169,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         self.addChild(restartButton)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let touchLocation = touch.location(in: self)
-        
-        if restartButton.contains(touchLocation) {
-            restartGame()
-        }
-        else {
-            let truckLocation = convert(touchLocation, to: truck)
-            targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
-        }
+    // MARK: - Obstacle Generation Functions
+    
+    func startObstacleGenerationTimer() {
+        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
     }
+    
+    @objc func generateObstacle() {
+        let newBlock = obstacleFactory.createBlock()
+        let newHole = obstacleFactory.createHole()
+        var list: [SKShapeNode] = [SKShapeNode]()
+        
+        list.append(newHole)
+        list.append(newBlock)
+        
+        let child = list.randomElement()!
+        
+        addChild(child)
+        
+        print("\(child) adicionado na posição: x = \(child.position.x) & y = \(child.position.y)")
+    }
+    
+    // MARK: - Restart Game Functions
     
     func restartGame() {
         resetVariables()
@@ -155,9 +201,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func resetPositions() {
-        cameraNode.position = CGPoint(x: frame.midX, y: frame.midY)
-        truck.position = CGPoint(x: frame.midX, y: frame.midY)
-        landslide.position = CGPoint(x: frame.midX, y: cameraNode.position.y - (frame.height/1.1))
+        truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslideDistance)
     }
     
     func resetVariables() {
@@ -165,73 +210,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         overlayNode.isHidden = true
         restartButton.isHidden = true
         truck.isSpeedReduced = false
-        secondPass = false
+        holeCollision = 0
         gameIsOver = false
     }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        targetPosition = touch.location(in: self)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        targetPosition = nil
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        super.update(currentTime)
-        
-        if !gameIsOver {
-            truck.move(targetPosition: targetPosition ?? nil)
-//            moveCamera()
-        }
-//        moveLandslide()
-        
-//        if truck.isSpeedReduced {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-//                self.truck.isSpeedReduced = false
-//                self.secondPass = false
-//            }
-//        }
-    }
-    
-//    func moveCamera() {
-//        if let truckPosition = truck?.position {
-//            cameraNode.position.y = truckPosition.y + truckDistance
-//            overlayNode.position.y = cameraNode.position.y
-//            gameOverLabel.position.y = cameraNode.position.y
-//            restartButton.position.y = cameraNode.position.y - 100
-//            
-//            obstacleFactory.cameraY = cameraNode.position.y + frame.height
-//        }
-//    }
-    
-//    func moveLandslide() {
-//        if gameIsOver {
-//            if landslide.position.y < cameraNode.position.y {
-//                landslide.position.y += 12
-//            }
-//        } else {
-//            let originalPosition = cameraNode.position.y - (frame.height/0.9)
-//            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
-//            
-//            if secondPass {
-//                bottomOfScreen = cameraNode.position.y
-//            }
-//            
-//            if truck.isSpeedReduced {
-//                if landslide.position.y < bottomOfScreen {
-//                    landslide.position.y += 12
-//                }
-//                landslide.position.y = min(landslide.position.y, bottomOfScreen)
-//            } else {
-//                if landslide.position.y > originalPosition {
-//                    landslide.position.y -= 6
-//                }
-//                landslide.position.y = max(landslide.position.y, originalPosition)
-//            }
-//        }
-//    }
     
     func changeToGameOverScene() {
         overlayNode.isHidden = false
@@ -239,21 +220,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         restartButton.isHidden = false
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        if contact.bodyA.categoryBitMask == PhysicsCategory.player || contact.bodyB.categoryBitMask == PhysicsCategory.player {
-            if let truckNode = contact.bodyA.node as? TruckNode {
-                truckNode.beganContact(with: contact.bodyB.node!)
-            } else if let truckNode = contact.bodyB.node as? TruckNode {
-                truckNode.beganContact(with: contact.bodyA.node!)
-            }
-        } else if contact.bodyA.categoryBitMask == PhysicsCategory.landslide || contact.bodyB.categoryBitMask == PhysicsCategory.landslide {
-            if let landslideNode = contact.bodyA.node as? LandslideNode {
-                landslideNode.beganContact(with: contact.bodyB.node!)
-            } else if let landslideNode = contact.bodyB.node as? LandslideNode {
-                landslideNode.beganContact(with: contact.bodyA.node!)
-            }
-        }
-    }
+    // MARK: - Delegates
+    
+    // MARK: Player
     
     func gameOver() {
         if gameIsOver == false {
@@ -264,26 +233,54 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func reduceSpeed() {
-        if truck.isSpeedReduced {
-            secondPass = true
-        }
+        reduceTimer?.invalidate()
+        holeCollision += 1
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.truck.isSpeedReduced = true
+            
+            if self.holeCollision == 1 {
+                // Mover avalanche pra colar com o caminhão
+                self.landslide.moveCloser()
+            } else if self.holeCollision == 2 {
+                // Mover avalanche pra cima
+                self.landslide.moveUp()
+            }
+        }
+        
+        reduceTimer = Timer.scheduledTimer(withTimeInterval: 6.3, repeats: false) { timer in
+            self.truck.isSpeedReduced = false
+            self.holeCollision -= 1
+            timer.invalidate()
         }
     }
     
+    func moveLandslideUp() {
+        // Parar de mover a tela pra baixo
+        
+        
+        // Mover avalanche pra cima
+        landslide.moveUp()
+    }
+    
+    // MARK: Landslide
+    
     func deleteObstacle(obstacle: SKShapeNode) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            // Remover obstáculo da tela
             obstacle.removeFromParent()
-            print("apagado trouxa")
+            
+            print("\(obstacle) foi apagado")
         }
     }
     
 }
 
+// MARK: - Delegate Protocols
+
 protocol PlayerContactDelegate: AnyObject {
     func gameOver()
+    func moveLandslideUp()
     func reduceSpeed()
 }
 

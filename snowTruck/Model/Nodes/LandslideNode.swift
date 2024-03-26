@@ -31,6 +31,41 @@ class LandslideNode: SKShapeNode {
         super.init(coder: aDecoder)
     }
     
+//    func moveLandslide() {
+//        if gameIsOver {
+//            if landslide.position.y < cameraNode.position.y {
+//                landslide.position.y += 12
+//            }
+//        } else {
+//            let originalPosition = cameraNode.position.y - (frame.height/0.9)
+//            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
+//
+//            if secondPass {
+//                bottomOfScreen = cameraNode.position.y
+//            }
+//
+//            if truck.isSpeedReduced {
+//                if landslide.position.y < bottomOfScreen {
+//                    landslide.position.y += 12
+//                }
+//                landslide.position.y = min(landslide.position.y, bottomOfScreen)
+//            } else {
+//                if landslide.position.y > originalPosition {
+//                    landslide.position.y -= 6
+//                }
+//                landslide.position.y = max(landslide.position.y, originalPosition)
+//            }
+//        }
+//    }
+    
+    func moveCloser() {
+        
+    }
+    
+    func moveUp() {
+        
+    }
+    
 }
 
 extension LandslideNode {

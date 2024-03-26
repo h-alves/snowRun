@@ -38,8 +38,12 @@ class TruckNode: SKShapeNode {
             let dx = targetPosition.x - self.position.x
             var dy = targetPosition.y - self.position.y
             
-            if dy < 100 {
+            if dy < -20 {
+                dy = 200
+            } else if dy < 100 {
                 dy = 100
+            } else if dy > 300 {
+                dy = 300
             }
             
             let distance = sqrt(dx * dx + dy * dy)
@@ -78,6 +82,9 @@ extension TruckNode {
     func beganContact(with node: SKNode) {
         if node is LandslideNode || node is BlockNode {
             delegate?.gameOver()
+            if node is BlockNode {
+                delegate?.moveLandslideUp()
+            }
         } else if node is HoleNode {
             delegate?.reduceSpeed()
         }
