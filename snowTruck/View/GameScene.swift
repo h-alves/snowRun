@@ -28,7 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     var restartButton: RestartButtonNode!
     
     var gameIsOver: Bool = false
-    var isSpeedReduced: Bool = false
     var secondPass: Bool = false
     
     override func didMove(to view: SKView) {
@@ -70,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     func setUpNodes() {
         obstacleFactory = ObstacleFactory(frame: frame, cameraY: cameraNode.position.y)
         
-        truck = TruckNode(size: CGSize(width: 100, height: 200), color: .red)
+        truck = TruckNode(size: CGSize(width: 80, height: 160), color: .red)
         truck.position = CGPoint(x: frame.midX, y: frame.midY)
         truck.zPosition = 2
         truck.delegate = self
@@ -160,7 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         gameOverLabel.isHidden = true
         overlayNode.isHidden = true
         restartButton.isHidden = true
-        isSpeedReduced = false
+        truck.isSpeedReduced = false
         secondPass = false
         gameIsOver = false
     }
@@ -178,54 +177,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         super.update(currentTime)
         
         if !gameIsOver {
-            moveTruck()
+            truck.move(targetPosition: targetPosition ?? nil)
             moveCamera()
         }
         moveLandslide()
         
-        if isSpeedReduced {
+        if truck.isSpeedReduced {
             DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                self.isSpeedReduced = false
+                self.truck.isSpeedReduced = false
                 self.secondPass = false
             }
-        }
-    }
-    
-    func moveTruck() {
-        if let targetPosition = targetPosition {
-            let dx = targetPosition.x - truck.position.x
-            var dy = targetPosition.y - truck.position.y
-            
-            if dy < 100 {
-                dy = 100
-            }
-            
-            let distance = sqrt(dx * dx + dy * dy)
-            
-            let movementThreshold: CGFloat = 100.0
-            if distance < movementThreshold {
-                truck.removeAllActions()
-                return
-            }
-            
-            let maxSpeed: CGFloat = isSpeedReduced ? 7.0 : 12.0
-            let minSpeed: CGFloat = 6.0
-            let distanceThreshold: CGFloat = 1000.0
-            
-            let speed = minSpeed + (maxSpeed - minSpeed) * (1 - min(distance / distanceThreshold, 1))
-            
-            if distance > 0 {
-                let angle = atan2(dy, dx)
-                let deltaX = cos(angle) * speed
-                let deltaY = sin(angle) * speed
-                truck.position.x += deltaX
-                truck.position.y += deltaY
-                
-                truck.zRotation = angle - CGFloat.pi / 2
-            }
-        } else {
-            truck.zRotation = CGFloat.pi
-            truck.position.y += 10
         }
     }
     
@@ -253,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
                 bottomOfScreen = cameraNode.position.y
             }
             
-            if isSpeedReduced {
+            if truck.isSpeedReduced {
                 if landslide.position.y < bottomOfScreen {
                     landslide.position.y += 12
                 }
@@ -298,12 +259,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func reduceSpeed() {
-        if isSpeedReduced {
+        if truck.isSpeedReduced {
             secondPass = true
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.isSpeedReduced = true
+            self.truck.isSpeedReduced = true
         }
     }
     

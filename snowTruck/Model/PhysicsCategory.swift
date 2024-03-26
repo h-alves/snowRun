@@ -13,6 +13,6 @@ struct PhysicsCategory {
     static let player: UInt32 = 0x1 << 0
     static let landslide: UInt32 = 0x1 << 1
     
-    static let hole: UInt32 = 0x1 << 2
-    static let block: UInt32 = 0x1 << 3
+    static let hole: UInt32 = 0x1 << 10
+    static let block: UInt32 = 0x1 << 11
 }
