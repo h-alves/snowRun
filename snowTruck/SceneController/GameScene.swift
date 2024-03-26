@@ -29,7 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
-    var restartButton: RestartButtonNode!
+    var restartButton: ButtonNode!
     
     // MARK: - Delegate Variables
     
@@ -160,7 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         gameOverLabel.isHidden = true
         self.addChild(gameOverLabel)
         
-        restartButton = RestartButtonNode(size: CGSize(width: 200, height: 50), text: "restart", color: .yellow)
+        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "restart", color: .yellow)
         restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         restartButton.zPosition = 3
         restartButton.isHidden = true
@@ -198,6 +198,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     func resetPositions() {
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
+        landslide.removeAllActions()
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
     }
     
@@ -238,6 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
             
             gameIsOver = true
             changeToGameOverScene()
+            
             obstacleGenerationTimer?.invalidate()
         }
     }

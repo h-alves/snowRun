@@ -1,5 +1,5 @@
 //
-//  RestartButtonNode.swift
+//  ButtonNode.swift
 //  snowTruck
 //
 //  Created by Henrique Semmer on 22/03/24.
@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class RestartButtonNode: SKSpriteNode {
+class ButtonNode: SKSpriteNode {
     
     init(size: CGSize, text: String, color: UIColor) {
         super.init(texture: .none, color: .clear, size: size)
