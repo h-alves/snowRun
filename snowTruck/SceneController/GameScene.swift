@@ -243,21 +243,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
             
             if self.holeCollision == 1 {
                 // Mover avalanche pra colar com o caminhão
-                self.landslide.moveCloser()
+                self.landslide.move(direction: .close)
             } else if self.holeCollision == 2 {
                 // Mover avalanche pra cima
-                self.landslide.moveUp()
+                self.landslide.move(direction: .up)
             }
         }
         
         reduceTimer = Timer.scheduledTimer(withTimeInterval: 6.3, repeats: false) { timer in
             self.truck.isSpeedReduced = false
-            self.holeCollision = 0
             
-            // Mover avalanche pra baixo
-            self.landslide.moveDown()
-            
-            timer.invalidate()
+            if self.holeCollision < 2 {
+                self.holeCollision = 0
+                
+                // Mover avalanche pra baixo
+                self.landslide.move(direction: .down)
+                
+                timer.invalidate()
+            }
         }
     }
     
@@ -266,7 +269,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         
         // Mover avalanche pra cima
-        landslide.moveUp()
+        landslide.move(direction: .up)
     }
     
     // MARK: Landslide

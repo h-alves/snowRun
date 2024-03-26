@@ -20,7 +20,7 @@ class LandslideNode: SKShapeNode {
     init(size: CGSize, frame: CGRect) {
         super.init()
         
-        self.landslideDistance = (frame.height/0.9)
+        self.landslideDistance = (frame.height/1.8)
         
         self.originalPosition = frame.minY - landslideDistance
         self.closePosition = frame.minY - (frame.height/2.3)
@@ -43,16 +43,19 @@ class LandslideNode: SKShapeNode {
         super.init(coder: aDecoder)
     }
     
-    func moveCloser() {
-        self.position.y = closePosition
-    }
-    
-    func moveUp() {
-        self.position.y = gameOverPosition
-    }
-    
-    func moveDown() {
-        self.position.y = originalPosition
+    func move(direction: LandslideDirection) {
+        var move = SKAction()
+        
+        switch direction {
+        case .close:
+            move = SKAction.moveTo(y: closePosition, duration: 0.7)
+        case .down:
+            move = SKAction.moveTo(y: originalPosition, duration: 0.7)
+        case .up:
+            move = SKAction.moveTo(y: gameOverPosition, duration: 2.0)
+        }
+        
+        self.run(move)
     }
     
 }
