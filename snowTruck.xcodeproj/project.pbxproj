@@ -71,24 +71,21 @@
 		786E27272BACA58600F73394 /* snowTruck */ = {
 			isa = PBXGroup;
 			children = (
+				78FC159B2BB33D2300798BC5 /* App */,
 				786E27402BACA5F100F73394 /* Model */,
-				786E273F2BACA5E800F73394 /* View */,
-				786E27282BACA58600F73394 /* AppDelegate.swift */,
-				786E272A2BACA58600F73394 /* GameScene.sks */,
-				786E27322BACA58600F73394 /* Main.storyboard */,
+				786E273F2BACA5E800F73394 /* SceneController */,
+				78FC159C2BB33D4F00798BC5 /* Scene */,
 				786E27352BACA58700F73394 /* Assets.xcassets */,
-				786E27372BACA58700F73394 /* LaunchScreen.storyboard */,
 			);
 			path = snowTruck;
 			sourceTree = "<group>";
 		};
-		786E273F2BACA5E800F73394 /* View */ = {
+		786E273F2BACA5E800F73394 /* SceneController */ = {
 			isa = PBXGroup;
 			children = (
 				786E272E2BACA58600F73394 /* GameScene.swift */,
-				786E27302BACA58600F73394 /* GameViewController.swift */,
 			);
-			path = View;
+			path = SceneController;
 			sourceTree = "<group>";
 		};
 		786E27402BACA5F100F73394 /* Model */ = {
@@ -111,6 +108,25 @@
 				786E274C2BADBA9500F73394 /* RestartButtonNode.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		78FC159B2BB33D2300798BC5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				786E27372BACA58700F73394 /* LaunchScreen.storyboard */,
+				786E27322BACA58600F73394 /* Main.storyboard */,
+				786E27282BACA58600F73394 /* AppDelegate.swift */,
+				786E27302BACA58600F73394 /* GameViewController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		78FC159C2BB33D4F00798BC5 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				786E272A2BACA58600F73394 /* GameScene.sks */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
