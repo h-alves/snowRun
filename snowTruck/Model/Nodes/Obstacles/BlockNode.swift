@@ -7,17 +7,11 @@
 
 import SpriteKit
 
-class BlockNode: SKShapeNode {
+class BlockNode: ObstacleNode {
     
-    init(size: CGSize) {
-        super.init()
+    override init(size: CGSize) {
+        super.init(size: size)
         
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size), transform: nil)
-        self.fillColor = .white
-        
-        self.physicsBody = SKPhysicsBody(rectangleOf: size)
-        self.physicsBody?.isDynamic = true
-        self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.block
         self.physicsBody?.contactTestBitMask = PhysicsCategory.player | PhysicsCategory.landslide | PhysicsCategory.block | PhysicsCategory.hole
         self.physicsBody?.collisionBitMask = PhysicsCategory.none

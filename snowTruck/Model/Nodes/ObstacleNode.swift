@@ -1,13 +1,13 @@
 //
-//  HoleNode.swift
+//  ObstacleNode.swift
 //  snowTruck
 //
-//  Created by Henrique Semmer on 22/03/24.
+//  Created by Henrique Semmer on 26/03/24.
 //
 
 import SpriteKit
 
-class HoleNode: SKShapeNode {
+class ObstacleNode: SKShapeNode {
     
     init(size: CGSize) {
         super.init()
@@ -18,15 +18,15 @@ class HoleNode: SKShapeNode {
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
-        self.physicsBody?.categoryBitMask = PhysicsCategory.hole
-        self.physicsBody?.contactTestBitMask = PhysicsCategory.player | PhysicsCategory.landslide | PhysicsCategory.hole | PhysicsCategory.block
-        self.physicsBody?.collisionBitMask = PhysicsCategory.none
-        
-        self.name = "hole"
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func moveDown(finalSpace: CGFloat) {
+        let move = SKAction.moveTo(y: finalSpace, duration: 6.0)
+        self.run(move)
     }
     
 }

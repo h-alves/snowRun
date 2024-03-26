@@ -20,6 +20,7 @@
 		786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* RestartButtonNode.swift */; };
 		786E27512BAE13A100F73394 /* HoleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27502BAE13A100F73394 /* HoleNode.swift */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
+		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */; };
 		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		786E274C2BADBA9500F73394 /* RestartButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButtonNode.swift; sourceTree = "<group>"; };
 		786E27502BAE13A100F73394 /* HoleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleNode.swift; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
+		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleFactory.swift; sourceTree = "<group>"; };
 		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,8 +108,8 @@
 			children = (
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
-				786E27502BAE13A100F73394 /* HoleNode.swift */,
-				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
+				78FC159F2BB3484700798BC5 /* ObstacleNode.swift */,
+				78FC15A12BB34E1600798BC5 /* Obstacles */,
 				786E274C2BADBA9500F73394 /* RestartButtonNode.swift */,
 			);
 			path = Nodes;
@@ -130,6 +132,15 @@
 				786E272A2BACA58600F73394 /* GameScene.sks */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		78FC15A12BB34E1600798BC5 /* Obstacles */ = {
+			isa = PBXGroup;
+			children = (
+				786E27502BAE13A100F73394 /* HoleNode.swift */,
+				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
+			);
+			path = Obstacles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +223,7 @@
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
 				786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */,
 				78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */,
+				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
