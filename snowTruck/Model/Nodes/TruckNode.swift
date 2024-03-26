@@ -63,11 +63,11 @@ class TruckNode: SKShapeNode {
                 self.position.x += deltaX
                 
                 self.zRotation = angle - CGFloat.pi / 2
-                self.position.y += 10
+//                self.position.y += 10
             }
         } else {
             self.zRotation = CGFloat.pi
-            self.position.y += 10
+//            self.position.y += 10
         }
     }
     

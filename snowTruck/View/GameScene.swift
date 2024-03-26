@@ -11,7 +11,9 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, ObstacleContactDelegate {
     
     var truck: TruckNode!
+    var truckDistance: CGFloat = 350
     var landslide: LandslideNode!
+    var landslideDistance: CGFloat = 0
     var targetPosition: CGPoint?
     
     var obstacleFactory: ObstacleFactory!
@@ -21,7 +23,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     var cameraNode: SKCameraNode!
     let cameraSpeed: CGFloat = 0.1
-    var cameraDistance: CGFloat = 350
     
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
@@ -31,6 +32,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     var secondPass: Bool = false
     
     override func didMove(to view: SKView) {
+        truckDistance = (frame.height/3.4)
+        landslideDistance = (frame.height/0.9)
+//        landslideDistance = (frame.height/2.3)
+        
         setUpBackground()
         setUpCamera()
         setUpNodes()
@@ -39,7 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         physicsWorld.contactDelegate = self
         
-        startObstacleGenerationTimer()
+//        startObstacleGenerationTimer()
         
         NotificationCenter.default.addObserver(self, selector: #selector(enterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -70,12 +75,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         obstacleFactory = ObstacleFactory(frame: frame, cameraY: cameraNode.position.y)
         
         truck = TruckNode(size: CGSize(width: 80, height: 160), color: .red)
-        truck.position = CGPoint(x: frame.midX, y: frame.midY)
+        truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
         truck.zPosition = 2
         truck.delegate = self
         
         landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100))
-        landslide.position = CGPoint(x: frame.midX, y: frame.minY - 700)
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslideDistance)
         landslide.zPosition = 2.1
         landslide.delegate = self
         
@@ -178,55 +183,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         if !gameIsOver {
             truck.move(targetPosition: targetPosition ?? nil)
-            moveCamera()
+//            moveCamera()
         }
-        moveLandslide()
+//        moveLandslide()
         
-        if truck.isSpeedReduced {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
-                self.truck.isSpeedReduced = false
-                self.secondPass = false
-            }
-        }
+//        if truck.isSpeedReduced {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+//                self.truck.isSpeedReduced = false
+//                self.secondPass = false
+//            }
+//        }
     }
     
-    func moveCamera() {
-        if let truckPosition = truck?.position {
-            cameraNode.position.y = truckPosition.y + cameraDistance
-            overlayNode.position.y = cameraNode.position.y
-            gameOverLabel.position.y = cameraNode.position.y
-            restartButton.position.y = cameraNode.position.y - 100
-            
-            obstacleFactory.cameraY = cameraNode.position.y + frame.height
-        }
-    }
+//    func moveCamera() {
+//        if let truckPosition = truck?.position {
+//            cameraNode.position.y = truckPosition.y + truckDistance
+//            overlayNode.position.y = cameraNode.position.y
+//            gameOverLabel.position.y = cameraNode.position.y
+//            restartButton.position.y = cameraNode.position.y - 100
+//            
+//            obstacleFactory.cameraY = cameraNode.position.y + frame.height
+//        }
+//    }
     
-    func moveLandslide() {
-        if gameIsOver {
-            if landslide.position.y < cameraNode.position.y {
-                landslide.position.y += 12
-            }
-        } else {
-            let originalPosition = cameraNode.position.y - (frame.height/0.9)
-            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
-            
-            if secondPass {
-                bottomOfScreen = cameraNode.position.y
-            }
-            
-            if truck.isSpeedReduced {
-                if landslide.position.y < bottomOfScreen {
-                    landslide.position.y += 12
-                }
-                landslide.position.y = min(landslide.position.y, bottomOfScreen)
-            } else {
-                if landslide.position.y > originalPosition {
-                    landslide.position.y -= 6
-                }
-                landslide.position.y = max(landslide.position.y, originalPosition)
-            }
-        }
-    }
+//    func moveLandslide() {
+//        if gameIsOver {
+//            if landslide.position.y < cameraNode.position.y {
+//                landslide.position.y += 12
+//            }
+//        } else {
+//            let originalPosition = cameraNode.position.y - (frame.height/0.9)
+//            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
+//            
+//            if secondPass {
+//                bottomOfScreen = cameraNode.position.y
+//            }
+//            
+//            if truck.isSpeedReduced {
+//                if landslide.position.y < bottomOfScreen {
+//                    landslide.position.y += 12
+//                }
+//                landslide.position.y = min(landslide.position.y, bottomOfScreen)
+//            } else {
+//                if landslide.position.y > originalPosition {
+//                    landslide.position.y -= 6
+//                }
+//                landslide.position.y = max(landslide.position.y, originalPosition)
+//            }
+//        }
+//    }
     
     func changeToGameOverScene() {
         overlayNode.isHidden = false
