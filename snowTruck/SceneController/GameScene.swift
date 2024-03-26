@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     var overlayNode: SKShapeNode!
     var gameOverLabel: SKLabelNode!
     var restartButton: ButtonNode!
+    var menuButton: ButtonNode!
     
     // MARK: - Delegate Variables
     
@@ -74,8 +75,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         if restartButton.contains(touchLocation) {
             restartGame()
-        }
-        else {
+        } else if menuButton.contains(touchLocation) {
+            changeToMenuScene()
+        } else {
             let truckLocation = convert(touchLocation, to: truck)
             targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
         }
@@ -165,6 +167,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         restartButton.zPosition = 3
         restartButton.isHidden = true
         self.addChild(restartButton)
+        
+        menuButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "menu", color: .yellow)
+        menuButton.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+        menuButton.zPosition = 3
+        menuButton.isHidden = true
+        self.addChild(menuButton)
     }
     
     // MARK: - Obstacle Generation Functions
@@ -206,6 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         gameOverLabel.isHidden = true
         overlayNode.isHidden = true
         restartButton.isHidden = true
+        menuButton.isHidden = true
         truck.isSpeedReduced = false
         holeCollision = 0
         gameIsOver = false
@@ -215,6 +224,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         overlayNode.isHidden = false
         gameOverLabel.isHidden = false
         restartButton.isHidden = false
+        menuButton.isHidden = false
+    }
+    
+    func changeToMenuScene() {
+        let transition = SKTransition.fade(withDuration: 0.5)
+        let menuScene = MenuScene(size: self.size)
+        menuScene.scaleMode = .aspectFill
+        
+        self.view?.presentScene(menuScene, transition: transition)
     }
     
     func resetObstacles() {
@@ -294,16 +312,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         }
     }
     
-}
-
-// MARK: - Delegate Protocols
-
-protocol PlayerContactDelegate: AnyObject {
-    func gameOver()
-    func moveLandslideUp()
-    func reduceSpeed()
-}
-
-protocol ObstacleContactDelegate: AnyObject {
-    func deleteObstacle(obstacle: SKShapeNode)
 }

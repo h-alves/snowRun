@@ -23,6 +23,8 @@
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
 		78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A42BB353E100798BC5 /* MenuScene.swift */; };
+		78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */; };
+		78FC15AA2BB35B6600798BC5 /* ObstacleContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */; };
 		78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */; };
 		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +47,8 @@
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		78FC15A42BB353E100798BC5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContactDelegate.swift; sourceTree = "<group>"; };
+		78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleContactDelegate.swift; sourceTree = "<group>"; };
 		78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleFactory.swift; sourceTree = "<group>"; };
 		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				78FC159B2BB33D2300798BC5 /* App */,
+				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
 				786E273F2BACA5E800F73394 /* SceneController */,
 				78FC159C2BB33D4F00798BC5 /* Scene */,
@@ -147,6 +152,15 @@
 				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
 			);
 			path = Obstacles;
+			sourceTree = "<group>";
+		};
+		78FC15A62BB35B3800798BC5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */,
+				78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,10 +242,12 @@
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
+				78FC15AA2BB35B6600798BC5 /* ObstacleContactDelegate.swift in Sources */,
 				78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */,
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
 				78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
+				78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
