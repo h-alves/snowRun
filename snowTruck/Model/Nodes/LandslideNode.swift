@@ -11,8 +11,20 @@ class LandslideNode: SKShapeNode {
     
     weak var delegate: ObstacleContactDelegate?
     
-    init(size: CGSize) {
+    var landslideDistance: CGFloat = 0
+    
+    var originalPosition: CGFloat = 0
+    var closePosition: CGFloat = 0
+    var gameOverPosition: CGFloat = 0
+    
+    init(size: CGSize, frame: CGRect) {
         super.init()
+        
+        self.landslideDistance = (frame.height/0.9)
+        
+        self.originalPosition = frame.minY - landslideDistance
+        self.closePosition = frame.minY - (frame.height/2.3)
+        self.gameOverPosition = frame.midY
         
         self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size), transform: nil)
         self.fillColor = .white
@@ -31,39 +43,16 @@ class LandslideNode: SKShapeNode {
         super.init(coder: aDecoder)
     }
     
-//    func moveLandslide() {
-//        if gameIsOver {
-//            if landslide.position.y < cameraNode.position.y {
-//                landslide.position.y += 12
-//            }
-//        } else {
-//            let originalPosition = cameraNode.position.y - (frame.height/0.9)
-//            var bottomOfScreen = cameraNode.position.y - (frame.height/1.1)
-//
-//            if secondPass {
-//                bottomOfScreen = cameraNode.position.y
-//            }
-//
-//            if truck.isSpeedReduced {
-//                if landslide.position.y < bottomOfScreen {
-//                    landslide.position.y += 12
-//                }
-//                landslide.position.y = min(landslide.position.y, bottomOfScreen)
-//            } else {
-//                if landslide.position.y > originalPosition {
-//                    landslide.position.y -= 6
-//                }
-//                landslide.position.y = max(landslide.position.y, originalPosition)
-//            }
-//        }
-//    }
-    
     func moveCloser() {
-        
+        self.position.y = closePosition
     }
     
     func moveUp() {
-        
+        self.position.y = gameOverPosition
+    }
+    
+    func moveDown() {
+        self.position.y = originalPosition
     }
     
 }

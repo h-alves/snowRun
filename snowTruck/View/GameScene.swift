@@ -13,9 +13,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     // MARK: - Objects
     
     var truck: TruckNode!
-    var truckDistance: CGFloat = 350
+    var truckDistance: CGFloat = 0
     var landslide: LandslideNode!
-    var landslideDistance: CGFloat = 0
     
     var targetPosition: CGPoint?
     
@@ -41,8 +40,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     override func didMove(to view: SKView) {
         truckDistance = (frame.height/3.4)
-        landslideDistance = (frame.height/0.9)
-        landslideDistance = (frame.height/2.3)
         
         setUpBackground()
         setUpNodes()
@@ -134,13 +131,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         truck.zPosition = 2
         truck.delegate = self
         
-        landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100))
-        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslideDistance)
+        landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100), frame: frame)
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
         landslide.zPosition = 2.1
         landslide.delegate = self
         
         addChild(truck)
         addChild(landslide)
+        
+        let hole = HoleNode(size: CGSize(width: 60, height: 60))
+        hole.position = CGPoint(x: truck.position.x + 100, y: truck.position.y)
+        addChild(hole)
     }
     
     func setUpGameOver() {
@@ -197,12 +198,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         resetPositions()
         
-        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
+//        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
     }
     
     func resetPositions() {
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
-        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslideDistance)
+        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
     }
     
     func resetVariables() {
@@ -235,6 +236,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     func reduceSpeed() {
         reduceTimer?.invalidate()
         holeCollision += 1
+        print(holeCollision)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.truck.isSpeedReduced = true
@@ -250,7 +252,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         reduceTimer = Timer.scheduledTimer(withTimeInterval: 6.3, repeats: false) { timer in
             self.truck.isSpeedReduced = false
-            self.holeCollision -= 1
+            self.holeCollision = 0
+            
+            // Mover avalanche pra baixo
+            self.landslide.moveDown()
+            
             timer.invalidate()
         }
     }
