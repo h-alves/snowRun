@@ -11,4 +11,7 @@ protocol PlayerContactDelegate: AnyObject {
     func gameOver()
     func moveLandslideUp()
     func reduceSpeed()
+    
+    func addCoin(object: ObstacleNode)
+    func addGas(object: ObstacleNode)
 }

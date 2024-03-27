@@ -15,4 +15,7 @@ struct PhysicsCategory {
     
     static let hole: UInt32 = 0x1 << 10
     static let block: UInt32 = 0x1 << 11
+    
+    static let gas: UInt32 = 0x1 << 20
+    static let coin: UInt32 = 0x1 << 21
 }

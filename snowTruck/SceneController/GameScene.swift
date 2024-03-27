@@ -20,6 +20,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     // MARK: - Obstacle Generation
     
+    var itemFactory: ItemFactory!
     var obstacleFactory: ObstacleFactory!
     var obstacleGenerationTimer: Timer?
     let obstacleGenerationInterval: TimeInterval = 2.0
@@ -130,8 +131,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     func setUpNodes() {
         obstacleFactory = ObstacleFactory(frame: frame, offset: (frame.height/1.1))
+        itemFactory = ItemFactory(frame: frame, offset: (frame.height/1.1))
         
-        truck = TruckNode(size: CGSize(width: 80, height: 160), color: .red)
+        truck = TruckNode(size: CGSize(width: 80, height: 160), color: .black)
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
         truck.zPosition = 2
         truck.delegate = self
@@ -185,13 +187,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     @objc func generateObstacle() {
         let child = obstacleFactory.createRandomObstacle()
+        let child2 = itemFactory.createRandomObstacle()
         
         addChild(child)
+        addChild(child2)
         
         print("\(child) adicionado na posição: x = \(child.position.x) & y = \(child.position.y)")
         
         child.moveDown(finalSpace: frame.minY - 100)
+        child2.moveDown(finalSpace: frame.minY - 100)
         obstacleList.append(child)
+        obstacleList.append(child2)
     }
     
     // MARK: - Restart Game Functions
@@ -298,6 +304,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     func moveLandslideUp() {
         // Mover avalanche pra cima
         landslide.move(direction: .up)
+    }
+    
+    func addGas(object: ObstacleNode) {
+        truck.gas += 20
+        if truck.gas > 100 {
+            truck.gas = 100
+        }
+        print(truck.gas)
+    }
+    
+    func addCoin(object: ObstacleNode) {
+        UserInfo.shared.totalCoins += 1
+        print(UserInfo.shared.totalCoins)
     }
     
     // MARK: Landslide

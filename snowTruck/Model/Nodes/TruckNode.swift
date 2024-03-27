@@ -13,6 +13,8 @@ class TruckNode: SKShapeNode {
     
     var isSpeedReduced: Bool = false
     
+    var gas: Int = 100
+    
     init(size: CGSize, color: UIColor) {
         super.init()
         
@@ -85,6 +87,10 @@ extension TruckNode {
             }
         } else if node is HoleNode {
             delegate?.reduceSpeed()
+        } else if node is GasNode {
+            delegate?.addGas(object: node as! ObstacleNode)
+        } else if node is CoinNode {
+            delegate?.addCoin(object: node as! ObstacleNode)
         }
     }
     

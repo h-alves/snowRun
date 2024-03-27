@@ -26,7 +26,7 @@ class ObstacleFactory {
         
         let newBlock = BlockNode(size: CGSize(width: width, height: height))
         newBlock.position = CGPoint(x: xPosition, y: yPosition)
-        newBlock.fillColor = .blue
+        newBlock.fillColor = .red
         newBlock.zPosition = 1
         
         return newBlock
@@ -41,21 +41,25 @@ class ObstacleFactory {
         
         let newHole = HoleNode(size: CGSize(width: width, height: height))
         newHole.position = CGPoint(x: xPosition, y: yPosition)
-        newHole.fillColor = .green
+        newHole.fillColor = .blue
         newHole.zPosition = 1
         
         return newHole
     }
     
     func createRandomObstacle() -> ObstacleNode {
-        let newBlock = self.createBlock()
-        let newHole = self.createHole()
-        var list: [ObstacleNode] = [ObstacleNode]()
+        let child: ObstacleNode!
         
-        list.append(newHole)
-        list.append(newBlock)
+        let randomObstacle = ObstacleTypes.allCases.randomElement()
         
-        let child = list.randomElement()!
+        switch randomObstacle {
+        case .block:
+            child = self.createBlock()
+        case .hole:
+            child = self.createHole()
+        case nil:
+            child = nil
+        }
         
         return child
     }
