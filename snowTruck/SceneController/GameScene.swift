@@ -73,13 +73,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         
-        if restartButton.contains(touchLocation) {
-            restartGame()
-        } else if menuButton.contains(touchLocation) {
-            changeToMenuScene()
-        } else {
+        if overlayNode.isHidden {
             let truckLocation = convert(touchLocation, to: truck)
             targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
+        } else {
+            if restartButton.contains(touchLocation) {
+                restartGame()
+            } else if menuButton.contains(touchLocation) {
+                changeToMenuScene()
+            }
         }
     }
     
