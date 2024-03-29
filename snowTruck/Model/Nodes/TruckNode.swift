@@ -80,6 +80,7 @@ class TruckNode: SKShapeNode {
 extension TruckNode {
     
     func beganContact(with node: SKNode) {
+        let name = node.name
         if node is LandslideNode || node is BlockNode {
             delegate?.gameOver()
             if node is BlockNode {
@@ -88,9 +89,24 @@ extension TruckNode {
         } else if node is HoleNode {
             delegate?.reduceSpeed()
         } else if node is GasNode {
-            delegate?.addGas(object: node as! ObstacleNode)
+            delegate?.addGas(object: node as! ItemNode)
         } else if node is CoinNode {
-            delegate?.addCoin(object: node as! ObstacleNode)
+            delegate?.addCoin(object: node as! ItemNode)
+        }
+        switch name {
+        case "landslide":
+            delegate?.gameOver()
+        case "block":
+            delegate?.gameOver()
+            delegate?.moveLandslideUp()
+        case "hole":
+            delegate?.reduceSpeed()
+        case "gas":
+            delegate?.addGas(object: node as! ObjectNode)
+        case "coin":
+            delegate?.addCoin(object: node as! ObjectNode)
+        default:
+            break
         }
     }
     

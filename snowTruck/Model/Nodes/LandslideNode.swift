@@ -9,7 +9,7 @@ import SpriteKit
 
 class LandslideNode: SKShapeNode {
     
-    weak var delegate: ObstacleContactDelegate?
+    weak var delegate: ObjectContactDelegate?
     
     var landslideDistance: CGFloat = 0
     
@@ -63,8 +63,8 @@ class LandslideNode: SKShapeNode {
 extension LandslideNode {
     
     func beganContact(with node: SKNode) {
-        if node is HoleNode || node is BlockNode {
-            delegate?.deleteObstacle(obstacle: node as! SKShapeNode)
+        if node is ObjectNode {
+            delegate?.deleteObject(object: node as! ObjectNode)
         }
     }
     

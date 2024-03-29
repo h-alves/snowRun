@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDB2BB490590064BD6F /* GasNode.swift */; };
 		786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDE2BB490E30064BD6F /* CoinNode.swift */; };
-		786B7BE12BB491910064BD6F /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* UserInfo.swift */; };
-		786B7BE32BB493500064BD6F /* ObstacleTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE22BB493500064BD6F /* ObstacleTypes.swift */; };
-		786B7BE52BB49AB90064BD6F /* ItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE42BB49AB90064BD6F /* ItemFactory.swift */; };
-		786B7BE72BB49ADA0064BD6F /* ItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE62BB49ADA0064BD6F /* ItemTypes.swift */; };
+		786B7BE12BB491910064BD6F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameController.swift */; };
+		786B7BE92BB72F410064BD6F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE82BB72F410064BD6F /* Object.swift */; };
+		786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEA2BB737BD0064BD6F /* ItemNode.swift */; };
+		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
+		786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */; };
+		786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF22BB779D50064BD6F /* ObjectNode.swift */; };
 		786E27292BACA58600F73394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27282BACA58600F73394 /* AppDelegate.swift */; };
 		786E272B2BACA58600F73394 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 786E272A2BACA58600F73394 /* GameScene.sks */; };
 		786E272F2BACA58600F73394 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E272E2BACA58600F73394 /* GameScene.swift */; };
@@ -30,18 +32,19 @@
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
 		78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A42BB353E100798BC5 /* MenuScene.swift */; };
 		78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */; };
-		78FC15AA2BB35B6600798BC5 /* ObstacleContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */; };
-		78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */; };
+		78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */; };
 		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
 		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
-		786B7BE02BB491910064BD6F /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
-		786B7BE22BB493500064BD6F /* ObstacleTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleTypes.swift; sourceTree = "<group>"; };
-		786B7BE42BB49AB90064BD6F /* ItemFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemFactory.swift; sourceTree = "<group>"; };
-		786B7BE62BB49ADA0064BD6F /* ItemTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTypes.swift; sourceTree = "<group>"; };
+		786B7BE02BB491910064BD6F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		786B7BE82BB72F410064BD6F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		786B7BEA2BB737BD0064BD6F /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
+		786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTypes.swift; sourceTree = "<group>"; };
+		786B7BF22BB779D50064BD6F /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
 		786E27252BACA58600F73394 /* snowTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786E27282BACA58600F73394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786E272A2BACA58600F73394 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -60,8 +63,7 @@
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		78FC15A42BB353E100798BC5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContactDelegate.swift; sourceTree = "<group>"; };
-		78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleContactDelegate.swift; sourceTree = "<group>"; };
-		78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleFactory.swift; sourceTree = "<group>"; };
+		78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContactDelegate.swift; sourceTree = "<group>"; };
 		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,10 +81,30 @@
 		786B7BDD2BB4905F0064BD6F /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				786B7BEA2BB737BD0064BD6F /* ItemNode.swift */,
 				786B7BDB2BB490590064BD6F /* GasNode.swift */,
 				786B7BDE2BB490E30064BD6F /* CoinNode.swift */,
 			);
 			path = Items;
+			sourceTree = "<group>";
+		};
+		786B7BEC2BB7393A0064BD6F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				786E27452BACF5E600F73394 /* PhysicsCategory.swift */,
+				786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */,
+				78FC159D2BB342D700798BC5 /* LandslideDirection.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		786B7BF12BB776E30064BD6F /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */,
+				78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */,
+			);
+			path = Delegates;
 			sourceTree = "<group>";
 		};
 		786E271C2BACA58600F73394 = {
@@ -126,14 +148,10 @@
 		786E27402BACA5F100F73394 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				786B7BEC2BB7393A0064BD6F /* Enums */,
 				786E27472BACF5EC00F73394 /* Nodes */,
-				786E27452BACF5E600F73394 /* PhysicsCategory.swift */,
-				786B7BE22BB493500064BD6F /* ObstacleTypes.swift */,
-				786B7BE62BB49ADA0064BD6F /* ItemTypes.swift */,
-				78FE4BC62BB1B40B001B84F6 /* ObstacleFactory.swift */,
-				786B7BE42BB49AB90064BD6F /* ItemFactory.swift */,
-				78FC159D2BB342D700798BC5 /* LandslideDirection.swift */,
-				786B7BE02BB491910064BD6F /* UserInfo.swift */,
+				786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */,
+				786B7BE02BB491910064BD6F /* GameController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -141,12 +159,12 @@
 		786E27472BACF5EC00F73394 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				786E274C2BADBA9500F73394 /* ButtonNode.swift */,
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
-				78FC159F2BB3484700798BC5 /* ObstacleNode.swift */,
+				786B7BF22BB779D50064BD6F /* ObjectNode.swift */,
 				78FC15A12BB34E1600798BC5 /* Obstacle */,
 				786B7BDD2BB4905F0064BD6F /* Items */,
-				786E274C2BADBA9500F73394 /* ButtonNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -174,8 +192,9 @@
 		78FC15A12BB34E1600798BC5 /* Obstacle */ = {
 			isa = PBXGroup;
 			children = (
-				786E27502BAE13A100F73394 /* HoleNode.swift */,
+				78FC159F2BB3484700798BC5 /* ObstacleNode.swift */,
 				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
+				786E27502BAE13A100F73394 /* HoleNode.swift */,
 			);
 			path = Obstacle;
 			sourceTree = "<group>";
@@ -183,8 +202,8 @@
 		78FC15A62BB35B3800798BC5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */,
-				78FC15A92BB35B6600798BC5 /* ObstacleContactDelegate.swift */,
+				786B7BE82BB72F410064BD6F /* Object.swift */,
+				786B7BF12BB776E30064BD6F /* Delegates */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -262,27 +281,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */,
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
 				78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */,
 				78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
-				78FC15AA2BB35B6600798BC5 /* ObstacleContactDelegate.swift in Sources */,
+				78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */,
 				78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */,
+				786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */,
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
-				78FE4BC72BB1B40B001B84F6 /* ObstacleFactory.swift in Sources */,
-				786B7BE72BB49ADA0064BD6F /* ItemTypes.swift in Sources */,
+				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
-				786B7BE52BB49AB90064BD6F /* ItemFactory.swift in Sources */,
+				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
+				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
 				78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
 				786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */,
-				786B7BE12BB491910064BD6F /* UserInfo.swift in Sources */,
+				786B7BE12BB491910064BD6F /* GameController.swift in Sources */,
 				786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */,
-				786B7BE32BB493500064BD6F /* ObstacleTypes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

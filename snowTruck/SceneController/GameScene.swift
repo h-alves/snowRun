@@ -8,7 +8,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, ObstacleContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Objects
     
@@ -18,13 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     
     var targetPosition: CGPoint?
     
-    // MARK: - Obstacle Generation
-    
-    var itemFactory: ItemFactory!
-    var obstacleFactory: ObstacleFactory!
-    var obstacleGenerationTimer: Timer?
-    let obstacleGenerationInterval: TimeInterval = 2.0
-    var obstacleList: [ObstacleNode] = [ObstacleNode]()
+    var objectFactory: ObjectFactory!
     
     // MARK: - Reset Screen
     
@@ -58,7 +52,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         physicsWorld.contactDelegate = self
         
-        startObstacleGenerationTimer()
+        objectFactory = ObjectFactory(offset: (frame.height/1.1))
+        objectFactory.start(self)
+        addChild(objectFactory)
         startGasTimer()
         
         NotificationCenter.default.addObserver(self, selector: #selector(enterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -68,14 +64,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     // MARK: UIApplication
     
     @objc func enterBackground() {
-        obstacleGenerationTimer?.invalidate()
-        obstacleGenerationTimer = nil
+        // Pause Game
         gasTimer?.invalidate()
         gasTimer = nil
     }
     
     @objc func enterForeground() {
-        startObstacleGenerationTimer()
+        // Unpause Game
         startGasTimer()
     }
     
@@ -141,9 +136,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func setUpNodes() {
-        obstacleFactory = ObstacleFactory(frame: frame, offset: (frame.height/1.1))
-        itemFactory = ItemFactory(frame: frame, offset: (frame.height/1.1))
-        
         truck = TruckNode(size: CGSize(width: 80, height: 160), color: .black)
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
         truck.zPosition = 2
@@ -197,27 +189,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         self.addChild(menuButton)
     }
     
-    // MARK: - Obstacle Generation Functions
-    
-    func startObstacleGenerationTimer() {
-        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
-    }
-    
-    @objc func generateObstacle() {
-        let child = obstacleFactory.createRandomObstacle()
-        let child2 = itemFactory.createRandomObstacle()
-        
-        addChild(child)
-        addChild(child2)
-        
-        print("\(child) adicionado na posição: x = \(child.position.x) & y = \(child.position.y)")
-        
-        child.moveDown(finalSpace: frame.minY - 100)
-        child2.moveDown(finalSpace: frame.minY - 100)
-        obstacleList.append(child)
-        obstacleList.append(child2)
-    }
-    
     // MARK: - Gas Going Down Functions
     
     func startGasTimer() {
@@ -248,8 +219,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         resetPositions()
         
         resetObstacles()
-        
-        obstacleGenerationTimer = Timer.scheduledTimer(timeInterval: obstacleGenerationInterval, target: self, selector: #selector(generateObstacle), userInfo: nil, repeats: true)
     }
     
     func resetPositions() {
@@ -284,29 +253,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func resetObstacles() {
-        for obstacle in obstacleList {
+        for obstacle in GameController.shared.currentObjects {
             obstacle.removeAllActions()
             obstacle.removeFromParent()
         }
         
-        obstacleList = [ObstacleNode]()
+        GameController.shared.currentObjects = [ObstacleNode]()
+        
+        objectFactory.start(self)
     }
     
-    // MARK: - Delegates
     
-    // MARK: Player
+    
+}
+
+// MARK: - Delegates
+
+extension GameScene: PlayerContactDelegate {
     
     func gameOver() {
         if gameIsOver == false {
             // Parar de mover a tela pra baixo
-            for obstacle in obstacleList {
+            for obstacle in GameController.shared.currentObjects {
                 obstacle.removeAllActions()
             }
             
             gameIsOver = true
             changeToGameOverScene()
             
-            obstacleGenerationTimer?.invalidate()
+            objectFactory.stop()
         }
     }
     
@@ -346,7 +321,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         landslide.move(direction: .up)
     }
     
-    func addGas(object: ObstacleNode) {
+    func addGas(object: ObjectNode) {
         gasIncrease = true
         truck.gas += 20
         if truck.gas > 100 {
@@ -363,24 +338,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.gasIncrease = false
         }
+        
+        deleteItem(item: object)
     }
     
-    func addCoin(object: ObstacleNode) {
-        UserInfo.shared.totalCoins += 1
-        print(UserInfo.shared.totalCoins)
+    func addCoin(object: ObjectNode) {
+        GameController.shared.totalCoins += 1
+        print(GameController.shared.totalCoins)
+        
+        deleteItem(item: object)
     }
     
-    // MARK: Landslide
+    func deleteItem(item: ObjectNode) {
+        GameController.shared.currentObjects.removeAll { $0.id == item.id }
+        item.removeFromParent()
+    }
     
-    func deleteObstacle(obstacle: SKShapeNode) {
+}
+
+extension GameScene: ObjectContactDelegate {
+    
+    func deleteObject(object: ObjectNode) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             // Remover obstáculo da tela
-            if self.obstacleList.count > 0 {
-                self.obstacleList.removeFirst()
-                obstacle.removeFromParent()
+            if GameController.shared.currentObjects.count > 0 {
+                GameController.shared.currentObjects.removeFirst()
+                object.removeFromParent()
             }
             
-            print("\(obstacle) foi apagado")
+            print("\(object) foi apagado")
         }
     }
     
