@@ -33,6 +33,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     var restartButton: ButtonNode!
     var menuButton: ButtonNode!
     
+    // MARK: - Gas
+    
+    var gasTimer: Timer?
+    let gasTimeInterval: TimeInterval = 1.0
+    var gasBar: SKShapeNode!
+    var gasIncrease: Bool = false
+    
     // MARK: - Delegate Variables
     
     var gameIsOver: Bool = false
@@ -52,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         physicsWorld.contactDelegate = self
         
         startObstacleGenerationTimer()
+        startGasTimer()
         
         NotificationCenter.default.addObserver(self, selector: #selector(enterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -62,10 +70,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     @objc func enterBackground() {
         obstacleGenerationTimer?.invalidate()
         obstacleGenerationTimer = nil
+        gasTimer?.invalidate()
+        gasTimer = nil
     }
     
     @objc func enterForeground() {
         startObstacleGenerationTimer()
+        startGasTimer()
     }
     
     // MARK: Touch
@@ -145,6 +156,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         
         addChild(truck)
         addChild(landslide)
+        
+        gasBar = SKShapeNode(path: CGPath(rect: CGRect(origin: CGPoint(x: -60, y: 0), size: CGSize(width: 60, height: frame.height - 300)), transform: nil))
+        gasBar.position = CGPoint(x: frame.maxX - 120, y: frame.midY - (frame.height - 300) / 2)
+        gasBar.fillColor = .green
+        gasBar.zPosition = 2
+        
+        addChild(gasBar)
     }
     
     func setUpGameOver() {
@@ -198,6 +216,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
         child2.moveDown(finalSpace: frame.minY - 100)
         obstacleList.append(child)
         obstacleList.append(child2)
+    }
+    
+    // MARK: - Gas Going Down Functions
+    
+    func startGasTimer() {
+        gasTimer = Timer.scheduledTimer(timeInterval: gasTimeInterval, target: self, selector: #selector(subtractGas), userInfo: nil, repeats: true)
+    }
+    
+    @objc func subtractGas() {
+        if !gasIncrease {
+            truck.gas -= 10
+            if truck.gas < 0 {
+                truck.gas = 0
+            }
+            print(truck.gas)
+            
+            let maxGasHeight = frame.height - 300
+            let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
+            
+            gasBar.path = CGPath(rect: CGRect(x: -60, y: 0, width: 60, height: remainingGasHeight), transform: nil)
+            
+        }
     }
     
     // MARK: - Restart Game Functions
@@ -307,11 +347,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, PlayerContactDelegate, Obsta
     }
     
     func addGas(object: ObstacleNode) {
+        gasIncrease = true
         truck.gas += 20
         if truck.gas > 100 {
             truck.gas = 100
         }
+        
+        let maxGasHeight = frame.height - 300
+        let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
+        
+        gasBar.path = CGPath(rect: CGRect(x: -60, y: 0, width: 60, height: remainingGasHeight), transform: nil)
+        
         print(truck.gas)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.gasIncrease = false
+        }
     }
     
     func addCoin(object: ObstacleNode) {
