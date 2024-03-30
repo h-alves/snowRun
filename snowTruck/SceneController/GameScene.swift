@@ -10,6 +10,8 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    let controller = GameController.shared
+    
     // MARK: - Objects
     
     var truck: TruckNode!
@@ -240,6 +242,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         holeCollision = 0
         gameIsOver = false
         startGasTimer()
+        controller.currentCoins = 0
+        controller.currentDistance = 0
     }
     
     func changeToGameOverScene() {
@@ -258,12 +262,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func resetObstacles() {
-        for obstacle in GameController.shared.currentObjects {
+        for obstacle in controller.currentObjects {
             obstacle.removeAllActions()
             obstacle.removeFromParent()
         }
         
-        GameController.shared.currentObjects = [ObstacleNode]()
+        controller.currentObjects = [ObstacleNode]()
         
         objectFactory.start(self)
     }
@@ -279,7 +283,7 @@ extension GameScene: PlayerContactDelegate {
     func gameOver() {
         if gameIsOver == false {
             // Parar de mover a tela pra baixo
-            for obstacle in GameController.shared.currentObjects {
+            for obstacle in controller.currentObjects {
                 obstacle.removeAllActions()
             }
             
@@ -288,6 +292,13 @@ extension GameScene: PlayerContactDelegate {
             
             objectFactory.stop()
             gasTimer?.invalidate()
+            
+            controller.totalCoins += controller.currentCoins
+            print("total de moedas: \(controller.totalCoins)")
+            
+            if controller.currentDistance > controller.highestDistance {
+                controller.highestDistance = controller.currentDistance
+            }
         }
     }
     
@@ -349,14 +360,14 @@ extension GameScene: PlayerContactDelegate {
     }
     
     func addCoin(object: ObjectNode) {
-        GameController.shared.totalCoins += 1
-        print(GameController.shared.totalCoins)
+        controller.currentCoins += 1
+        print(controller.currentCoins)
         
         deleteItem(item: object)
     }
     
     func deleteItem(item: ObjectNode) {
-        GameController.shared.currentObjects.removeAll { $0.id == item.id }
+        controller.currentObjects.removeAll { $0.id == item.id }
         item.removeFromParent()
     }
     
@@ -367,8 +378,8 @@ extension GameScene: ObjectContactDelegate {
     func deleteObject(object: ObjectNode) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             // Remover obstáculo da tela
-            if GameController.shared.currentObjects.count > 0 {
-                GameController.shared.currentObjects.removeFirst()
+            if self.controller.currentObjects.count > 0 {
+                self.controller.currentObjects.removeFirst()
                 object.removeFromParent()
             }
             

@@ -13,14 +13,19 @@ class MenuScene: SKScene {
     var restartButton: ButtonNode!
     
     override func didMove(to view: SKView) {
+        let overlayNode = SKShapeNode(rectOf: CGSize(width: frame.width, height: frame.height))
+        overlayNode.position = CGPoint(x: frame.midX, y: frame.midY)
+        overlayNode.fillColor = .white
+        self.addChild(overlayNode)
+        
         let gameOverLabel = SKLabelNode(text: "Snow Truck")
         gameOverLabel.fontName = "Arial"
         gameOverLabel.fontSize = 40
-        gameOverLabel.fontColor = .red
+        gameOverLabel.fontColor = .black
         gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(gameOverLabel)
         
-        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "start", color: .yellow)
+        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "start", color: .red)
         restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         self.addChild(restartButton)
     }
