@@ -52,7 +52,7 @@ class LandslideNode: SKShapeNode {
         case .down:
             move = SKAction.moveTo(y: originalPosition, duration: 0.7)
         case .up:
-            move = SKAction.moveTo(y: gameOverPosition, duration: 2.0)
+            move = SKAction.moveTo(y: gameOverPosition, duration: 1.5)
         }
         
         self.run(move)

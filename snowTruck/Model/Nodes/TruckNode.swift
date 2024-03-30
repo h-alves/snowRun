@@ -81,18 +81,7 @@ extension TruckNode {
     
     func beganContact(with node: SKNode) {
         let name = node.name
-        if node is LandslideNode || node is BlockNode {
-            delegate?.gameOver()
-            if node is BlockNode {
-                delegate?.moveLandslideUp()
-            }
-        } else if node is HoleNode {
-            delegate?.reduceSpeed()
-        } else if node is GasNode {
-            delegate?.addGas(object: node as! ItemNode)
-        } else if node is CoinNode {
-            delegate?.addCoin(object: node as! ItemNode)
-        }
+        
         switch name {
         case "landslide":
             delegate?.gameOver()

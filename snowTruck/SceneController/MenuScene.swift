@@ -13,7 +13,7 @@ class MenuScene: SKScene {
     var restartButton: ButtonNode!
     
     override func didMove(to view: SKView) {
-        let gameOverLabel = SKLabelNode(text: "Opa")
+        let gameOverLabel = SKLabelNode(text: "Snow Truck")
         gameOverLabel.fontName = "Arial"
         gameOverLabel.fontSize = 40
         gameOverLabel.fontColor = .red

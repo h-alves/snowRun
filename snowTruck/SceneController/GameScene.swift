@@ -30,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Gas
     
     var gasTimer: Timer?
-    let gasTimeInterval: TimeInterval = 1.0
+    let gasTimeInterval: TimeInterval = 2.0
     var gasBar: SKShapeNode!
     var gasIncrease: Bool = false
     
@@ -200,6 +200,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             truck.gas -= 10
             if truck.gas < 0 {
                 truck.gas = 0
+                gameOver()
+                landslide.move(direction: .up)
             }
             print(truck.gas)
             
@@ -225,6 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
         landslide.removeAllActions()
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
+        gasBar.path = CGPath(rect: CGRect(origin: CGPoint(x: -60, y: 0), size: CGSize(width: 60, height: frame.height - 300)), transform: nil)
     }
     
     func resetVariables() {
@@ -233,8 +236,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         restartButton.isHidden = true
         menuButton.isHidden = true
         truck.isSpeedReduced = false
+        truck.gas = 100
         holeCollision = 0
         gameIsOver = false
+        startGasTimer()
     }
     
     func changeToGameOverScene() {
@@ -282,6 +287,7 @@ extension GameScene: PlayerContactDelegate {
             changeToGameOverScene()
             
             objectFactory.stop()
+            gasTimer?.invalidate()
         }
     }
     
