@@ -18,16 +18,30 @@ class MenuScene: SKScene {
         overlayNode.fillColor = .white
         self.addChild(overlayNode)
         
-        let gameOverLabel = SKLabelNode(text: "Snow Truck")
-        gameOverLabel.fontName = "Arial"
-        gameOverLabel.fontSize = 40
-        gameOverLabel.fontColor = .black
-        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-        self.addChild(gameOverLabel)
+        let titleLabel = SKLabelNode(text: "Snow Truck")
+        titleLabel.fontName = "Arial"
+        titleLabel.fontSize = 40
+        titleLabel.fontColor = .black
+        titleLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        self.addChild(titleLabel)
         
         restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "start", color: .red)
         restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         self.addChild(restartButton)
+        
+        let highscoreLabel = SKLabelNode(text: "Highscore: \(Int(GameController.shared.highestDistance)) m")
+        highscoreLabel.fontName = "Arial"
+        highscoreLabel.fontSize = 40
+        highscoreLabel.fontColor = .black
+        highscoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+        self.addChild(highscoreLabel)
+        
+        let coinsLabel = SKLabelNode(text: "Moedas: \(GameController.shared.totalCoins)")
+        coinsLabel.fontName = "Arial"
+        coinsLabel.fontSize = 40
+        coinsLabel.fontColor = .black
+        coinsLabel.position = CGPoint(x: frame.midX, y: frame.midY - 300)
+        self.addChild(coinsLabel)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

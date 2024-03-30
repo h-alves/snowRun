@@ -22,6 +22,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var objectFactory: ObjectFactory!
     
+    var distanceNode: DistanceNode!
+    var coinsNode: DistanceNode!
+    
     // MARK: - Reset Screen
     
     var overlayNode: SKShapeNode!
@@ -89,6 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if restartButton.contains(touchLocation) {
                 restartGame()
             } else if menuButton.contains(touchLocation) {
+                controller.currentCoins = 0
+                controller.currentDistance = 0
+                
                 changeToMenuScene()
             }
         }
@@ -110,6 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if !gameIsOver {
             truck.move(targetPosition: targetPosition ?? nil)
+            updateDistance()
         }
     }
     
@@ -157,6 +164,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gasBar.zPosition = 2
         
         addChild(gasBar)
+        
+        distanceNode = DistanceNode(size: CGSize(width: 200, height: 50), text: "0 m", color: .yellow)
+        distanceNode.position = CGPoint(x: frame.midX, y: frame.maxY - distanceNode.frame.height * 4)
+        distanceNode.zPosition = 2.2
+        
+        addChild(distanceNode)
+        
+        coinsNode = DistanceNode(size: CGSize(width: 200, height: 50), text: "0", color: .yellow)
+        coinsNode.position = CGPoint(x: frame.maxX - 200, y: frame.maxY - distanceNode.frame.height * 4)
+        coinsNode.zPosition = 2.2
+        addChild(coinsNode)
     }
     
     func setUpGameOver() {
@@ -272,7 +290,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         objectFactory.start(self)
     }
     
-    
+    func updateDistance() {
+        controller.currentDistance += 0.1
+        distanceNode.distanceLabel.text = "\(Int(controller.currentDistance)) m"
+    }
     
 }
 
@@ -364,6 +385,8 @@ extension GameScene: PlayerContactDelegate {
         print(controller.currentCoins)
         
         deleteItem(item: object)
+        
+        coinsNode.distanceLabel.text = "\(controller.currentCoins)"
     }
     
     func deleteItem(item: ObjectNode) {

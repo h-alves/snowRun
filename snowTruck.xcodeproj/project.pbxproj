@@ -15,6 +15,7 @@
 		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
 		786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */; };
 		786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF22BB779D50064BD6F /* ObjectNode.swift */; };
+		786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF52BB8CC960064BD6F /* DistanceNode.swift */; };
 		786E27292BACA58600F73394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27282BACA58600F73394 /* AppDelegate.swift */; };
 		786E272B2BACA58600F73394 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 786E272A2BACA58600F73394 /* GameScene.sks */; };
 		786E272F2BACA58600F73394 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E272E2BACA58600F73394 /* GameScene.swift */; };
@@ -45,6 +46,7 @@
 		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
 		786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTypes.swift; sourceTree = "<group>"; };
 		786B7BF22BB779D50064BD6F /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
+		786B7BF52BB8CC960064BD6F /* DistanceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceNode.swift; sourceTree = "<group>"; };
 		786E27252BACA58600F73394 /* snowTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786E27282BACA58600F73394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786E272A2BACA58600F73394 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				786E274C2BADBA9500F73394 /* ButtonNode.swift */,
+				786B7BF52BB8CC960064BD6F /* DistanceNode.swift */,
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
 				786B7BF22BB779D50064BD6F /* ObjectNode.swift */,
@@ -294,6 +297,7 @@
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
 				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
+				786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
 				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
 				78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */,
