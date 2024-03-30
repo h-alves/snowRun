@@ -20,12 +20,12 @@ class MenuScene: SKScene {
         
         let titleLabel = SKLabelNode(text: "Snow Truck")
         titleLabel.fontName = "Arial"
-        titleLabel.fontSize = 40
+        titleLabel.fontSize = 70
         titleLabel.fontColor = .black
-        titleLabel.position = CGPoint(x: frame.midX, y: frame.midY)
+        titleLabel.position = CGPoint(x: frame.midX, y: frame.midY + 200)
         self.addChild(titleLabel)
         
-        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "start", color: .red)
+        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "Start", color: .red)
         restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
         self.addChild(restartButton)
         
@@ -33,14 +33,14 @@ class MenuScene: SKScene {
         highscoreLabel.fontName = "Arial"
         highscoreLabel.fontSize = 40
         highscoreLabel.fontColor = .black
-        highscoreLabel.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+        highscoreLabel.position = CGPoint(x: frame.midX, y: frame.midY + 100)
         self.addChild(highscoreLabel)
         
         let coinsLabel = SKLabelNode(text: "Moedas: \(GameController.shared.totalCoins)")
         coinsLabel.fontName = "Arial"
         coinsLabel.fontSize = 40
         coinsLabel.fontColor = .black
-        coinsLabel.position = CGPoint(x: frame.midX, y: frame.midY - 300)
+        coinsLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(coinsLabel)
     }
     

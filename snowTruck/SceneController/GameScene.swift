@@ -159,7 +159,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(landslide)
         
         gasBar = SKShapeNode(path: CGPath(rect: CGRect(origin: CGPoint(x: -60, y: 0), size: CGSize(width: 60, height: frame.height - 300)), transform: nil))
-        gasBar.position = CGPoint(x: frame.maxX - 120, y: frame.midY - (frame.height - 300) / 2)
+        gasBar.position = CGPoint(x: frame.maxX - 60, y: frame.midY - (frame.height - 300) / 2)
         gasBar.fillColor = .green
         gasBar.zPosition = 2
         
