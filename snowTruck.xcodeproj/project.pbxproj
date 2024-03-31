@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDB2BB490590064BD6F /* GasNode.swift */; };
+		786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDE2BB490E30064BD6F /* CoinNode.swift */; };
+		786B7BE12BB491910064BD6F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameController.swift */; };
+		786B7BE92BB72F410064BD6F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE82BB72F410064BD6F /* Object.swift */; };
+		786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEA2BB737BD0064BD6F /* ItemNode.swift */; };
+		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
+		786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */; };
+		786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF22BB779D50064BD6F /* ObjectNode.swift */; };
+		786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF52BB8CC960064BD6F /* DistanceNode.swift */; };
 		786E27292BACA58600F73394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27282BACA58600F73394 /* AppDelegate.swift */; };
 		786E272B2BACA58600F73394 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 786E272A2BACA58600F73394 /* GameScene.sks */; };
 		786E272F2BACA58600F73394 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E272E2BACA58600F73394 /* GameScene.swift */; };
@@ -17,11 +26,27 @@
 		786E27422BACA6B400F73394 /* TruckNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27412BACA6B400F73394 /* TruckNode.swift */; };
 		786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27432BACBE5F00F73394 /* LandslideNode.swift */; };
 		786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27452BACF5E600F73394 /* PhysicsCategory.swift */; };
-		786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* RestartButtonNode.swift */; };
+		786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* ButtonNode.swift */; };
 		786E27512BAE13A100F73394 /* HoleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27502BAE13A100F73394 /* HoleNode.swift */; };
+		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
+		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
+		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
+		78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A42BB353E100798BC5 /* MenuScene.swift */; };
+		78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */; };
+		78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */; };
+		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
+		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
+		786B7BE02BB491910064BD6F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		786B7BE82BB72F410064BD6F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		786B7BEA2BB737BD0064BD6F /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
+		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
+		786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTypes.swift; sourceTree = "<group>"; };
+		786B7BF22BB779D50064BD6F /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
+		786B7BF52BB8CC960064BD6F /* DistanceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceNode.swift; sourceTree = "<group>"; };
 		786E27252BACA58600F73394 /* snowTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786E27282BACA58600F73394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786E272A2BACA58600F73394 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -33,8 +58,15 @@
 		786E27412BACA6B400F73394 /* TruckNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TruckNode.swift; sourceTree = "<group>"; };
 		786E27432BACBE5F00F73394 /* LandslideNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideNode.swift; sourceTree = "<group>"; };
 		786E27452BACF5E600F73394 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
-		786E274C2BADBA9500F73394 /* RestartButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartButtonNode.swift; sourceTree = "<group>"; };
+		786E274C2BADBA9500F73394 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		786E27502BAE13A100F73394 /* HoleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleNode.swift; sourceTree = "<group>"; };
+		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
+		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
+		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		78FC15A42BB353E100798BC5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContactDelegate.swift; sourceTree = "<group>"; };
+		78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContactDelegate.swift; sourceTree = "<group>"; };
+		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +80,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		786B7BDD2BB4905F0064BD6F /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				786B7BEA2BB737BD0064BD6F /* ItemNode.swift */,
+				786B7BDB2BB490590064BD6F /* GasNode.swift */,
+				786B7BDE2BB490E30064BD6F /* CoinNode.swift */,
+			);
+			path = Items;
+			sourceTree = "<group>";
+		};
+		786B7BEC2BB7393A0064BD6F /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				786E27452BACF5E600F73394 /* PhysicsCategory.swift */,
+				786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */,
+				78FC159D2BB342D700798BC5 /* LandslideDirection.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		786B7BF12BB776E30064BD6F /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */,
+				78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
 		786E271C2BACA58600F73394 = {
 			isa = PBXGroup;
 			children = (
@@ -67,31 +128,32 @@
 		786E27272BACA58600F73394 /* snowTruck */ = {
 			isa = PBXGroup;
 			children = (
+				78FC159B2BB33D2300798BC5 /* App */,
+				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
-				786E273F2BACA5E800F73394 /* View */,
-				786E27282BACA58600F73394 /* AppDelegate.swift */,
-				786E272A2BACA58600F73394 /* GameScene.sks */,
-				786E27322BACA58600F73394 /* Main.storyboard */,
+				786E273F2BACA5E800F73394 /* SceneController */,
+				78FC159C2BB33D4F00798BC5 /* Scene */,
 				786E27352BACA58700F73394 /* Assets.xcassets */,
-				786E27372BACA58700F73394 /* LaunchScreen.storyboard */,
 			);
 			path = snowTruck;
 			sourceTree = "<group>";
 		};
-		786E273F2BACA5E800F73394 /* View */ = {
+		786E273F2BACA5E800F73394 /* SceneController */ = {
 			isa = PBXGroup;
 			children = (
 				786E272E2BACA58600F73394 /* GameScene.swift */,
-				786E27302BACA58600F73394 /* GameViewController.swift */,
+				78FC15A42BB353E100798BC5 /* MenuScene.swift */,
 			);
-			path = View;
+			path = SceneController;
 			sourceTree = "<group>";
 		};
 		786E27402BACA5F100F73394 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				786B7BEC2BB7393A0064BD6F /* Enums */,
 				786E27472BACF5EC00F73394 /* Nodes */,
-				786E27452BACF5E600F73394 /* PhysicsCategory.swift */,
+				786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */,
+				786B7BE02BB491910064BD6F /* GameController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -99,12 +161,54 @@
 		786E27472BACF5EC00F73394 /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				786E274C2BADBA9500F73394 /* ButtonNode.swift */,
+				786B7BF52BB8CC960064BD6F /* DistanceNode.swift */,
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
-				786E27502BAE13A100F73394 /* HoleNode.swift */,
-				786E274C2BADBA9500F73394 /* RestartButtonNode.swift */,
+				786B7BF22BB779D50064BD6F /* ObjectNode.swift */,
+				78FC15A12BB34E1600798BC5 /* Obstacle */,
+				786B7BDD2BB4905F0064BD6F /* Items */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		78FC159B2BB33D2300798BC5 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				786E27372BACA58700F73394 /* LaunchScreen.storyboard */,
+				786E27322BACA58600F73394 /* Main.storyboard */,
+				786E27282BACA58600F73394 /* AppDelegate.swift */,
+				786E27302BACA58600F73394 /* GameViewController.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		78FC159C2BB33D4F00798BC5 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				786E272A2BACA58600F73394 /* GameScene.sks */,
+				78FC15A22BB353D100798BC5 /* MenuScene.sks */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		78FC15A12BB34E1600798BC5 /* Obstacle */ = {
+			isa = PBXGroup;
+			children = (
+				78FC159F2BB3484700798BC5 /* ObstacleNode.swift */,
+				78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */,
+				786E27502BAE13A100F73394 /* HoleNode.swift */,
+			);
+			path = Obstacle;
+			sourceTree = "<group>";
+		};
+		78FC15A62BB35B3800798BC5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				786B7BE82BB72F410064BD6F /* Object.swift */,
+				786B7BF12BB776E30064BD6F /* Delegates */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,6 +272,7 @@
 				786E272B2BACA58600F73394 /* GameScene.sks in Resources */,
 				786E27342BACA58600F73394 /* Base in Resources */,
 				786E27362BACA58700F73394 /* Assets.xcassets in Resources */,
+				78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */,
 				786E27392BACA58700F73394 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,14 +284,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */,
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
+				78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */,
+				78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
-				786E274D2BADBA9500F73394 /* RestartButtonNode.swift in Sources */,
+				78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */,
+				78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */,
+				786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */,
+				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
+				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
+				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
+				786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */,
+				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
+				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
+				78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
+				786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */,
+				786B7BE12BB491910064BD6F /* GameController.swift in Sources */,
+				786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +466,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,9 +474,13 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -375,7 +499,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -383,9 +507,13 @@
 				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
