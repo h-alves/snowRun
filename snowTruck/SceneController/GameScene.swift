@@ -123,6 +123,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Collision
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let nameA = contact.bodyA.node?.name
+        let nameB = contact.bodyB.node?.name
+        
         if contact.bodyA.categoryBitMask == PhysicsCategory.player || contact.bodyB.categoryBitMask == PhysicsCategory.player {
             if let truckNode = contact.bodyA.node as? TruckNode {
                 truckNode.beganContact(with: contact.bodyB.node!)
@@ -134,6 +137,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 landslideNode.beganContact(with: contact.bodyB.node!)
             } else if let landslideNode = contact.bodyB.node as? LandslideNode {
                 landslideNode.beganContact(with: contact.bodyA.node!)
+            }
+        } else if nameA == "block" || nameA == "hole" || nameA == "gas" || nameA == "coin" {
+            if let objectA = contact.bodyA.node as? ObjectNode, let objectB = contact.bodyB.node as? ObjectNode {
+                objectA.beganContact(with: objectB)
+            }
+        } else if nameB == "block" || nameB == "hole" || nameB == "gas" || nameB == "coin" {
+            if let objectA = contact.bodyA.node as? ObjectNode, let objectB = contact.bodyB.node as? ObjectNode {
+                objectB.beganContact(with: objectA)
             }
         }
     }
@@ -401,13 +412,17 @@ extension GameScene: ObjectContactDelegate {
     func deleteObject(object: ObjectNode) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             // Remover obstáculo da tela
-            if self.controller.currentObjects.count > 0 {
-                self.controller.currentObjects.removeFirst()
-                object.removeFromParent()
-            }
+            object.removeFromParent()
+            self.controller.currentObjects.removeAll { $0.id == object.id }
             
-            print("\(object) foi apagado")
+//            print("\(object) foi apagado")
         }
+    }
+    
+    func deleteOnPosition(objectA: ObjectNode, objectB: ObjectNode) {
+        print("ObjectA: \(objectA) ObjectB: \(objectB)")
+        objectB.removeFromParent()
+        self.controller.currentObjects.removeAll { $0.id == objectB.id }
     }
     
 }

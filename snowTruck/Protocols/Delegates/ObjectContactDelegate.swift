@@ -9,4 +9,5 @@ import SpriteKit
 
 protocol ObjectContactDelegate: AnyObject {
     func deleteObject(object: ObjectNode)
+    func deleteOnPosition(objectA: ObjectNode, objectB: ObjectNode)
 }

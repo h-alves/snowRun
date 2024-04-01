@@ -45,6 +45,7 @@ class ObjectNode: SKShapeNode, Object {
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         
+        self.physicsBody?.contactTestBitMask = PhysicsCategory.player | PhysicsCategory.landslide | PhysicsCategory.block | PhysicsCategory.hole | PhysicsCategory.gas | PhysicsCategory.coin
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         self.name = self.typeName
     }
@@ -56,6 +57,7 @@ class ObjectNode: SKShapeNode, Object {
         self.position = CGPoint(x: xPosition, y: yPosition)
         
         scene.addChild(self)
+        self.delegate = scene as? any ObjectContactDelegate
         
         GameController.shared.currentObjects.append(self)
         
@@ -65,7 +67,8 @@ class ObjectNode: SKShapeNode, Object {
     }
 
     func beganContact(with object: ObjectNode) {
-        delegate?.deleteObject(object: object)
+        print("teve contato")
+        delegate?.deleteOnPosition(objectA: self, objectB: object)
     }
     
     func moveDown(_ finalSpace: CGFloat, speed: TimeInterval) {
