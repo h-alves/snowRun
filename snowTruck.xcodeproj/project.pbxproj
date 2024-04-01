@@ -28,6 +28,8 @@
 		786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27452BACF5E600F73394 /* PhysicsCategory.swift */; };
 		786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* ButtonNode.swift */; };
 		786E27512BAE13A100F73394 /* HoleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27502BAE13A100F73394 /* HoleNode.swift */; };
+		788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F562BBB415B005D2F90 /* SKScene.swift */; };
+		788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F592BBB423A005D2F90 /* HapticsService.swift */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
@@ -60,6 +62,8 @@
 		786E27452BACF5E600F73394 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		786E274C2BADBA9500F73394 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		786E27502BAE13A100F73394 /* HoleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleNode.swift; sourceTree = "<group>"; };
+		788A8F562BBB415B005D2F90 /* SKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScene.swift; sourceTree = "<group>"; };
+		788A8F592BBB423A005D2F90 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
 				786E273F2BACA5E800F73394 /* SceneController */,
+				788A8F582BBB4215005D2F90 /* Services */,
+				788A8F552BBB4139005D2F90 /* Utils */,
 				78FC159C2BB33D4F00798BC5 /* Scene */,
 				786E27352BACA58700F73394 /* Assets.xcassets */,
 			);
@@ -170,6 +176,22 @@
 				786B7BDD2BB4905F0064BD6F /* Items */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		788A8F552BBB4139005D2F90 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				788A8F562BBB415B005D2F90 /* SKScene.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		788A8F582BBB4215005D2F90 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				788A8F592BBB423A005D2F90 /* HapticsService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		78FC159B2BB33D2300798BC5 /* App */ = {
@@ -295,7 +317,9 @@
 				78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */,
 				786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */,
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
+				788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */,
 				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
+				788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
 				786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,

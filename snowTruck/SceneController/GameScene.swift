@@ -169,7 +169,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(truck)
         addChild(landslide)
         
-        gasBar = SKShapeNode(path: CGPath(rect: CGRect(origin: CGPoint(x: -60, y: 0), size: CGSize(width: 60, height: frame.height - 300)), transform: nil))
+        gasBar = SKShapeNode(path: CGPath(rect: CGRect(origin: CGPoint(x: -30, y: 0), size: CGSize(width: 30, height: frame.height - 300)), transform: nil))
         gasBar.position = CGPoint(x: frame.maxX - 60, y: frame.midY - (frame.height - 300) / 2)
         gasBar.fillColor = .green
         gasBar.zPosition = 2
@@ -239,7 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let maxGasHeight = frame.height - 300
             let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
             
-            gasBar.path = CGPath(rect: CGRect(x: -60, y: 0, width: 60, height: remainingGasHeight), transform: nil)
+            gasBar.path = CGPath(rect: CGRect(x: -30, y: 0, width: 30, height: remainingGasHeight), transform: nil)
             
         }
     }
@@ -258,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
         landslide.removeAllActions()
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
-        gasBar.path = CGPath(rect: CGRect(origin: CGPoint(x: -60, y: 0), size: CGSize(width: 60, height: frame.height - 300)), transform: nil)
+        gasBar.path = CGPath(rect: CGRect(origin: CGPoint(x: -30, y: 0), size: CGSize(width: 30, height: frame.height - 300)), transform: nil)
     }
     
     func resetVariables() {
@@ -339,6 +339,9 @@ extension GameScene: PlayerContactDelegate {
         holeCollision += 1
         print(holeCollision)
         
+        self.sceneShake(shakeCount: 3, intensity: CGVector(dx: 4, dy: 1), shakeDuration: 0.2)
+        HapticsService.shared.play(.heavy)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.truck.isSpeedReduced = true
             
@@ -380,7 +383,7 @@ extension GameScene: PlayerContactDelegate {
         let maxGasHeight = frame.height - 300
         let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
         
-        gasBar.path = CGPath(rect: CGRect(x: -60, y: 0, width: 60, height: remainingGasHeight), transform: nil)
+        gasBar.path = CGPath(rect: CGRect(x: -30, y: 0, width: 30, height: remainingGasHeight), transform: nil)
         
         print(truck.gas)
         
