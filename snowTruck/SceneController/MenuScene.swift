@@ -11,6 +11,7 @@ import GameplayKit
 class MenuScene: SKScene {
     
     var restartButton: ButtonNode!
+    var crashButton: ButtonNode!
     
     override func didMove(to view: SKView) {
         let overlayNode = SKShapeNode(rectOf: CGSize(width: frame.width, height: frame.height))
@@ -42,6 +43,10 @@ class MenuScene: SKScene {
         coinsLabel.fontColor = .black
         coinsLabel.position = CGPoint(x: frame.midX, y: frame.midY)
         self.addChild(coinsLabel)
+        
+        crashButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "Crash", color: .red)
+        crashButton.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+        self.addChild(crashButton)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -51,6 +56,8 @@ class MenuScene: SKScene {
         if restartButton.contains(touchLocation) {
             startGame()
             GameService.shared.hideAccessPoint()
+        } else if crashButton.contains(touchLocation) {
+            fatalError("Crash was triggered")
         }
     }
     

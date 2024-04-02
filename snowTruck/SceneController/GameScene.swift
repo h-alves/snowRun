@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import FirebaseAnalytics
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -48,6 +49,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - SKScene Functions
     
     override func didMove(to view: SKView) {
+        Analytics.logEvent(AnalyticsEventLevelStart, parameters: [
+            "level_name" : "default" as NSObject
+        ])
+        
         truckDistance = (frame.height/3.4)
         
         setUpBackground()

@@ -31,6 +31,10 @@
 		788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F562BBB415B005D2F90 /* SKScene.swift */; };
 		788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F592BBB423A005D2F90 /* HapticsService.swift */; };
 		788A8F5C2BBB460A005D2F90 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F5B2BBB460A005D2F90 /* GameService.swift */; };
+		788A8F602BBC382D005D2F90 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F5F2BBC382D005D2F90 /* FirebaseAnalytics */; };
+		788A8F622BBC382D005D2F90 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F612BBC382D005D2F90 /* FirebaseAnalyticsSwift */; };
+		788A8F652BBC3874005D2F90 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F642BBC3874005D2F90 /* FirebaseCrashlytics */; };
+		788A8F6A2BBC4C08005D2F90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
@@ -67,6 +71,7 @@
 		788A8F592BBB423A005D2F90 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		788A8F5B2BBB460A005D2F90 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = snowTruck.entitlements; sourceTree = "<group>"; };
+		788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -81,6 +86,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				788A8F652BBC3874005D2F90 /* FirebaseCrashlytics in Frameworks */,
+				788A8F622BBC382D005D2F90 /* FirebaseAnalyticsSwift in Frameworks */,
+				788A8F602BBC382D005D2F90 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +129,7 @@
 			children = (
 				786E27272BACA58600F73394 /* snowTruck */,
 				786E27262BACA58600F73394 /* Products */,
+				788A8F632BBC3874005D2F90 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */,
+				788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */,
 				78FC159B2BB33D2300798BC5 /* App */,
 				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
@@ -199,6 +209,13 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		788A8F632BBC3874005D2F90 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		78FC159B2BB33D2300798BC5 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -248,12 +265,18 @@
 				786E27212BACA58600F73394 /* Sources */,
 				786E27222BACA58600F73394 /* Frameworks */,
 				786E27232BACA58600F73394 /* Resources */,
+				788A8F682BBC4605005D2F90 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = snowTruck;
+			packageProductDependencies = (
+				788A8F5F2BBC382D005D2F90 /* FirebaseAnalytics */,
+				788A8F612BBC382D005D2F90 /* FirebaseAnalyticsSwift */,
+				788A8F642BBC3874005D2F90 /* FirebaseCrashlytics */,
+			);
 			productName = snowTruck;
 			productReference = 786E27252BACA58600F73394 /* snowTruck.app */;
 			productType = "com.apple.product-type.application";
@@ -282,6 +305,9 @@
 				Base,
 			);
 			mainGroup = 786E271C2BACA58600F73394;
+			packageReferences = (
+				788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 786E27262BACA58600F73394 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -301,10 +327,36 @@
 				786E27362BACA58700F73394 /* Assets.xcassets in Resources */,
 				78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */,
 				786E27392BACA58700F73394 /* Base in Resources */,
+				788A8F6A2BBC4C08005D2F90 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		788A8F682BBC4605005D2F90 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${BUILD_DIR%Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		786E27212BACA58600F73394 /* Sources */ = {
@@ -489,6 +541,7 @@
 				CODE_SIGN_ENTITLEMENTS = snowTruck/snowTruck.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 225S533H7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -503,6 +556,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -537,6 +591,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.2;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -571,6 +626,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		788A8F5F2BBC382D005D2F90 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		788A8F612BBC382D005D2F90 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		788A8F642BBC3874005D2F90 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 786E271D2BACA58600F73394 /* Project object */;
 }
