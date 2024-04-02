@@ -25,6 +25,11 @@ class GameViewController: UIViewController {
             }
             
             view.ignoresSiblingOrder = true
+            
+            GameService.shared.authenticate { error in
+                GameService.shared.showAccessPoint()
+            }
+            
         }
     }
 

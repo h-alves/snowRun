@@ -95,6 +95,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 controller.currentCoins = 0
                 controller.currentDistance = 0
                 
+                GameService.shared.showAccessPoint()
                 changeToMenuScene()
             }
         }
@@ -330,6 +331,7 @@ extension GameScene: PlayerContactDelegate {
             
             if controller.currentDistance > controller.highestDistance {
                 controller.highestDistance = controller.currentDistance
+                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
             }
         }
     }

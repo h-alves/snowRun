@@ -50,6 +50,7 @@ class MenuScene: SKScene {
         
         if restartButton.contains(touchLocation) {
             startGame()
+            GameService.shared.hideAccessPoint()
         }
     }
     
