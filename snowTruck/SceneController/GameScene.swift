@@ -101,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 controller.currentDistance = 0
                 
                 GameService.shared.showAccessPoint()
-                changeToMenuScene()
+//                changeToMenuScene()
             }
         }
     }
