@@ -23,6 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         Analytics.logEvent(AnalyticsEventLevelStart, parameters: [
             "level_name" : "default" as NSObject
         ])
+        controller.gameScene = self
         
         setUpBackground()
         setUpNodes()

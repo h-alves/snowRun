@@ -70,7 +70,7 @@ class TruckNode: SKSpriteNode {
                 self.zRotation = angle - CGFloat.pi / 2
             }
         } else {
-            self.zRotation = CGFloat.pi
+            self.zRotation = 0
         }
     }
     
