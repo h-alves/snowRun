@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import FirebaseAnalytics
 
 class GameController: ObservableObject {
     
@@ -166,6 +167,10 @@ class GameController: ObservableObject {
     }
     
     func restartGame() {
+        Analytics.logEvent("restart_level", parameters: [
+            "level_name" : "default" as NSObject
+        ])
+        
         resetVariables()
         resetEntities()
         resetObstacles()
@@ -174,6 +179,10 @@ class GameController: ObservableObject {
     // MARK: - Game Over functions
     
     func showGameOver() {
+        Analytics.logEvent(AnalyticsEventLevelEnd, parameters: [
+            "level_name" : "default" as NSObject
+        ])
+        
         overlayNode.isHidden = false
         gameOverCard.isHidden = false
         restartButton.isHidden = false
