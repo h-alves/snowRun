@@ -28,7 +28,7 @@
 		786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27452BACF5E600F73394 /* PhysicsCategory.swift */; };
 		786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E274C2BADBA9500F73394 /* ButtonNode.swift */; };
 		786E27512BAE13A100F73394 /* HoleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27502BAE13A100F73394 /* HoleNode.swift */; };
-		788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F562BBB415B005D2F90 /* SKScene.swift */; };
+		788A8F572BBB415B005D2F90 /* SKScene+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F562BBB415B005D2F90 /* SKScene+Ext.swift */; };
 		788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F592BBB423A005D2F90 /* HapticsService.swift */; };
 		788A8F5C2BBB460A005D2F90 /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F5B2BBB460A005D2F90 /* GameService.swift */; };
 		788A8F602BBC382D005D2F90 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F5F2BBC382D005D2F90 /* FirebaseAnalytics */; };
@@ -44,6 +44,8 @@
 		78D5DE052BC428C50011190D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78D5DE042BC428C50011190D /* FacebookCore */; };
 		78D5DE072BC431A80011190D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE062BC431A80011190D /* AdSupport.framework */; };
 		78D5DE092BC431B40011190D /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */; };
+		78D5DE0B2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */; };
+		78D5DE0D2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
@@ -75,7 +77,7 @@
 		786E27452BACF5E600F73394 /* PhysicsCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		786E274C2BADBA9500F73394 /* ButtonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonNode.swift; sourceTree = "<group>"; };
 		786E27502BAE13A100F73394 /* HoleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleNode.swift; sourceTree = "<group>"; };
-		788A8F562BBB415B005D2F90 /* SKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKScene.swift; sourceTree = "<group>"; };
+		788A8F562BBB415B005D2F90 /* SKScene+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SKScene+Ext.swift"; sourceTree = "<group>"; };
 		788A8F592BBB423A005D2F90 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		788A8F5B2BBB460A005D2F90 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = snowTruck.entitlements; sourceTree = "<group>"; };
@@ -88,6 +90,8 @@
 		788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBarNode.swift; sourceTree = "<group>"; };
 		78D5DE062BC431A80011190D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
+		78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+ExtPlayerContactDelegate.swift"; sourceTree = "<group>"; };
+		78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+ExtObjectContactDelegate.swift"; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -217,7 +221,9 @@
 		788A8F552BBB4139005D2F90 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				788A8F562BBB415B005D2F90 /* SKScene.swift */,
+				788A8F562BBB415B005D2F90 /* SKScene+Ext.swift */,
+				78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */,
+				78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -422,8 +428,10 @@
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
 				788A8F5C2BBB460A005D2F90 /* GameService.swift in Sources */,
 				78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */,
+				78D5DE0D2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift in Sources */,
 				78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */,
 				786E272F2BACA58600F73394 /* GameScene.swift in Sources */,
+				78D5DE0B2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift in Sources */,
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
 				78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */,
@@ -431,7 +439,7 @@
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
 				788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */,
 				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
-				788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */,
+				788A8F572BBB415B005D2F90 /* SKScene+Ext.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
 				786B7BF62BB8CC960064BD6F /* TextNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,

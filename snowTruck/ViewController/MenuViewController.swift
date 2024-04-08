@@ -24,8 +24,6 @@ class MenuViewController: UIViewController {
     private func addSubviews() {
         view.addSubview(backgroundImage)
         view.addSubview(titleImage)
-//        view.addSubview(highscoreLabel)
-//        view.addSubview(coinLabel)
         view.addSubview(startButton)
         view.addSubview(gameCenterButton)
     }
@@ -38,12 +36,6 @@ class MenuViewController: UIViewController {
         
         titleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: (-50)).isActive = true
-        
-//        highscoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        highscoreLabel.centerYAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: (100)).isActive = true
-//        
-//        coinLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        coinLabel.centerYAnchor.constraint(equalTo: highscoreLabel.bottomAnchor, constant: (50)).isActive = true
         
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         startButton.centerYAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: (60)).isActive = true
@@ -65,26 +57,6 @@ class MenuViewController: UIViewController {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.image = UIImage(named: "menuLogo")
-        
-        return view
-    }()
-    
-    private lazy var highscoreLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Highscore: \(Int(GameController.shared.highestDistance))"
-        view.textColor = .black
-        view.font = view.font.withSize(26)
-        
-        return view
-    }()
-    
-    private lazy var coinLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Coins: \(Int(GameController.shared.totalCoins))"
-        view.textColor = .black
-        view.font = view.font.withSize(26)
         
         return view
     }()

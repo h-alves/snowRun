@@ -50,19 +50,16 @@ class GameController: ObservableObject {
     @Published var distanceNode: TextNode!
     @Published var coinsNode: TextNode!
     
-    
     // MARK: Menu Nodes
     
     @Published var overlayNode: SKShapeNode!
-    @Published var gameOverLabel: SKLabelNode!
+    @Published var gameOverCard: SKSpriteNode!
     @Published var restartButton: ButtonNode!
     @Published var menuButton: ButtonNode!
     
     // MARK: - Game Loop Variables
     
     @Published var gameIsOver: Bool = false
-    @Published var holeCollision: Int = 0
-    @Published var reduceTimer: Timer?
     
     // MARK: - Init
     
@@ -117,8 +114,77 @@ class GameController: ObservableObject {
         }
     }
     
-    // MARK: - a
+    // MARK: - Pause Game functions
     
+    func pauseGame() {
+        for object in currentObjects {
+            object.isPaused = true
+        }
+        truck.isPaused = true
+        landslide.isPaused = true
+        distanceNode.isPaused = true
+        coinsNode.isPaused = true
+    }
     
+    func resumeGame() {
+        gameScene.view?.isPaused = false
+    }
+    
+    // MARK: - Restart Game functions
+    
+    func resetEntities() {
+        truck.position = CGPoint(x: gameScene.frame.midX, y: gameScene.frame.midY - truck.distance)
+        truck.isSpeedReduced = false
+        truck.gas = 100
+        truck.holes = 0
+        
+        landslide.position = CGPoint(x: gameScene.frame.midX, y: gameScene.frame.minY - landslide.landslideDistance)
+        landslide.removeAllActions()
+    }
+    
+    func resetVariables() {
+        gameOverCard.isHidden = true
+        overlayNode.isHidden = true
+        restartButton.isHidden = true
+        menuButton.isHidden = true
+        
+        currentCoins = 0
+        currentDistance = 0
+        
+        gameIsOver = false
+    }
+    
+    func resetObstacles() {
+        for obstacle in currentObjects {
+            obstacle.removeAllActions()
+            obstacle.removeFromParent()
+        }
+        
+        currentObjects = [ObstacleNode]()
+        
+        objectFactory.start(gameScene)
+    }
+    
+    func restartGame() {
+        resetVariables()
+        resetEntities()
+        resetObstacles()
+    }
+    
+    // MARK: - Game Over functions
+    
+    func showGameOver() {
+        overlayNode.isHidden = false
+        gameOverCard.isHidden = false
+        restartButton.isHidden = false
+        menuButton.isHidden = false
+    }
+    
+    // MARK: - Update functions
+    
+    func updateDistance() {
+        currentDistance += 0.1
+        distanceNode.label.text = "\(Int(currentDistance)) km"
+    }
     
 }

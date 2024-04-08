@@ -15,6 +15,7 @@ class TruckNode: SKSpriteNode {
     var distance: CGFloat = 0
     
     var gas: Int = 100
+    var holes: Int = 0
     
     init(texture: SKTexture, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
