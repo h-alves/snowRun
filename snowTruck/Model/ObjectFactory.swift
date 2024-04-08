@@ -40,7 +40,7 @@ class ObjectFactory: SKNode {
                 newObject = BlockNode(texture: texture, size: CGSize(width: 260, height: 140))
             case .hole:
                 texture = SKTexture(imageNamed: "hole")
-                newObject = HoleNode(texture: texture, size: CGSize(width: 70, height: 70))
+                newObject = HoleNode(texture: texture, size: CGSize(width: 100, height: 100))
             case .gas:
                 texture = SKTexture(imageNamed: "gas")
                 newObject = GasNode(texture: texture, size: CGSize(width: 70, height: 70))

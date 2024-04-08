@@ -126,7 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         controller.landslide = LandslideNode(texture: SKTexture(imageNamed: "landslide"), size: CGSize(width: frame.width, height: frame.height + 100), frame: frame)
         controller.landslide.position = CGPoint(x: frame.midX, y: frame.minY - controller.landslide.landslideDistance)
-        controller.landslide.zPosition = 2.1
+        controller.landslide.zPosition = 2.2
         controller.landslide.delegate = self
         controller.landslide.secondaryAction = {
             self.controller.truck.isSpeedReduced = false
@@ -137,13 +137,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         controller.distanceNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0 km", color: .yellow)
         controller.distanceNode.position = CGPoint(x: frame.maxX * 0.75 - controller.distanceNode.size.width / 2, y: frame.maxY - controller.distanceNode.frame.height * 2.5)
-        controller.distanceNode.zPosition = 2.2
+        controller.distanceNode.zPosition = 2.3
         
         addChild(controller.distanceNode)
         
         controller.coinsNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0", color: .yellow, secondaryTexture: SKTexture(imageNamed: "coin"), hasLabel: true)
         controller.coinsNode.position = CGPoint(x: frame.maxX * 0.75 - controller.distanceNode.size.width / 2, y: frame.maxY - controller.coinsNode.frame.height * 4)
-        controller.coinsNode.zPosition = 2.2
+        controller.coinsNode.zPosition = 2.3
         
         addChild(controller.coinsNode)
     }
