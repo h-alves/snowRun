@@ -175,7 +175,6 @@
 				786E27402BACA5F100F73394 /* Model */,
 				788A8F722BBDCAC6005D2F90 /* Views */,
 				788A8F6B2BBC728C005D2F90 /* Controller */,
-				786E273F2BACA5E800F73394 /* SceneController */,
 				788A8F582BBB4215005D2F90 /* Services */,
 				788A8F552BBB4139005D2F90 /* Utils */,
 				78FC159C2BB33D4F00798BC5 /* Scene */,
@@ -251,6 +250,7 @@
 			children = (
 				786E27302BACA58600F73394 /* GameViewController.swift */,
 				788A8F6C2BBC72E1005D2F90 /* MenuViewController.swift */,
+				786E273F2BACA5E800F73394 /* SceneController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
