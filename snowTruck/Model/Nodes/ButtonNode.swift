@@ -10,16 +10,16 @@ import SpriteKit
 class ButtonNode: SKSpriteNode {
     
     init(size: CGSize, text: String, color: UIColor) {
-        super.init(texture: .none, color: .clear, size: size)
+        super.init(texture: SKTexture(imageNamed: text), color: .clear, size: size)
         
-        let restartLabel = SKLabelNode(text: text)
-        restartLabel.fontName = "Arial"
-        restartLabel.fontSize = 40
-        restartLabel.fontColor = color
-        
-        self.addChild(restartLabel)
+//        let restartLabel = SKLabelNode(text: text)
+//        restartLabel.fontName = "Arial"
+//        restartLabel.fontSize = 40
+//        restartLabel.fontColor = color
+//        
+//        self.addChild(restartLabel)
         self.alpha = 2.0
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 200, height: 50))
+        self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = false
     }
     

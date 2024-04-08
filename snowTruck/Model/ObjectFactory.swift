@@ -23,7 +23,6 @@ class ObjectFactory: SKNode {
     
     func createObject(_ object: ObjectNode, mainScene: SKScene) {
         let clone = object.clone()
-        clone.draw()
         clone.configureCollision()
         
         clone.spawn(mainScene, offset: self.offset)
@@ -33,16 +32,21 @@ class ObjectFactory: SKNode {
         for object in ObjectTypes.allCases {
             print(object)
             var newObject: ObjectNode
+            var texture: SKTexture
             
             switch object {
             case .block:
-                newObject = BlockNode(size: CGSize(width: 200, height: 100))
+                texture = SKTexture(imageNamed: "block1")
+                newObject = BlockNode(texture: texture, size: CGSize(width: 260, height: 140))
             case .hole:
-                newObject = HoleNode(size: CGSize(width: 50, height: 50))
+                texture = SKTexture(imageNamed: "hole")
+                newObject = HoleNode(texture: texture, size: CGSize(width: 100, height: 100))
             case .gas:
-                newObject = GasNode(size: CGSize(width: 50, height: 50))
+                texture = SKTexture(imageNamed: "gas")
+                newObject = GasNode(texture: texture, size: CGSize(width: 70, height: 70))
             case .coin:
-                newObject = CoinNode(size: CGSize(width: 50, height: 50))
+                texture = SKTexture(imageNamed: "coin")
+                newObject = CoinNode(texture: texture, size: CGSize(width: 70, height: 70))
             }
             
             let sequence: [SKAction] = [.wait(forDuration: object.rawValue), .run {

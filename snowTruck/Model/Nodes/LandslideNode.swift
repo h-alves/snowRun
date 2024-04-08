@@ -7,7 +7,7 @@
 
 import SpriteKit
 
-class LandslideNode: SKShapeNode {
+class LandslideNode: SKSpriteNode {
     
     weak var delegate: ObjectContactDelegate?
     
@@ -17,17 +17,16 @@ class LandslideNode: SKShapeNode {
     var closePosition: CGFloat = 0
     var gameOverPosition: CGFloat = 0
     
-    init(size: CGSize, frame: CGRect) {
-        super.init()
+    var secondaryAction: (() -> Void)!
+    
+    init(texture: SKTexture, size: CGSize, frame: CGRect) {
+        super.init(texture: texture, color: .red, size: size)
         
         self.landslideDistance = (frame.height/1.8)
         
         self.originalPosition = frame.minY - landslideDistance
         self.closePosition = frame.minY - (frame.height/2.3)
         self.gameOverPosition = frame.midY
-        
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size), transform: nil)
-        self.fillColor = .white
         
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = true
@@ -44,18 +43,20 @@ class LandslideNode: SKShapeNode {
     }
     
     func move(direction: LandslideDirection) {
-        var move = SKAction()
+        var move = [SKAction]()
         
         switch direction {
         case .close:
-            move = SKAction.moveTo(y: closePosition, duration: 0.7)
+            move = [SKAction.moveTo(y: closePosition, duration: 0.7), .wait(forDuration: 6.3), .moveTo(y: originalPosition, duration: 0.7), .run {
+                self.secondaryAction()
+            }]
         case .down:
-            move = SKAction.moveTo(y: originalPosition, duration: 0.7)
+            move = [SKAction.moveTo(y: originalPosition, duration: 0.7)]
         case .up:
-            move = SKAction.moveTo(y: gameOverPosition, duration: 1.5)
+            move = [SKAction.moveTo(y: gameOverPosition, duration: 1.5)]
         }
         
-        self.run(move)
+        self.run(.sequence(move))
     }
     
 }
