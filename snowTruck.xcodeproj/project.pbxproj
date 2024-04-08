@@ -173,8 +173,8 @@
 				78FC159B2BB33D2300798BC5 /* App */,
 				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
-				788A8F6B2BBC728C005D2F90 /* ViewController */,
 				788A8F722BBDCAC6005D2F90 /* Views */,
+				788A8F6B2BBC728C005D2F90 /* Controller */,
 				786E273F2BACA5E800F73394 /* SceneController */,
 				788A8F582BBB4215005D2F90 /* Services */,
 				788A8F552BBB4139005D2F90 /* Utils */,
@@ -246,13 +246,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		788A8F6B2BBC728C005D2F90 /* ViewController */ = {
+		788A8F6B2BBC728C005D2F90 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				786E27302BACA58600F73394 /* GameViewController.swift */,
 				788A8F6C2BBC72E1005D2F90 /* MenuViewController.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		788A8F722BBDCAC6005D2F90 /* Views */ = {
