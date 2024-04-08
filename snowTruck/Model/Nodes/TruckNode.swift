@@ -7,19 +7,17 @@
 
 import SpriteKit
 
-class TruckNode: SKShapeNode {
+class TruckNode: SKSpriteNode {
     
     weak var delegate: PlayerContactDelegate?
     
     var isSpeedReduced: Bool = false
+    var distance: CGFloat = 0
     
     var gas: Int = 100
     
-    init(size: CGSize, color: UIColor) {
-        super.init()
-        
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size), transform: nil)
-        self.fillColor = color
+    init(texture: SKTexture, color: UIColor, size: CGSize) {
+        super.init(texture: texture, color: color, size: size)
         
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.isDynamic = true

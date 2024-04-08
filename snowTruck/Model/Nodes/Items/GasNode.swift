@@ -9,8 +9,8 @@ import SpriteKit
 
 class GasNode: ItemNode {
     
-    override init(typeName: String = "gas", size: CGSize = CGSize(width: 50, height: 50), color: UIColor = .green) {
-        super.init(typeName: typeName, size: size, color: color)
+    override init(typeName: String = "gas", texture: SKTexture, color: UIColor = .green, size: CGSize = CGSize(width: 50, height: 50)) {
+        super.init(typeName: typeName, texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {

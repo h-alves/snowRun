@@ -9,8 +9,8 @@ import SpriteKit
 
 class HoleNode: ObstacleNode {
     
-    override init(typeName: String = "hole", size: CGSize = CGSize(width: 50, height: 50), color: UIColor = .systemPink) {
-        super.init(typeName: typeName, size: size, color: color)
+    override init(typeName: String = "hole", texture: SKTexture, color: UIColor = .systemPink, size: CGSize = CGSize(width: 50, height: 50)) {
+        super.init(typeName: typeName, texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {

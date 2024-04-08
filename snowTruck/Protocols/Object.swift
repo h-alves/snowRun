@@ -10,10 +10,7 @@ import SpriteKit
 protocol Object {
     var id: UUID { get }
     var typeName: String { get }
-    var size: CGSize { get }
-    var color: UIColor { get }
     
-    func draw()
     func configureCollision()
     func spawn(_ scene: SKScene, offset: CGFloat)
     func beganContact(with object: ObjectNode)

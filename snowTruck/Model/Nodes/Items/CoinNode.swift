@@ -9,8 +9,8 @@ import SpriteKit
 
 class CoinNode: ItemNode {
     
-    override init(typeName: String = "coin", size: CGSize = CGSize(width: 50, height: 50), color: UIColor = .yellow) {
-        super.init(typeName: typeName, size: size, color: color)
+    override init(typeName: String = "coin", texture: SKTexture, color: UIColor = .yellow, size: CGSize = CGSize(width: 50, height: 50)) {
+        super.init(typeName: typeName, texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {

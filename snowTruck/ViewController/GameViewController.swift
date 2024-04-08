@@ -23,10 +23,16 @@ class GameViewController: UIViewController {
             if let sceneNode = scene.rootNode as? GameScene {
                 sceneNode.scaleMode = .aspectFill
                 
+                sceneNode.goBack = {
+                    self.navigationController?.popViewController(animated: false)
+                }
+                
                 view.presentScene(sceneNode)
                 view.ignoresSiblingOrder = true
             }
         }
+        
+        
     }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

@@ -120,8 +120,10 @@ class GameService {
     }
     
     func showLeaderboard() {
-        GKAccessPoint.shared.trigger(state: .leaderboards) {
-            print("Acessou os leaderboard")
+        if player.isAuthenticated {
+            GKAccessPoint.shared.trigger(state: .leaderboards) {
+                print("Acessou os leaderboard")
+            }
         }
     }
     

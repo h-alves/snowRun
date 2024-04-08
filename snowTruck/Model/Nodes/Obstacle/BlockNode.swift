@@ -9,8 +9,8 @@ import SpriteKit
 
 class BlockNode: ObstacleNode {
     
-    override init(typeName: String = "block", size: CGSize = CGSize(width: 200, height: 100), color: UIColor = .red) {
-        super.init(typeName: typeName, size: size, color: color)
+    override init(typeName: String = "block", texture: SKTexture, color: UIColor = .red, size: CGSize = CGSize(width: 200, height: 100)) {
+        super.init(typeName: typeName, texture: texture, color: color, size: size)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -25,6 +25,26 @@ class BlockNode: ObstacleNode {
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         
         self.name = self.name
+    }
+    
+    override func clone() -> any Object {
+        let randomBlock = Int.random(in: 1...3)
+        let texture = SKTexture(imageNamed: "block\(randomBlock)")
+        
+        var size = CGSize()
+        
+        switch randomBlock {
+        case 1:
+            size = CGSize(width: 260, height: 140)
+        case 2:
+            size = CGSize(width: 210, height: 190)
+        case 3:
+            size = CGSize(width: 240, height: 150)
+        default:
+            break
+        }
+        
+        return BlockNode(typeName: typeName, texture: texture, color: self.color, size: size)
     }
     
 }

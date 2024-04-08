@@ -13,32 +13,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let controller = GameController.shared
     
+    var goBack: (() -> Void)?
+    
     // MARK: - Objects
     
     var truck: TruckNode!
-    var truckDistance: CGFloat = 0
     var landslide: LandslideNode!
     
     var targetPosition: CGPoint?
     
     var objectFactory: ObjectFactory!
     
-    var distanceNode: DistanceNode!
-    var coinsNode: DistanceNode!
+    var distanceNode: TextNode!
+    var coinsNode: TextNode!
     
     // MARK: - Reset Screen
     
     var overlayNode: SKShapeNode!
-    var gameOverLabel: SKLabelNode!
+    var gameOverCard: SKSpriteNode!
     var restartButton: ButtonNode!
     var menuButton: ButtonNode!
     
     // MARK: - Gas
     
-    var gasTimer: Timer?
-    let gasTimeInterval: TimeInterval = 2.0
-    var gasBar: SKShapeNode!
-    var gasIncrease: Bool = false
+//    var gasBar: GasBarNode!
     
     // MARK: - Delegate Variables
     
@@ -53,8 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             "level_name" : "default" as NSObject
         ])
         
-        truckDistance = (frame.height/3.4)
-        
         setUpBackground()
         setUpNodes()
         
@@ -65,23 +61,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         objectFactory = ObjectFactory(offset: (frame.height/1.1))
         objectFactory.start(self)
         addChild(objectFactory)
-        startGasTimer()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(enterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(enterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-    }
-    
-    // MARK: UIApplication
-    
-    @objc func enterBackground() {
-        // Pause Game
-        gasTimer?.invalidate()
-        gasTimer = nil
-    }
-    
-    @objc func enterForeground() {
-        // Unpause Game
-        startGasTimer()
     }
     
     // MARK: Touch
@@ -100,8 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 controller.currentCoins = 0
                 controller.currentDistance = 0
                 
-                GameService.shared.showAccessPoint()
-//                changeToMenuScene()
+                goBack!()
             }
         }
     }
@@ -158,38 +136,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Set Up Functions
     
     func setUpBackground() {
-        backgroundColor = .gray
+        let background = SKSpriteNode(texture: SKTexture(imageNamed: "background"), size: frame.size)
+        background.zPosition = 0
+        addChild(background)
     }
     
     func setUpNodes() {
-        truck = TruckNode(size: CGSize(width: 80, height: 160), color: .black)
-        truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
+        truck = TruckNode(texture: SKTexture(imageNamed: "truck"), color: .black, size: CGSize(width: 80, height: 160))
+        truck.distance = (frame.height/3.4)
+        truck.position = CGPoint(x: frame.midX, y: frame.midY - truck.distance)
         truck.zPosition = 2
         truck.delegate = self
         
-        landslide = LandslideNode(size: CGSize(width: frame.width, height: frame.height + 100), frame: frame)
+        addChild(truck)
+        
+        landslide = LandslideNode(texture: SKTexture(imageNamed: "landslide"), size: CGSize(width: frame.width, height: frame.height + 100), frame: frame)
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
         landslide.zPosition = 2.1
         landslide.delegate = self
+        landslide.secondaryAction = {
+            self.truck.isSpeedReduced = false
+            self.holeCollision = 0
+        }
         
-        addChild(truck)
         addChild(landslide)
         
-        gasBar = SKShapeNode(path: CGPath(rect: CGRect(origin: CGPoint(x: -30, y: 0), size: CGSize(width: 30, height: frame.height - 300)), transform: nil))
-        gasBar.position = CGPoint(x: frame.maxX - 60, y: frame.midY - (frame.height - 300) / 2)
-        gasBar.fillColor = .green
-        gasBar.zPosition = 2
+//        gasBar = GasBarNode(size: CGSize(width: 30, height: frame.height - 300))
+//        gasBar.position = CGPoint(x: frame.maxX - gasBar.size.width * 3, y: frame.midY)
+//        gasBar.fillColor = .green
+//        gasBar.zPosition = 2
+//        gasBar.decreaseFunc = {
+//            self.truck.gas -= 10
+//            if self.truck.gas < 0 {
+//                self.truck.gas = 0
+//                self.gameOver()
+//                self.landslide.move(direction: .up)
+//            }
+//            self.gasBar.totalGas = self.truck.gas
+//        }
+//        gasBar.start(frame: self.frame)
+//        
+//        addChild(gasBar)
         
-        addChild(gasBar)
-        
-        distanceNode = DistanceNode(size: CGSize(width: 200, height: 50), text: "0 m", color: .yellow)
-        distanceNode.position = CGPoint(x: frame.midX, y: frame.maxY - distanceNode.frame.height * 4)
+        distanceNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0 km", color: .yellow)
+        distanceNode.position = CGPoint(x: frame.maxX * 0.75 - distanceNode.size.width / 2, y: frame.maxY - distanceNode.frame.height * 2.5)
         distanceNode.zPosition = 2.2
         
         addChild(distanceNode)
         
-        coinsNode = DistanceNode(size: CGSize(width: 200, height: 50), text: "0", color: .yellow)
-        coinsNode.position = CGPoint(x: frame.maxX - 200, y: frame.maxY - distanceNode.frame.height * 4)
+        coinsNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0", color: .yellow, secondaryTexture: SKTexture(imageNamed: "coin"), hasLabel: true)
+        coinsNode.position = CGPoint(x: frame.maxX * 0.75 - distanceNode.size.width / 2, y: frame.maxY - coinsNode.frame.height * 4)
         coinsNode.zPosition = 2.2
         addChild(coinsNode)
     }
@@ -203,54 +199,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         overlayNode.isHidden = true
         self.addChild(overlayNode)
         
-        gameOverLabel = SKLabelNode(text: "Game Over")
-        gameOverLabel.fontName = "Arial"
-        gameOverLabel.fontSize = 40
-        gameOverLabel.fontColor = .white
-        gameOverLabel.position = CGPoint(x: frame.midX, y: frame.midY)
-        gameOverLabel.alpha = 2.0
-        gameOverLabel.zPosition = 3
-        gameOverLabel.isHidden = true
-        self.addChild(gameOverLabel)
+        gameOverCard = SKSpriteNode(texture: SKTexture(imageNamed: "gameOver"), size: CGSize(width: frame.width * 0.75, height: frame.width * 0.55))
+        gameOverCard.position = CGPoint(x: frame.midX, y: frame.midY + frame.height * 0.07)
+        gameOverCard.alpha = 2.0
+        gameOverCard.zPosition = 3
+        gameOverCard.isHidden = true
+        self.addChild(gameOverCard)
         
-        restartButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "restart", color: .yellow)
-        restartButton.position = CGPoint(x: frame.midX, y: frame.midY - 100)
+        restartButton = ButtonNode(size: CGSize(width: 200, height: 70), text: "restart", color: .yellow)
+        restartButton.position = CGPoint(x: frame.midX, y: frame.minY + frame.height * 0.22)
         restartButton.zPosition = 3
         restartButton.isHidden = true
         self.addChild(restartButton)
         
-        menuButton = ButtonNode(size: CGSize(width: 200, height: 50), text: "menu", color: .yellow)
-        menuButton.position = CGPoint(x: frame.midX, y: frame.midY - 200)
+        menuButton = ButtonNode(size: CGSize(width: 140, height: 70), text: "menu", color: .yellow)
+        menuButton.position = CGPoint(x: frame.midX, y: frame.minY + frame.height * 0.15)
         menuButton.zPosition = 3
         menuButton.isHidden = true
         self.addChild(menuButton)
     }
     
-    // MARK: - Gas Going Down Functions
-    
-    func startGasTimer() {
-        gasTimer = Timer.scheduledTimer(timeInterval: gasTimeInterval, target: self, selector: #selector(subtractGas), userInfo: nil, repeats: true)
-    }
-    
-    @objc func subtractGas() {
-        if !gasIncrease {
-            truck.gas -= 10
-            if truck.gas < 0 {
-                truck.gas = 0
-                gameOver()
-                landslide.move(direction: .up)
-            }
-            print(truck.gas)
-            
-            let maxGasHeight = frame.height - 300
-            let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
-            
-            gasBar.path = CGPath(rect: CGRect(x: -30, y: 0, width: 30, height: remainingGasHeight), transform: nil)
-            
-        }
-    }
-    
     // MARK: - Restart Game Functions
+    
+    func pauseGame() {
+        for object in controller.currentObjects {
+            object.isPaused = true
+        }
+//        gasBar.isPaused = true
+        truck.isPaused = true
+        landslide.isPaused = true
+        distanceNode.isPaused = true
+        coinsNode.isPaused = true
+    }
+    
+    func resumeGame() {
+        self.view?.isPaused = false
+    }
     
     func restartGame() {
         resetVariables()
@@ -261,14 +245,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func resetPositions() {
-        truck.position = CGPoint(x: frame.midX, y: frame.midY - truckDistance)
+        truck.position = CGPoint(x: frame.midX, y: frame.midY - truck.distance)
         landslide.removeAllActions()
         landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
-        gasBar.path = CGPath(rect: CGRect(origin: CGPoint(x: -30, y: 0), size: CGSize(width: 30, height: frame.height - 300)), transform: nil)
     }
     
     func resetVariables() {
-        gameOverLabel.isHidden = true
+        gameOverCard.isHidden = true
         overlayNode.isHidden = true
         restartButton.isHidden = true
         menuButton.isHidden = true
@@ -276,24 +259,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         truck.gas = 100
         holeCollision = 0
         gameIsOver = false
-        startGasTimer()
         controller.currentCoins = 0
         controller.currentDistance = 0
+//        gasBar = GasBarNode(size: CGSize(width: 30, height: frame.height - 300))
+//        gasBar.position = CGPoint(x: frame.maxX - gasBar.size.width * 3, y: frame.midY)
+//        gasBar.fillColor = .green
+//        gasBar.zPosition = 2
+//        gasBar.decreaseFunc = {
+//            self.truck.gas -= 10
+//            if self.truck.gas < 0 {
+//                self.truck.gas = 0
+//                self.gameOver()
+//                self.landslide.move(direction: .up)
+//            }
+//            self.gasBar.totalGas = self.truck.gas
+//        }
+//        gasBar.start(frame: self.frame)
     }
     
     func changeToGameOverScene() {
         overlayNode.isHidden = false
-        gameOverLabel.isHidden = false
+        gameOverCard.isHidden = false
         restartButton.isHidden = false
         menuButton.isHidden = false
-    }
-    
-    func changeToMenuScene() {
-        let transition = SKTransition.fade(withDuration: 0.5)
-        let menuScene = MenuScene(size: self.size)
-        menuScene.scaleMode = .aspectFill
-        
-        self.view?.presentScene(menuScene, transition: transition)
     }
     
     func resetObstacles() {
@@ -309,7 +297,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updateDistance() {
         controller.currentDistance += 0.1
-        distanceNode.distanceLabel.text = "\(Int(controller.currentDistance)) m"
+        distanceNode.label.text = "\(Int(controller.currentDistance)) km"
     }
     
 }
@@ -329,7 +317,7 @@ extension GameScene: PlayerContactDelegate {
             changeToGameOverScene()
             
             objectFactory.stop()
-            gasTimer?.invalidate()
+//            gasBar.stop()
             
             controller.totalCoins += controller.currentCoins
             print("total de moedas: \(controller.totalCoins)")
@@ -357,46 +345,29 @@ extension GameScene: PlayerContactDelegate {
                 self.landslide.move(direction: .close)
             } else if self.holeCollision == 2 {
                 // Mover avalanche pra cima
+                self.landslide.removeAllActions()
+                
                 self.landslide.move(direction: .up)
-            }
-        }
-        
-        reduceTimer = Timer.scheduledTimer(withTimeInterval: 6.3, repeats: false) { timer in
-            self.truck.isSpeedReduced = false
-            
-            if self.holeCollision < 2 && self.gameIsOver == false {
-                self.holeCollision = 0
-                
-                // Mover avalanche pra baixo
-                self.landslide.move(direction: .down)
-                
-                timer.invalidate()
             }
         }
     }
     
     func moveLandslideUp() {
         // Mover avalanche pra cima
+        landslide.removeAllActions()
         landslide.move(direction: .up)
     }
     
     func addGas(object: ObjectNode) {
-        gasIncrease = true
+//        gasIncrease = true
         truck.gas += 20
         if truck.gas > 100 {
             truck.gas = 100
         }
         
-        let maxGasHeight = frame.height - 300
-        let remainingGasHeight = maxGasHeight * CGFloat(truck.gas) / 100
-        
-        gasBar.path = CGPath(rect: CGRect(x: -30, y: 0, width: 30, height: remainingGasHeight), transform: nil)
+//        gasBar.addGas(truckGas: truck.gas, frame: self.frame)
         
         print(truck.gas)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.gasIncrease = false
-        }
         
         deleteItem(item: object)
     }
@@ -407,7 +378,7 @@ extension GameScene: PlayerContactDelegate {
         
         deleteItem(item: object)
         
-        coinsNode.distanceLabel.text = "\(controller.currentCoins)"
+        coinsNode.label.text = "\(controller.currentCoins)"
     }
     
     func deleteItem(item: ObjectNode) {
@@ -424,8 +395,6 @@ extension GameScene: ObjectContactDelegate {
             // Remover obstáculo da tela
             object.removeFromParent()
             self.controller.currentObjects.removeAll { $0.id == object.id }
-            
-//            print("\(object) foi apagado")
         }
     }
     

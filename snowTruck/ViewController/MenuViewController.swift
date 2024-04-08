@@ -16,16 +16,17 @@ class MenuViewController: UIViewController {
         setUpConstraints()
         
         GameService.shared.authenticate { error in
-            GameService.shared.showAccessPoint()
+            
         }
     }
     
     private func addSubviews() {
         view.addSubview(backgroundImage)
-        view.addSubview(titleLabel)
-        view.addSubview(highscoreLabel)
-        view.addSubview(coinLabel)
+        view.addSubview(titleImage)
+//        view.addSubview(highscoreLabel)
+//        view.addSubview(coinLabel)
         view.addSubview(startButton)
+        view.addSubview(gameCenterButton)
     }
     
     private func setUpConstraints() {
@@ -34,33 +35,35 @@ class MenuViewController: UIViewController {
         backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         
-        titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: view.topAnchor, constant: (UIScreen.main.bounds.height / 3)).isActive = true
+        titleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: (-50)).isActive = true
         
-        highscoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        highscoreLabel.centerYAnchor.constraint(equalTo: titleLabel.topAnchor, constant: (100)).isActive = true
-        
-        coinLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        coinLabel.centerYAnchor.constraint(equalTo: highscoreLabel.topAnchor, constant: (50)).isActive = true
+//        highscoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        highscoreLabel.centerYAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: (100)).isActive = true
+//        
+//        coinLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+//        coinLabel.centerYAnchor.constraint(equalTo: highscoreLabel.bottomAnchor, constant: (50)).isActive = true
         
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        startButton.centerYAnchor.constraint(equalTo: coinLabel.topAnchor, constant: (100)).isActive = true
+        startButton.centerYAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: (60)).isActive = true
+        
+        gameCenterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        gameCenterButton.centerYAnchor.constraint(equalTo: view.bottomAnchor, constant: (-70)).isActive = true
     }
     
     private lazy var backgroundImage: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
+        view.image = UIImage(named: "menuBackground")
         
         return view
     }()
     
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
+    private lazy var titleImage: UIImageView = {
+        let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "Snow Truck"
-        view.textColor = .black
-        view.font = view.font.withSize(40)
+        view.image = UIImage(named: "menuLogo")
         
         return view
     }()
@@ -88,8 +91,7 @@ class MenuViewController: UIViewController {
     private lazy var startButton: UIButton = {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.setTitle("Start", for: .normal)
-        view.setTitleColor(.red, for: .normal)
+        view.setImage(UIImage(named: "start"), for: .normal)
         view.isEnabled = true
         view.addTarget(self, action: #selector(goToGameScene), for: .touchUpInside)
         
@@ -98,8 +100,22 @@ class MenuViewController: UIViewController {
     
     @objc
     private func goToGameScene() {
-        GameService.shared.hideAccessPoint()
         navigationController?.pushViewController(GameViewController(), animated: true)
+    }
+    
+    private lazy var gameCenterButton: UIButton = {
+        let view = UIButton()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.setImage(UIImage(named: "gameCenter"), for: .normal)
+        view.isEnabled = true
+        view.addTarget(self, action: #selector(openGameCenter), for: .touchUpInside)
+        
+        return view
+    }()
+    
+    @objc
+    private func openGameCenter() {
+        GameService.shared.showLeaderboard()
     }
 
 }

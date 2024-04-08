@@ -13,6 +13,8 @@ class GameController: ObservableObject {
     
     let defaults = UserDefaults.standard
     
+    // MARK: - User Variables
+    
     @Published var currentDistance = 0.0
     @Published var currentCoins = 0
     @Published var currentObjects = [ObjectNode]()
@@ -32,11 +34,45 @@ class GameController: ObservableObject {
         }
     }
     
+    // MARK: - Scene Variables
+    
+    @Published var gameScene: GameScene!
+    
+    @Published var objectFactory: ObjectFactory!
+    
+    // MARK: Entity Nodes
+    
+    @Published var truck: TruckNode!
+    @Published var landslide: LandslideNode!
+    
+    // MARK: UI Nodes
+    
+    @Published var distanceNode: TextNode!
+    @Published var coinsNode: TextNode!
+    
+    
+    // MARK: Menu Nodes
+    
+    @Published var overlayNode: SKShapeNode!
+    @Published var gameOverLabel: SKLabelNode!
+    @Published var restartButton: ButtonNode!
+    @Published var menuButton: ButtonNode!
+    
+    // MARK: - Game Loop Variables
+    
+    @Published var gameIsOver: Bool = false
+    @Published var holeCollision: Int = 0
+    @Published var reduceTimer: Timer?
+    
+    // MARK: - Init
+    
     private init() {
         self.highestDistance = 0.0
         self.totalCoins = 0
         retrieve()
     }
+    
+    // MARK: - User Defaults functions
     
     func saveDistance() {
         let encoder = JSONEncoder()
@@ -80,5 +116,9 @@ class GameController: ObservableObject {
             }
         }
     }
+    
+    // MARK: - a
+    
+    
     
 }

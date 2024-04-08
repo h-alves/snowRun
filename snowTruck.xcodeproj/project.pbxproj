@@ -15,7 +15,7 @@
 		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
 		786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */; };
 		786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF22BB779D50064BD6F /* ObjectNode.swift */; };
-		786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF52BB8CC960064BD6F /* DistanceNode.swift */; };
+		786B7BF62BB8CC960064BD6F /* TextNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BF52BB8CC960064BD6F /* TextNode.swift */; };
 		786E27292BACA58600F73394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E27282BACA58600F73394 /* AppDelegate.swift */; };
 		786E272B2BACA58600F73394 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 786E272A2BACA58600F73394 /* GameScene.sks */; };
 		786E272F2BACA58600F73394 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786E272E2BACA58600F73394 /* GameScene.swift */; };
@@ -40,10 +40,10 @@
 		788A8F752BBDCAE2005D2F90 /* IntersticialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F742BBDCAE2005D2F90 /* IntersticialAdView.swift */; };
 		788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */; };
 		788A8F792BBDD009005D2F90 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F782BBDD009005D2F90 /* BannerAdView.swift */; };
+		788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
-		78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A42BB353E100798BC5 /* MenuScene.swift */; };
 		78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */; };
 		78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */; };
 		78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */; };
@@ -58,7 +58,7 @@
 		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
 		786B7BEF2BB747ED0064BD6F /* ObjectTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTypes.swift; sourceTree = "<group>"; };
 		786B7BF22BB779D50064BD6F /* ObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectNode.swift; sourceTree = "<group>"; };
-		786B7BF52BB8CC960064BD6F /* DistanceNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceNode.swift; sourceTree = "<group>"; };
+		786B7BF52BB8CC960064BD6F /* TextNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextNode.swift; sourceTree = "<group>"; };
 		786E27252BACA58600F73394 /* snowTruck.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snowTruck.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		786E27282BACA58600F73394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		786E272A2BACA58600F73394 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -82,10 +82,10 @@
 		788A8F742BBDCAE2005D2F90 /* IntersticialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersticialAdView.swift; sourceTree = "<group>"; };
 		788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
 		788A8F782BBDD009005D2F90 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBarNode.swift; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
-		78FC15A42BB353E100798BC5 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		78FC15A72BB35B4A00798BC5 /* PlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerContactDelegate.swift; sourceTree = "<group>"; };
 		78FC15A92BB35B6600798BC5 /* ObjectContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectContactDelegate.swift; sourceTree = "<group>"; };
 		78FE4BC82BB1EA6F001B84F6 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
@@ -176,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				786E272E2BACA58600F73394 /* GameScene.swift */,
-				78FC15A42BB353E100798BC5 /* MenuScene.swift */,
 			);
 			path = SceneController;
 			sourceTree = "<group>";
@@ -196,9 +195,10 @@
 			isa = PBXGroup;
 			children = (
 				786E274C2BADBA9500F73394 /* ButtonNode.swift */,
-				786B7BF52BB8CC960064BD6F /* DistanceNode.swift */,
+				786B7BF52BB8CC960064BD6F /* TextNode.swift */,
 				786E27412BACA6B400F73394 /* TruckNode.swift */,
 				786E27432BACBE5F00F73394 /* LandslideNode.swift */,
+				788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */,
 				786B7BF22BB779D50064BD6F /* ObjectNode.swift */,
 				78FC15A12BB34E1600798BC5 /* Obstacle */,
 				786B7BDD2BB4905F0064BD6F /* Items */,
@@ -415,14 +415,13 @@
 				786E27422BACA6B400F73394 /* TruckNode.swift in Sources */,
 				786E27462BACF5E600F73394 /* PhysicsCategory.swift in Sources */,
 				78FC15AA2BB35B6600798BC5 /* ObjectContactDelegate.swift in Sources */,
-				78FC15A52BB353E100798BC5 /* MenuScene.swift in Sources */,
 				786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */,
 				786E274D2BADBA9500F73394 /* ButtonNode.swift in Sources */,
 				788A8F5A2BBB423A005D2F90 /* HapticsService.swift in Sources */,
 				786B7BF02BB747ED0064BD6F /* ObjectTypes.swift in Sources */,
 				788A8F572BBB415B005D2F90 /* SKScene.swift in Sources */,
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
-				786B7BF62BB8CC960064BD6F /* DistanceNode.swift in Sources */,
+				786B7BF62BB8CC960064BD6F /* TextNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
 				788A8F752BBDCAE2005D2F90 /* IntersticialAdView.swift in Sources */,
 				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
@@ -433,6 +432,7 @@
 				788A8F6D2BBC72E1005D2F90 /* MenuViewController.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
 				786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */,
+				788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */,
 				786B7BE12BB491910064BD6F /* GameController.swift in Sources */,
 				786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */,
 			);

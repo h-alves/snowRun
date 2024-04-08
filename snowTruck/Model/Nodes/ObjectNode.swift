@@ -7,41 +7,30 @@
 
 import SpriteKit
 
-class ObjectNode: SKShapeNode, Object {
+class ObjectNode: SKSpriteNode, Object {
     
     var id: UUID = UUID()
     var typeName: String
-    var size: CGSize
-    var color: UIColor
     
     weak var delegate: ObjectContactDelegate?
     
-    init(typeName: String, size: CGSize, color: UIColor) {
+    
+    init(typeName: String, texture: SKTexture, color: UIColor, size: CGSize) {
         self.typeName = typeName
-        self.size = size
-        self.color = color
         
-        super.init()
+        super.init(texture: texture, color: color, size: size)
         
-        self.draw()
         self.configureCollision()
     }
     
     required init?(coder aDecoder: NSCoder) {
         self.typeName = aDecoder.decodeObject(forKey: "name") as? String ?? ""
-        self.size = aDecoder.decodeCGSize(forKey: "size")
-        self.color = aDecoder.decodeObject(forKey: "color") as? UIColor ?? .white
         
         super.init(coder: aDecoder)
     }
     
-    func draw() {
-        self.path = CGPath(rect: CGRect(origin: CGPoint(x: -size.width / 2, y: -size.height / 2), size: size), transform: nil)
-        self.fillColor = color
-    }
-    
     func configureCollision() {
-        self.physicsBody = SKPhysicsBody(rectangleOf: size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width - 10, height: self.size.height - 10))
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         
@@ -77,7 +66,7 @@ class ObjectNode: SKShapeNode, Object {
     }
     
     func clone() -> any Object {
-        ObjectNode(typeName: typeName, size: size, color: color)
+        ObjectNode(typeName: typeName, texture: self.texture!, color: self.color, size: self.size)
     }
     
 }
