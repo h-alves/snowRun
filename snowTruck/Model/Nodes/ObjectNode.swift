@@ -44,6 +44,7 @@ class ObjectNode: SKSpriteNode, Object {
         let yPosition = scene.frame.maxY + offset
         
         self.position = CGPoint(x: xPosition, y: yPosition)
+        self.zPosition = 2
         
         scene.addChild(self)
         self.delegate = scene as? any ObjectContactDelegate

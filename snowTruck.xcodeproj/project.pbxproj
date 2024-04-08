@@ -41,6 +41,9 @@
 		788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */; };
 		788A8F792BBDD009005D2F90 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F782BBDD009005D2F90 /* BannerAdView.swift */; };
 		788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */; };
+		78D5DE052BC428C50011190D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78D5DE042BC428C50011190D /* FacebookCore */; };
+		78D5DE072BC431A80011190D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE062BC431A80011190D /* AdSupport.framework */; };
+		78D5DE092BC431B40011190D /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
@@ -83,6 +86,8 @@
 		788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
 		788A8F782BBDD009005D2F90 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBarNode.swift; sourceTree = "<group>"; };
+		78D5DE062BC431A80011190D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -96,7 +101,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78D5DE092BC431B40011190D /* AppTrackingTransparency.framework in Frameworks */,
+				78D5DE072BC431A80011190D /* AdSupport.framework in Frameworks */,
 				788A8F702BBDC8E1005D2F90 /* GoogleMobileAds in Frameworks */,
+				78D5DE052BC428C50011190D /* FacebookCore in Frameworks */,
 				788A8F652BBC3874005D2F90 /* FirebaseCrashlytics in Frameworks */,
 				788A8F622BBC382D005D2F90 /* FirebaseAnalyticsSwift in Frameworks */,
 				788A8F602BBC382D005D2F90 /* FirebaseAnalytics in Frameworks */,
@@ -226,6 +234,8 @@
 		788A8F632BBC3874005D2F90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */,
+				78D5DE062BC431A80011190D /* AdSupport.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,6 +327,7 @@
 				788A8F612BBC382D005D2F90 /* FirebaseAnalyticsSwift */,
 				788A8F642BBC3874005D2F90 /* FirebaseCrashlytics */,
 				788A8F6F2BBDC8E1005D2F90 /* GoogleMobileAds */,
+				78D5DE042BC428C50011190D /* FacebookCore */,
 			);
 			productName = snowTruck;
 			productReference = 786E27252BACA58600F73394 /* snowTruck.app */;
@@ -349,6 +360,7 @@
 			packageReferences = (
 				788A8F5E2BBC382D005D2F90 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				788A8F6E2BBDC8E1005D2F90 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				78D5DE032BC428C50011190D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 786E27262BACA58600F73394 /* Products */;
 			projectDirPath = "";
@@ -692,6 +704,14 @@
 				minimumVersion = 11.2.0;
 			};
 		};
+		78D5DE032BC428C50011190D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -714,6 +734,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 788A8F6E2BBDC8E1005D2F90 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		78D5DE042BC428C50011190D /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 78D5DE032BC428C50011190D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
