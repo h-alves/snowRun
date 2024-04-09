@@ -55,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
 		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
 		786B7BE02BB491910064BD6F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				788A8F712BBDC969005D2F90 /* Info.plist */,
+				78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */,
 				788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */,
 				78D5DE102BC4A1C90011190D /* GoogleService-Info.plist */,
 				78FC159B2BB33D2300798BC5 /* App */,
@@ -721,7 +723,7 @@
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 14.1.0;
+				minimumVersion = 17.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
