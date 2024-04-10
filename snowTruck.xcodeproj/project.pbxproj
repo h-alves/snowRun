@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78179D062BC703CD00DA96C2 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D052BC703CD00DA96C2 /* GameOverViewController.swift */; };
+		78179D082BC704BC00DA96C2 /* PauseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D072BC704BC00DA96C2 /* PauseViewController.swift */; };
 		786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDB2BB490590064BD6F /* GasNode.swift */; };
 		786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDE2BB490E30064BD6F /* CoinNode.swift */; };
-		786B7BE12BB491910064BD6F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameController.swift */; };
+		786B7BE12BB491910064BD6F /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameManager.swift */; };
 		786B7BE92BB72F410064BD6F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE82BB72F410064BD6F /* Object.swift */; };
 		786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEA2BB737BD0064BD6F /* ItemNode.swift */; };
 		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
@@ -56,9 +58,11 @@
 
 /* Begin PBXFileReference section */
 		78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		78179D052BC703CD00DA96C2 /* GameOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
+		78179D072BC704BC00DA96C2 /* PauseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseViewController.swift; sourceTree = "<group>"; };
 		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
 		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
-		786B7BE02BB491910064BD6F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		786B7BE02BB491910064BD6F /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		786B7BE82BB72F410064BD6F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		786B7BEA2BB737BD0064BD6F /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
 		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
@@ -199,7 +203,7 @@
 				786B7BEC2BB7393A0064BD6F /* Enums */,
 				786E27472BACF5EC00F73394 /* Nodes */,
 				786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */,
-				786B7BE02BB491910064BD6F /* GameController.swift */,
+				786B7BE02BB491910064BD6F /* GameManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,6 +255,8 @@
 			isa = PBXGroup;
 			children = (
 				786E27302BACA58600F73394 /* GameViewController.swift */,
+				78179D052BC703CD00DA96C2 /* GameOverViewController.swift */,
+				78179D072BC704BC00DA96C2 /* PauseViewController.swift */,
 				788A8F6C2BBC72E1005D2F90 /* MenuViewController.swift */,
 				786E273F2BACA5E800F73394 /* SceneController */,
 			);
@@ -425,10 +431,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78179D062BC703CD00DA96C2 /* GameOverViewController.swift in Sources */,
 				786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */,
 				788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */,
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
 				788A8F5C2BBB460A005D2F90 /* GameService.swift in Sources */,
+				78179D082BC704BC00DA96C2 /* PauseViewController.swift in Sources */,
 				78FE4BC92BB1EA6F001B84F6 /* BlockNode.swift in Sources */,
 				78D5DE0D2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift in Sources */,
 				78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */,
@@ -455,7 +463,7 @@
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
 				786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */,
 				788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */,
-				786B7BE12BB491910064BD6F /* GameController.swift in Sources */,
+				786B7BE12BB491910064BD6F /* GameManager.swift in Sources */,
 				786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

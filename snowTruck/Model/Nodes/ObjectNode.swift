@@ -49,9 +49,9 @@ class ObjectNode: SKSpriteNode, Object {
         scene.addChild(self)
         self.delegate = scene as? any ObjectContactDelegate
         
-        GameController.shared.currentObjects.append(self)
+        GameManager.shared.currentObjects.append(self)
         
-        let speed = max((GameController.shared.currentDistance / 1000), 1.0) * 6.0
+        let speed = max((GameManager.shared.currentDistance / 1000), 1.0) * 6.0
         
         self.moveDown(scene.frame.minY - 100, speed: speed)
     }
