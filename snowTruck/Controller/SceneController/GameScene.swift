@@ -13,8 +13,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let controller = GameManager.shared
     
-    var goBack: (() -> Void)?
-    
     // MARK: - Scene Variables
     
     var targetPosition: CGPoint?
@@ -53,8 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         setUpBackground()
         setUpNodes()
         
-        setUpGameOver()
-        
         physicsWorld.contactDelegate = self
         
         objectFactory = ObjectFactory(offset: (frame.height/1.1))
@@ -73,7 +69,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if restartButton.contains(touchLocation) {
                 controller.restartGame()
             } else if menuButton.contains(touchLocation) {
-                goBack!()
+                
             }
         } else {
             let truckLocation = convert(touchLocation, to: truck)
@@ -171,96 +167,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(coinsNode)
     }
     
-    func setUpGameOver() {
-        overlayNode = SKShapeNode(rectOf: CGSize(width: frame.width, height: frame.height))
-        overlayNode.position = CGPoint(x: frame.midX, y: frame.midY)
-        overlayNode.fillColor = UIColor.black
-        overlayNode.alpha = 0.5
-        overlayNode.zPosition = 3
-        overlayNode.isHidden = true
-        self.addChild(overlayNode)
-        
-        gameOverCard = SKSpriteNode(texture: SKTexture(imageNamed: "gameOver"), size: CGSize(width: frame.width * 0.75, height: frame.width * 0.55))
-        gameOverCard.position = CGPoint(x: frame.midX, y: frame.midY + frame.height * 0.07)
-        gameOverCard.alpha = 2.0
-        gameOverCard.zPosition = 3
-        gameOverCard.isHidden = true
-        self.addChild(gameOverCard)
-        
-        restartButton = ButtonNode(size: CGSize(width: 200, height: 70), text: "restart", color: .yellow)
-        restartButton.position = CGPoint(x: frame.midX, y: frame.minY + frame.height * 0.22)
-        restartButton.zPosition = 3
-        restartButton.isHidden = true
-        self.addChild(restartButton)
-        
-        menuButton = ButtonNode(size: CGSize(width: 140, height: 70), text: "menu", color: .yellow)
-        menuButton.position = CGPoint(x: frame.midX, y: frame.minY + frame.height * 0.15)
-        menuButton.zPosition = 3
-        menuButton.isHidden = true
-        self.addChild(menuButton)
-    }
-    
-//    // MARK: - Pause Game functions
-//    
-//    func pauseGame() {
-//        for object in controller.currentObjects {
-//            object.isPaused = true
-//        }
-//        truck.isPaused = true
-//        landslide.isPaused = true
-//        distanceNode.isPaused = true
-//        coinsNode.isPaused = true
-//    }
-//    
-//    func resumeGame() {
-//        self.view?.isPaused = false
-//    }
-//    
-//    // MARK: - Restart Game functions
-//    
-//    func resetEntities() {
-//        truck.position = CGPoint(x: frame.midX, y: frame.midY - truck.distance)
-//        truck.isSpeedReduced = false
-//        truck.gas = 100
-//        truck.holes = 0
-//        
-//        landslide.position = CGPoint(x: frame.midX, y: frame.minY - landslide.landslideDistance)
-//        landslide.removeAllActions()
-//    }
-//    
-//    func resetVariables() {
-//        gameOverCard.isHidden = true
-//        overlayNode.isHidden = true
-//        restartButton.isHidden = true
-//        menuButton.isHidden = true
-//        
-//        controller.currentCoins = 0
-//        controller.currentDistance = 0
-//        
-//        gameIsOver = false
-//    }
-//    
-//    func resetObstacles() {
-//        for obstacle in controller.currentObjects {
-//            obstacle.removeAllActions()
-//            obstacle.removeFromParent()
-//        }
-//        
-//        controller.currentObjects = [ObstacleNode]()
-//        
-//        objectFactory.start(self)
-//    }
-//    
-//    func restartGame() {
-//        Analytics.logEvent("restart_level", parameters: [
-//            "level_name" : "default" as NSObject
-//        ])
-//        
-//        resetVariables()
-//        resetEntities()
-//        resetObstacles()
-//    }
-    
     // MARK: - Game Over functions
     
     func showGameOver() {
@@ -268,10 +174,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             "level_name" : "default" as NSObject
         ])
         
-        overlayNode.isHidden = false
-        gameOverCard.isHidden = false
-        restartButton.isHidden = false
-        menuButton.isHidden = false
+        NotificationCenter.default.post(name: Notification.Name("ShowGameOver"), object: nil)
     }
     
     // MARK: - Update functions

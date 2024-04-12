@@ -97,13 +97,11 @@ class GameManager: ObservableObject {
     // MARK: - Pause functions
     
     func pauseGame() {
-        for object in currentObjects {
-            object.isPaused = true
+        if scene.view?.isPaused == true {
+            scene.view?.isPaused = false
+        } else {
+            scene.view?.isPaused = true
         }
-        scene.truck.isPaused = true
-        scene.landslide.isPaused = true
-        scene.distanceNode.isPaused = true
-        scene.coinsNode.isPaused = true
     }
     
     func resumeGame() {
@@ -150,9 +148,20 @@ class GameManager: ObservableObject {
             "level_name" : "default" as NSObject
         ])
         
-        resetVariables()
-        resetEntities()
-        resetObstacles()
+//        resetVariables()
+//        resetEntities()
+//        resetObstacles()
+        
+        currentCoins = 0
+        currentDistance = 0
+        currentObjects = [ObstacleNode]()
+        
+        guard let currentGameViewController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+            return
+        }
+        
+        currentGameViewController.popToRootViewController(animated: false)
+        currentGameViewController.pushViewController(GameViewController(), animated: false)
     }
     
 }
