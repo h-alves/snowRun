@@ -41,6 +41,7 @@ class TruckNode: SKSpriteNode {
             if self.gas < 0 {
                 self.gas = 0
                 self.delegate?.gameOver()
+                self.delegate?.moveLandslideUp()
             }
             
             self.delegate?.reduceGas()

@@ -80,6 +80,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !gameIsOver {
             truck.move(targetPosition: targetPosition ?? nil)
             updateDistance()
+            
+            moveBackground()
         }
     }
     
@@ -115,9 +117,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Set Up Functions
     
     func setUpBackground() {
-        let background = SKSpriteNode(texture: SKTexture(imageNamed: "background"), size: frame.size)
-        background.zPosition = 0
-        addChild(background)
+        self.backgroundColor = .red
+        
+        for i in 0..<2 {
+            let bg = SKSpriteNode(texture: SKTexture(imageNamed: "background"), size: frame.size)
+            bg.position = CGPoint(x: self.frame.midX, y: CGFloat(i) * bg.size.height)
+            bg.name = "background"
+            bg.zPosition = 0
+            self.addChild(bg)
+        }
+    }
+    
+    func moveBackground() {
+        self.enumerateChildNodes(withName: "background") { (node, stop) in
+            let actualMoveSpeed = CGFloat(-7.25)  // Use a mesma velocidade que o cone
+            node.position.y += actualMoveSpeed
+
+            // Se o fundo se mover completamente para fora da tela, reposicione
+            if node.position.y < -node.frame.size.height {
+                node.position.y += node.frame.size.height * 2
+            }
+        }
     }
     
     func setUpNodes() {

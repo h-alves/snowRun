@@ -51,7 +51,7 @@ class ObjectNode: SKSpriteNode, Object {
         
         GameManager.shared.currentObjects.append(self)
         
-        let speed = max((GameManager.shared.currentDistance / 1000), 1.0) * 6.0
+        let speed = 6.0
         
         self.moveDown(scene.frame.minY - 100, speed: speed)
     }
