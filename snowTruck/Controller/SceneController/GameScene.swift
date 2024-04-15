@@ -80,6 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if !gameIsOver {
             truck.move(targetPosition: targetPosition ?? nil)
             updateDistance()
+            updateLevel()
             
             moveBackground()
         }
@@ -179,6 +180,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             minute = 0
             controller.currentDistance += 1
             NotificationCenter.default.post(name: Notification.Name("DistanceLabelUpdated"), object: nil)
+        }
+    }
+    
+    func updateLevel() {
+        switch controller.currentDistance {
+        case 1000:
+            controller.currentLevel = 5
+            print(controller.currentLevel)
+        case 750:
+            controller.currentLevel = 4
+            print(controller.currentLevel)
+        case 500:
+            controller.currentLevel = 3
+            print(controller.currentLevel)
+        case 250:
+            controller.currentLevel = 2
+            print(controller.currentLevel)
+        default:
+            break
         }
     }
 }

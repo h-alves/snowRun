@@ -156,6 +156,7 @@ class GameViewController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = UIFont(name: "Starbirl", size: 16)
         view.text = "00"
+        view.textColor = .black
         view.textAlignment = .right
         
         return view
