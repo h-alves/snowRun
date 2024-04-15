@@ -32,6 +32,10 @@ extension GameScene: PlayerContactDelegate {
         }
     }
     
+    func collide() {
+        HapticsService.shared.play(.heavy)
+    }
+    
     func reduceSpeed() {
         truck.holes += 1
         print(truck.holes)

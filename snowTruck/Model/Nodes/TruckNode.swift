@@ -21,7 +21,7 @@ class TruckNode: SKSpriteNode {
     init(texture: SKTexture, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width * 0.85, height: size.height * 0.85))
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
@@ -119,6 +119,7 @@ extension TruckNode {
             delegate?.gameOver()
         case "block":
             delegate?.gameOver()
+            delegate?.collide()
             delegate?.moveLandslideUp()
         case "hole":
             delegate?.reduceSpeed()

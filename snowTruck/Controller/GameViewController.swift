@@ -110,8 +110,7 @@ class GameViewController: UIViewController {
         
         distanceLabel.leadingAnchor.constraint(equalTo: distanceBackground.leadingAnchor, constant: UIScreen.main.bounds.width * 0.05).isActive = true
         distanceLabel.trailingAnchor.constraint(equalTo: distanceBackground.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.05).isActive = true
-        distanceLabel.topAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.001).isActive = true
-        distanceLabel.bottomAnchor.constraint(equalTo: distanceBackground.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.001).isActive = true
+        distanceLabel.centerYAnchor.constraint(equalTo: distanceBackground.centerYAnchor).isActive = true
     }
     
     
@@ -155,6 +154,7 @@ class GameViewController: UIViewController {
     private lazy var coinLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = UIFont(name: "Starbirl", size: 16)
         view.text = "00"
         view.textAlignment = .right
         
@@ -164,6 +164,7 @@ class GameViewController: UIViewController {
     private lazy var distanceLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = UIFont(name: "Starbirl", size: 12)
         view.text = "0 km"
         view.textColor = .white
         view.textAlignment = .right

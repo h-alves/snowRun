@@ -30,7 +30,7 @@ class ObjectNode: SKSpriteNode, Object {
     }
     
     func configureCollision() {
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width - 10, height: self.size.height - 10))
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width * 0.23)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         

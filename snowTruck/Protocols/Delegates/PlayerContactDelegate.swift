@@ -14,6 +14,8 @@ protocol PlayerContactDelegate: AnyObject {
     
     func reduceGas()
     
+    func collide()
+    
     func addCoin(object: ObjectNode)
     func addGas(object: ObjectNode)
 }

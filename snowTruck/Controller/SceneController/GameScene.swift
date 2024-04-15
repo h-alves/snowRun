@@ -174,8 +174,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Update functions
     
     func updateDistance() {
-        minute += 2
-        if minute % 60 == 0 {
+        minute += 8
+        if minute / 60 >= 1 {
+            minute = 0
             controller.currentDistance += 1
             NotificationCenter.default.post(name: Notification.Name("DistanceLabelUpdated"), object: nil)
         }
