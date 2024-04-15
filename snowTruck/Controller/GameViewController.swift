@@ -28,7 +28,6 @@ class GameViewController: UIViewController {
             }
         }
         
-//        showMenuView()
         addSubviews()
         setUpConstraints()
         
@@ -37,34 +36,6 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinLabel), name: Notification.Name("CoinLabelUpdated"), object: nil)
         
     }
-    
-//    private func showMenuView() {
-//        let menuView = MenuView(frame: self.view.bounds) {
-//            print("start")
-//            // Hide Menu View
-//            self.removeMenuView()
-//            // Show Game Elements
-//            self.addSubviews()
-//            self.setUpConstraints()
-//            // Start Game
-//            GameManager.shared.onMenu = false
-//            GameManager.shared.startGame()
-//        } onLeaderboard: {
-//            print("leaderboards")
-//            // Show Leaderboards
-//        }
-//        
-//        menuView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        view.addSubview(menuView)
-//        
-//        NSLayoutConstraint.activate([
-//            menuView.topAnchor.constraint(equalTo: view.topAnchor),
-//            menuView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            menuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-//        ])
-//    }
     
     private func addSubviews() {
         view.addSubview(gasBar)

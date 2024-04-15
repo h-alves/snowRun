@@ -83,6 +83,7 @@ class MenuViewController: UIViewController {
     
     @objc
     private func goToGameScene() {
+        GameManager.shared.currentGas = GameManager.shared.maxGas
         navigationController?.pushViewController(GameViewController(), animated: false)
     }
     

@@ -11,6 +11,7 @@ extension GameScene: PlayerContactDelegate {
     
     func gameOver() {
         if gameIsOver == false {
+            truck.stop()
             // Parar de mover a tela pra baixo
             for obstacle in controller.currentObjects {
                 obstacle.removeAllActions()
@@ -18,6 +19,7 @@ extension GameScene: PlayerContactDelegate {
             
             gameIsOver = true
             showGameOver()
+            truck.gas = truck.maxGas
             
             objectFactory.stop()
             
