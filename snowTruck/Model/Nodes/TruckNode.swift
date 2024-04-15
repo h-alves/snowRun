@@ -38,13 +38,14 @@ class TruckNode: SKSpriteNode {
     func consumeGas() {
         let sequence: [SKAction] = [.wait(forDuration: 2.0), .run {
             self.gas -= 10
-            if self.gas < 0 {
+            
+            self.delegate?.reduceGas()
+            
+            if self.gas <= 0 {
                 self.gas = 0
                 self.delegate?.gameOver()
                 self.delegate?.moveLandslideUp()
             }
-            
-            self.delegate?.reduceGas()
         }]
         
         self.run(.repeatForever(.sequence(sequence)))

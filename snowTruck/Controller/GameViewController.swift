@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateGasBar), name: Notification.Name("GasBarUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showGameOverView), name: Notification.Name("ShowGameOver"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinLabel), name: Notification.Name("CoinLabelUpdated"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDistanceLabel), name: Notification.Name("DistanceLabelUpdated"), object: nil)
         
     }
     
@@ -43,23 +44,24 @@ class GameViewController: UIViewController {
         view.addSubview(pauseButton)
         view.addSubview(coin)
         view.addSubview(coinLabel)
+        view.addSubview(distanceBackground)
+        view.addSubview(distanceLabel)
     }
     
     private func setUpConstraints() {
-        gasBar.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.152).isActive = true
-        gasBar.trailingAnchor.constraint(equalTo: gasBar.leadingAnchor, constant: UIScreen.main.bounds.width * 0.3).isActive = true
+        gasBar.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.095).isActive = true
+        gasBar.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.095).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gasBar.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
-            gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
+            gasBar.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.042).isActive = true
+            gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.035).isActive = true
         } else {
-            gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
-            gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
+            gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.006).isActive = true
+            gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.032).isActive = true
         }
-        gasBar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        gasOverlay.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.17).isActive = true
-        gasOverlay.trailingAnchor.constraint(equalTo: gasBar.leadingAnchor, constant: UIScreen.main.bounds.width * 0.33).isActive = true
+        gasOverlay.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
+        gasOverlay.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             gasOverlay.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
@@ -68,7 +70,6 @@ class GameViewController: UIViewController {
             gasOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
             gasOverlay.bottomAnchor.constraint(equalTo: gasOverlay.topAnchor, constant: UIScreen.main.bounds.height * 0.045).isActive = true
         }
-        gasOverlay.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         pauseButton.leadingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.15).isActive = true
         pauseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.03).isActive = true
@@ -92,8 +93,25 @@ class GameViewController: UIViewController {
             coin.bottomAnchor.constraint(equalTo: coin.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
         }
         
+        coinLabel.leadingAnchor.constraint(equalTo: coin.trailingAnchor, constant: UIScreen.main.bounds.width * 0.0001).isActive = true
         coinLabel.trailingAnchor.constraint(equalTo: coin.trailingAnchor, constant: UIScreen.main.bounds.width * 0.1).isActive = true
         coinLabel.centerYAnchor.constraint(equalTo: coin.centerYAnchor).isActive = true
+        
+        distanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.03).isActive = true
+        distanceBackground.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.33).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            distanceBackground.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.08).isActive = true
+            distanceBackground.bottomAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
+        } else {
+            distanceBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.05).isActive = true
+            distanceBackground.bottomAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
+        }
+        
+        distanceLabel.leadingAnchor.constraint(equalTo: distanceBackground.leadingAnchor, constant: UIScreen.main.bounds.width * 0.05).isActive = true
+        distanceLabel.trailingAnchor.constraint(equalTo: distanceBackground.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.05).isActive = true
+        distanceLabel.topAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.001).isActive = true
+        distanceLabel.bottomAnchor.constraint(equalTo: distanceBackground.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.001).isActive = true
     }
     
     
@@ -138,6 +156,25 @@ class GameViewController: UIViewController {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.text = "00"
+        view.textAlignment = .right
+        
+        return view
+    }()
+    
+    private lazy var distanceLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "0 km"
+        view.textColor = .white
+        view.textAlignment = .right
+        
+        return view
+    }()
+    
+    private lazy var distanceBackground: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "backgroundLabel")
         
         return view
     }()
@@ -153,6 +190,11 @@ class GameViewController: UIViewController {
     @objc
     private func updateCoinLabel() {
         coinLabel.text = String(format: "%02d", GameManager.shared.currentCoins)
+    }
+    
+    @objc
+    private func updateDistanceLabel() {
+        distanceLabel.text = String("\(Int(GameManager.shared.currentDistance)) km")
     }
     
     @objc

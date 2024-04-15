@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: UI Nodes
     
-    var distanceNode: TextNode!
+    var minute: Int = 0
     
     // MARK: - Game Loop Variables
     
@@ -141,7 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setUpNodes() {
-        truck = TruckNode(texture: SKTexture(imageNamed: "truck"), color: .black, size: CGSize(width: 80, height: 160))
+        truck = TruckNode(texture: SKTexture(imageNamed: "truck"), color: .black, size: CGSize(width: 140, height: 160))
         truck.distance = (frame.height/3.4)
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truck.distance)
         truck.zPosition = 2.1
@@ -159,12 +159,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         addChild(landslide)
-        
-        distanceNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0 km", color: .yellow)
-        distanceNode.position = CGPoint(x: frame.maxX * 0.75 - distanceNode.size.width / 2, y: frame.maxY - distanceNode.frame.height * 2.5)
-        distanceNode.zPosition = 2.3
-        
-        addChild(distanceNode)
     }
     
     // MARK: - Game Over functions
@@ -180,7 +174,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Update functions
     
     func updateDistance() {
-        controller.currentDistance += 0.1
-        distanceNode.label.text = "\(Int(controller.currentDistance)) km"
+        minute += 2
+        if minute % 60 == 0 {
+            controller.currentDistance += 1
+            NotificationCenter.default.post(name: Notification.Name("DistanceLabelUpdated"), object: nil)
+        }
     }
 }

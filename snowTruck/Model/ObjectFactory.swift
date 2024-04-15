@@ -37,13 +37,13 @@ class ObjectFactory: SKNode {
             switch object {
             case .block:
                 texture = SKTexture(imageNamed: "block1")
-                newObject = BlockNode(texture: texture, size: CGSize(width: 260, height: 140))
+                newObject = BlockNode(texture: texture, size: CGSize(width: 140, height: 140))
             case .hole:
                 texture = SKTexture(imageNamed: "hole")
-                newObject = HoleNode(texture: texture, size: CGSize(width: 100, height: 100))
+                newObject = HoleNode(texture: texture, size: CGSize(width: 120, height: 120))
             case .gas:
                 texture = SKTexture(imageNamed: "gas")
-                newObject = GasNode(texture: texture, size: CGSize(width: 70, height: 70))
+                newObject = GasNode(texture: texture, size: CGSize(width: 90, height: 90))
             case .coin:
                 texture = SKTexture(imageNamed: "coin")
                 newObject = CoinNode(texture: texture, size: CGSize(width: 70, height: 70))
