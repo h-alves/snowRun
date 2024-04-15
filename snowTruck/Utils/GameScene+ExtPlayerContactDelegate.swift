@@ -59,11 +59,14 @@ extension GameScene: PlayerContactDelegate {
         landslide.move(direction: .up)
     }
     
+    func reduceGas() {
+        controller.currentGas = truck.gas
+        
+        NotificationCenter.default.post(name: Notification.Name("GasBarUpdated"), object: nil)
+    }
+    
     func addGas(object: ObjectNode) {
-        truck.gas -= 10
-        if truck.gas > truck.maxGas {
-            truck.gas = truck.maxGas
-        }
+        truck.addGas()
         
         controller.currentGas = truck.gas
         
@@ -80,7 +83,9 @@ extension GameScene: PlayerContactDelegate {
         
         deleteItem(item: object)
         
-        coinsNode.label.text = "\(controller.currentCoins)"
+//        coinsNode.label.text = "\(controller.currentCoins)"
+        
+        NotificationCenter.default.post(name: Notification.Name("CoinLabelUpdated"), object: nil)
     }
     
     func deleteItem(item: ObjectNode) {

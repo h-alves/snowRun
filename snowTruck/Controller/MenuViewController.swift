@@ -6,12 +6,28 @@
 //
 
 import UIKit
+import SpriteKit
+import GameplayKit
 import AppTrackingTransparency
 
 class MenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view = SKView(frame: UIScreen.main.bounds)
+        guard let view = self.view as? SKView else {
+            fatalError("View do GameViewController não é uma SKView.")
+        }
+        
+        if let scene = GKScene(fileNamed: "MenuScene") {
+            if let sceneNode = scene.rootNode as? MenuScene {
+                sceneNode.scaleMode = .aspectFill
+                
+                view.presentScene(sceneNode)
+                view.ignoresSiblingOrder = true
+            }
+        }
 
         addSubviews()
         setUpConstraints()
@@ -22,18 +38,12 @@ class MenuViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(backgroundImage)
         view.addSubview(titleImage)
         view.addSubview(startButton)
         view.addSubview(gameCenterButton)
     }
     
     private func setUpConstraints() {
-        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
         titleImage.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         titleImage.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: (-50)).isActive = true
         
@@ -73,7 +83,7 @@ class MenuViewController: UIViewController {
     
     @objc
     private func goToGameScene() {
-        navigationController?.pushViewController(GameViewController(), animated: true)
+        navigationController?.pushViewController(GameViewController(), animated: false)
     }
     
     private lazy var gameCenterButton: UIButton = {

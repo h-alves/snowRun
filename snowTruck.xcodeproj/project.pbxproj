@@ -10,6 +10,7 @@
 		78179D0A2BC8596D00DA96C2 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D092BC8596D00DA96C2 /* PauseView.swift */; };
 		78179D0C2BC85CEB00DA96C2 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D0B2BC85CEB00DA96C2 /* GameOverView.swift */; };
 		78179D0E2BC85EE500DA96C2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D0D2BC85EE500DA96C2 /* MenuView.swift */; };
+		78179D162BC9BCE300DA96C2 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D152BC9BCE300DA96C2 /* MenuScene.swift */; };
 		786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDB2BB490590064BD6F /* GasNode.swift */; };
 		786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDE2BB490E30064BD6F /* CoinNode.swift */; };
 		786B7BE12BB491910064BD6F /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameManager.swift */; };
@@ -62,6 +63,7 @@
 		78179D092BC8596D00DA96C2 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
 		78179D0B2BC85CEB00DA96C2 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		78179D0D2BC85EE500DA96C2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		78179D152BC9BCE300DA96C2 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
 		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
 		786B7BE02BB491910064BD6F /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				786E272E2BACA58600F73394 /* GameScene.swift */,
+				78179D152BC9BCE300DA96C2 /* MenuScene.swift */,
 			);
 			path = SceneController;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
 				786B7BF62BB8CC960064BD6F /* TextNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
+				78179D162BC9BCE300DA96C2 /* MenuScene.swift in Sources */,
 				788A8F752BBDCAE2005D2F90 /* IntersticialAdView.swift in Sources */,
 				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
 				78179D0C2BC85CEB00DA96C2 /* GameOverView.swift in Sources */,

@@ -35,6 +35,36 @@ class TruckNode: SKSpriteNode {
         super.init(coder: aDecoder)
     }
     
+    func consumeGas() {
+        let sequence: [SKAction] = [.wait(forDuration: 2.0), .run {
+            self.gas -= 10
+            if self.gas < 0 {
+                self.gas = 0
+                self.delegate?.gameOver()
+            }
+            
+            self.delegate?.reduceGas()
+        }]
+        
+        self.run(.repeatForever(.sequence(sequence)))
+    }
+    
+    func addGas() {
+        stop()
+        
+        self.gas += 20
+        
+        if self.gas > self.maxGas {
+            self.gas = self.maxGas
+        }
+        
+        consumeGas()
+    }
+    
+    func stop() {
+        self.removeAllActions()
+    }
+    
     func move(targetPosition: CGPoint?) {
         if let targetPosition = targetPosition {
             let dx = targetPosition.x - self.position.x

@@ -18,6 +18,8 @@ class GameManager: ObservableObject {
     
     @Published var scene: GameScene!
     
+    @Published var onMenu: Bool = true
+    
     @Published var currentDistance = 0.0
     @Published var currentCoins = 0
     @Published var currentGas = 100
@@ -121,10 +123,10 @@ class GameManager: ObservableObject {
     }
     
     func resetVariables() {
-        scene.gameOverCard.isHidden = true
-        scene.overlayNode.isHidden = true
-        scene.restartButton.isHidden = true
-        scene.menuButton.isHidden = true
+//        scene.gameOverCard.isHidden = true
+//        scene.overlayNode.isHidden = true
+//        scene.restartButton.isHidden = true
+//        scene.menuButton.isHidden = true
         
         currentCoins = 0
         currentDistance = 0
@@ -162,6 +164,10 @@ class GameManager: ObservableObject {
         
         currentGameViewController.popToRootViewController(animated: false)
         currentGameViewController.pushViewController(GameViewController(), animated: false)
+    }
+    
+    func startGame() {
+        scene.objectFactory.start(scene)
     }
     
 }

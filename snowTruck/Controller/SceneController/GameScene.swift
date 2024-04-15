@@ -26,14 +26,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: UI Nodes
     
     var distanceNode: TextNode!
-    var coinsNode: TextNode!
-    
-    // MARK: Menu Nodes
-    
-    var overlayNode: SKShapeNode!
-    var gameOverCard: SKSpriteNode!
-    var restartButton: ButtonNode!
-    var menuButton: ButtonNode!
     
     // MARK: - Game Loop Variables
     
@@ -57,6 +49,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         objectFactory.start(self)
         addChild(objectFactory)
+        
+        truck.consumeGas()
     }
     
     // MARK: Touch
@@ -65,16 +59,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let touch = touches.first else { return }
         let touchLocation = touch.location(in: self)
         
-        if gameIsOver {
-            if restartButton.contains(touchLocation) {
-                controller.restartGame()
-            } else if menuButton.contains(touchLocation) {
-                
-            }
-        } else {
-            let truckLocation = convert(touchLocation, to: truck)
-            targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
-        }
+        let truckLocation = convert(touchLocation, to: truck)
+        targetPosition = CGPoint(x: truck.position.x, y: truckLocation.y)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -159,12 +145,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         distanceNode.zPosition = 2.3
         
         addChild(distanceNode)
-        
-        coinsNode = TextNode(texture: SKTexture(imageNamed: "backgroundLabel"), size: CGSize(width: 250, height: 60), text: "0", color: .yellow, secondaryTexture: SKTexture(imageNamed: "coin"), hasLabel: true)
-        coinsNode.position = CGPoint(x: frame.maxX * 0.75 - distanceNode.size.width / 2, y: frame.maxY - coinsNode.frame.height * 4)
-        coinsNode.zPosition = 2.3
-        
-        addChild(coinsNode)
     }
     
     // MARK: - Game Over functions

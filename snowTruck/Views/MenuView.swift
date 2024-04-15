@@ -9,6 +9,8 @@ import UIKit
 
 class MenuView: UIView {
 
+    var logoImage: UIImageView = UIImageView()
+    
     var onStart: (() -> Void)?
     var onLeaderboard: (() -> Void)?
     
@@ -19,6 +21,7 @@ class MenuView: UIView {
         self.onLeaderboard = onLeaderboard
         
         setUpView()
+        setUpLogo()
         setUpStartButton()
         setUpLeaderboardButton()
     }
@@ -31,31 +34,43 @@ class MenuView: UIView {
         self.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
     }
     
+    private func setUpLogo() {
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        logoImage.image = UIImage(named: "menuLogo")
+        
+        addSubview(logoImage)
+        
+        NSLayoutConstraint.activate([
+            logoImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logoImage.centerYAnchor.constraint(equalTo: centerYAnchor, constant: (-50))
+        ])
+    }
+    
     private func setUpStartButton() {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Start", for: .normal)
+        button.setImage(UIImage(named: "start"), for: .normal)
         button.addTarget(nil, action: #selector(didTapStart), for: .touchUpInside)
         
         addSubview(button)
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: centerYAnchor)
+            button.centerYAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: (60))
         ])
     }
     
     private func setUpLeaderboardButton() {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Leaderboard", for: .normal)
+        button.setImage(UIImage(named: "gameCenter"), for: .normal)
         button.addTarget(nil, action: #selector(didTapLeaderBoard), for: .touchUpInside)
         
         addSubview(button)
         
         NSLayoutConstraint.activate([
             button.centerXAnchor.constraint(equalTo: centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 50)
+            button.centerYAnchor.constraint(equalTo: bottomAnchor, constant: (-70))
         ])
     }
     

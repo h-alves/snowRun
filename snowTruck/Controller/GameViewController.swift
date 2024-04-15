@@ -28,18 +28,50 @@ class GameViewController: UIViewController {
             }
         }
         
+//        showMenuView()
         addSubviews()
         setUpConstraints()
         
         NotificationCenter.default.addObserver(self, selector: #selector(updateGasBar), name: Notification.Name("GasBarUpdated"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showGameOver), name: Notification.Name("ShowGameOver"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showGameOverView), name: Notification.Name("ShowGameOver"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateCoinLabel), name: Notification.Name("CoinLabelUpdated"), object: nil)
         
     }
+    
+//    private func showMenuView() {
+//        let menuView = MenuView(frame: self.view.bounds) {
+//            print("start")
+//            // Hide Menu View
+//            self.removeMenuView()
+//            // Show Game Elements
+//            self.addSubviews()
+//            self.setUpConstraints()
+//            // Start Game
+//            GameManager.shared.onMenu = false
+//            GameManager.shared.startGame()
+//        } onLeaderboard: {
+//            print("leaderboards")
+//            // Show Leaderboards
+//        }
+//        
+//        menuView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        view.addSubview(menuView)
+//        
+//        NSLayoutConstraint.activate([
+//            menuView.topAnchor.constraint(equalTo: view.topAnchor),
+//            menuView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            menuView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            menuView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+//        ])
+//    }
     
     private func addSubviews() {
         view.addSubview(gasBar)
         view.addSubview(gasOverlay)
         view.addSubview(pauseButton)
+        view.addSubview(coin)
+        view.addSubview(coinLabel)
     }
     
     private func setUpConstraints() {
@@ -47,7 +79,7 @@ class GameViewController: UIViewController {
         gasBar.trailingAnchor.constraint(equalTo: gasBar.leadingAnchor, constant: UIScreen.main.bounds.width * 0.3).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gasBar.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.045).isActive = true
+            gasBar.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
             gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
         } else {
             gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
@@ -59,7 +91,7 @@ class GameViewController: UIViewController {
         gasOverlay.trailingAnchor.constraint(equalTo: gasBar.leadingAnchor, constant: UIScreen.main.bounds.width * 0.33).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gasOverlay.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
+            gasOverlay.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
             gasOverlay.bottomAnchor.constraint(equalTo: gasOverlay.topAnchor, constant: UIScreen.main.bounds.height * 0.052).isActive = true
         } else {
             gasOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -77,6 +109,20 @@ class GameViewController: UIViewController {
             pauseButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
             pauseButton.bottomAnchor.constraint(equalTo: pauseButton.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
         }
+        
+        coin.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.03).isActive = true
+        coin.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.12).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            coin.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.045).isActive = true
+            coin.bottomAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.09).isActive = true
+        } else {
+            coin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
+            coin.bottomAnchor.constraint(equalTo: coin.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
+        }
+        
+        coinLabel.trailingAnchor.constraint(equalTo: coin.trailingAnchor, constant: UIScreen.main.bounds.width * 0.1).isActive = true
+        coinLabel.centerYAnchor.constraint(equalTo: coin.centerYAnchor).isActive = true
     }
     
     
@@ -104,7 +150,23 @@ class GameViewController: UIViewController {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setImage(UIImage(named: "pauseButton"), for: .normal)
-        view.addTarget(nil, action: #selector(pauseGame), for: .touchUpInside)
+        view.addTarget(nil, action: #selector(showPauseView), for: .touchUpInside)
+        
+        return view
+    }()
+    
+    private lazy var coin: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "coin")
+        
+        return view
+    }()
+    
+    private lazy var coinLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "00"
         
         return view
     }()
@@ -118,7 +180,12 @@ class GameViewController: UIViewController {
     }
     
     @objc
-    private func showGameOver() {
+    private func updateCoinLabel() {
+        coinLabel.text = String(format: "%02d", GameManager.shared.currentCoins)
+    }
+    
+    @objc
+    private func showGameOverView() {
         let gameOverView = GameOverView(frame: view.bounds) {
             print("restart")
             self.removeGameOverView()
@@ -136,7 +203,7 @@ class GameViewController: UIViewController {
     }
     
     @objc
-    private func pauseGame() {
+    private func showPauseView() {
         GameManager.shared.pauseGame()
         
         let pauseView = PauseView(frame: self.view.bounds) {
@@ -175,6 +242,14 @@ class GameViewController: UIViewController {
     private func removeGameOverView() {
         for subview in view.subviews {
             if subview is GameOverView {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
+    private func removeMenuView() {
+        for subview in view.subviews {
+            if subview is MenuView {
                 subview.removeFromSuperview()
             }
         }
