@@ -8,8 +8,19 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import GoogleMobileAds
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, GADFullScreenContentDelegate {
+    
+    #if DEBUG
+        let bannerAdId = "ca-app-pub-3940256099942544/2435281174"
+        let interstitialAdId = "ca-app-pub-3940256099942544/8691691433"
+        let rewardAdId = "ca-app-pub-3940256099942544/5224354917"
+    #else
+        let bannerAdId = ""
+        let interstitialAdId = ""
+        let rewardAdId = ""
+    #endif
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +47,13 @@ class GameViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinLabel), name: Notification.Name("CoinLabelUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateDistanceLabel), name: Notification.Name("DistanceLabelUpdated"), object: nil)
         
+        DispatchQueue.global().async {
+            InterstitialAd.shared.loadAd(withAdUnitId: self.interstitialAdId)
+        }
+        
+        DispatchQueue.global().async {
+            RewardedAd.shared.loadAd(withAdUnitId: self.rewardAdId)
+        }
     }
     
     private func addSubviews() {
@@ -155,7 +173,7 @@ class GameViewController: UIViewController {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = UIFont(name: "Starbirl", size: 16)
-        view.text = "00"
+        view.text = String(format: "%02d", GameManager.shared.currentCoins)
         view.textColor = .black
         view.textAlignment = .right
         
@@ -201,6 +219,10 @@ class GameViewController: UIViewController {
     
     @objc
     private func showGameOverView() {
+        if GameManager.shared.adSpacing >= 4 {
+            self.showInterstitialAd()
+        }
+        
         let gameOverView = GameOverView(frame: view.bounds) {
             print("restart")
             self.removeGameOverView()
@@ -212,9 +234,42 @@ class GameViewController: UIViewController {
             GameManager.shared.currentDistance = 0
             GameManager.shared.currentGas = GameManager.shared.maxGas
             self.navigationController?.popToRootViewController(animated: false)
+        } onAd: {
+            print("show ad")
+            self.showRewardedAd()
+            GameManager.shared.rewardedPlayed = true
         }
         
         view.addSubview(gameOverView)
+    }
+    
+    func showRewardedAd() {
+        if let ad = RewardedAd.shared.rewardedAd {
+            ad.fullScreenContentDelegate = self
+            ad.present(fromRootViewController: self.view?.window?.rootViewController) {
+                print("Ad displayed")
+            }
+        }
+    }
+
+    func showInterstitialAd() {
+        if let ad = InterstitialAd.shared.interstitialAd {
+            ad.fullScreenContentDelegate = self
+            ad.present(fromRootViewController: nil)
+        }
+    }
+      
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        if ad is GADRewardedAd {
+            GameManager.shared.revive()
+
+            RewardedAd.shared.loadAd(withAdUnitId: rewardAdId)
+            print("Rewarded ad dismissed")
+        } else if ad is GADInterstitialAd {
+            InterstitialAd.shared.loadAd(withAdUnitId: interstitialAdId)
+            print("Interstitial ad dismissed")
+            GameManager.shared.adSpacing = 0
+        }
     }
     
     @objc

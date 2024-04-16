@@ -21,7 +21,7 @@ class GameManager: ObservableObject {
     @Published var onMenu: Bool = true
     
     @Published var currentDistance = 0.0
-    @Published var currentLevel = 0
+    @Published var currentLevel = 1
     
     @Published var currentCoins = 0
     @Published var currentGas = 100
@@ -29,6 +29,9 @@ class GameManager: ObservableObject {
     @Published var currentObjects = [ObjectNode]()
     
     @Published var maxGas = 100
+    
+    @Published var rewardedPlayed = false
+    @Published var adSpacing = 0
     
     @Published var highestDistance: Double {
         didSet {
@@ -125,11 +128,6 @@ class GameManager: ObservableObject {
     }
     
     func resetVariables() {
-//        scene.gameOverCard.isHidden = true
-//        scene.overlayNode.isHidden = true
-//        scene.restartButton.isHidden = true
-//        scene.menuButton.isHidden = true
-        
         currentCoins = 0
         currentDistance = 0
         
@@ -152,10 +150,7 @@ class GameManager: ObservableObject {
             "level_name" : "default" as NSObject
         ])
         
-//        resetVariables()
-//        resetEntities()
-//        resetObstacles()
-        
+        currentLevel = 1
         currentCoins = 0
         currentDistance = 0
         currentObjects = [ObstacleNode]()
@@ -166,10 +161,31 @@ class GameManager: ObservableObject {
         
         currentGameViewController.popToRootViewController(animated: false)
         currentGameViewController.pushViewController(GameViewController(), animated: false)
+        
+        rewardedPlayed = false
     }
     
     func startGame() {
         scene.objectFactory.start(scene)
+    }
+    
+    // MARK: -
+    
+    func revive() {
+        rewardedPlayed = true
+        
+        Analytics.logEvent("revive", parameters: [
+            "level_name" : "default" as NSObject
+        ])
+        
+        currentObjects = [ObstacleNode]()
+        
+        guard let currentGameViewController = UIApplication.shared.keyWindow?.rootViewController as? UINavigationController else {
+            return
+        }
+        
+        currentGameViewController.popToRootViewController(animated: false)
+        currentGameViewController.pushViewController(GameViewController(), animated: false)
     }
     
 }

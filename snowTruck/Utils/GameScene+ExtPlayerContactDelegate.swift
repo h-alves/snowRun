@@ -18,6 +18,8 @@ extension GameScene: PlayerContactDelegate {
             }
             
             gameIsOver = true
+            
+            controller.adSpacing += Int.random(in: 1...3)
             showGameOver()
             
             objectFactory.stop()
@@ -29,6 +31,7 @@ extension GameScene: PlayerContactDelegate {
                 controller.highestDistance = controller.currentDistance
                 GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
             }
+            
         }
     }
     

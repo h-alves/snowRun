@@ -51,6 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(objectFactory)
         
         truck.consumeGas()
+        
+        self.view?.showsPhysics = true
     }
     
     // MARK: Touch
@@ -142,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setUpNodes() {
-        truck = TruckNode(texture: SKTexture(imageNamed: "truck"), color: .black, size: CGSize(width: 140, height: 160))
+        truck = TruckNode(texture: SKTexture(imageNamed: "truck"), color: .black, size: CGSize(width: 100, height: 160))
         truck.distance = (frame.height/3.4)
         truck.position = CGPoint(x: frame.midX, y: frame.midY - truck.distance)
         truck.zPosition = 2.1
