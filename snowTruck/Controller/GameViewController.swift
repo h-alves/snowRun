@@ -17,13 +17,18 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         let interstitialAdId = "ca-app-pub-3940256099942544/8691691433"
         let rewardAdId = "ca-app-pub-3940256099942544/5224354917"
     #else
-        let bannerAdId = ""
-        let interstitialAdId = ""
-        let rewardAdId = ""
+        let bannerAdId = "ca-app-pub-3181630923494012/7015880541"
+        let interstitialAdId = "ca-app-pub-3181630923494012/6946129172"
+        let rewardAdId = "ca-app-pub-3181630923494012/1763553867"
     #endif
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DispatchQueue.global().async {
+            InterstitialAd.shared.loadAd(withAdUnitId: self.interstitialAdId)
+            RewardedAd.shared.loadAd(withAdUnitId: self.rewardAdId)
+        }
         
         self.view = SKView(frame: UIScreen.main.bounds)
         guard let view = self.view as? SKView else {
@@ -47,13 +52,6 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(updateCoinLabel), name: Notification.Name("CoinLabelUpdated"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateDistanceLabel), name: Notification.Name("DistanceLabelUpdated"), object: nil)
         
-        DispatchQueue.global().async {
-            InterstitialAd.shared.loadAd(withAdUnitId: self.interstitialAdId)
-        }
-        
-        DispatchQueue.global().async {
-            RewardedAd.shared.loadAd(withAdUnitId: self.rewardAdId)
-        }
     }
     
     private func addSubviews() {
@@ -224,20 +222,29 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         }
         
         let gameOverView = GameOverView(frame: view.bounds) {
-            print("restart")
-            self.removeGameOverView()
-            
-            GameManager.shared.restartGame()
-        } onMenu: {
-            print("menu")
+            if GameManager.shared.rewardedPlayed {
+                print("restart")
+                self.removeGameOverView()
+                GameManager.shared.restartGame()
+            } else {
+                print("show ad")
+                self.showRewardedAd()
+                GameManager.shared.rewardedPlayed = true
+            }
+        } onSecondaryOne: {
+            if GameManager.shared.rewardedPlayed {
+                print("remove ads")
+            } else {
+                print("restart")
+                self.removeGameOverView()
+                GameManager.shared.restartGame()
+            }
+        } onSecondaryTwo: {
+            print("home")
             GameManager.shared.currentCoins = 0
             GameManager.shared.currentDistance = 0
             GameManager.shared.currentGas = GameManager.shared.maxGas
             self.navigationController?.popToRootViewController(animated: false)
-        } onAd: {
-            print("show ad")
-            self.showRewardedAd()
-            GameManager.shared.rewardedPlayed = true
         }
         
         view.addSubview(gameOverView)

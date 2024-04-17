@@ -11,6 +11,16 @@ import GameplayKit
 import AppTrackingTransparency
 
 class MenuViewController: UIViewController {
+    
+    #if DEBUG
+        let bannerAdId = "ca-app-pub-3940256099942544/2435281174"
+        let interstitialAdId = "ca-app-pub-3940256099942544/8691691433"
+        let rewardAdId = "ca-app-pub-3940256099942544/5224354917"
+    #else
+        let bannerAdId = "ca-app-pub-3181630923494012/7015880541"
+        let interstitialAdId = "ca-app-pub-3181630923494012/6946129172"
+        let rewardAdId = "ca-app-pub-3181630923494012/1763553867"
+    #endif
 
     override func viewDidLoad() {
         super.viewDidLoad()

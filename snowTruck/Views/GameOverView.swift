@@ -9,16 +9,16 @@ import UIKit
 
 class GameOverView: UIView {
 
-    var onRestart: (() -> Void)?
-    var onMenu: (() -> Void)?
-    var onAd: (() -> Void)?
+    var onMain: (() -> Void)?
+    var onSecondaryOne: (() -> Void)?
+    var onSecondaryTwo: (() -> Void)?
     
-    init(frame: CGRect, onRestart: @escaping () -> Void, onMenu: @escaping () -> Void, onAd: @escaping () -> Void) {
+    init(frame: CGRect, onMain: @escaping () -> Void, onSecondaryOne: @escaping () -> Void, onSecondaryTwo: @escaping () -> Void) {
         super.init(frame: frame)
         
-        self.onRestart = onRestart
-        self.onMenu = onMenu
-        self.onAd = onAd
+        self.onMain = onMain
+        self.onSecondaryOne = onSecondaryOne
+        self.onSecondaryTwo = onSecondaryTwo
         
         setUpView()
         addSubviews()
@@ -35,11 +35,10 @@ class GameOverView: UIView {
     
     private func addSubviews() {
         addSubview(background)
-        addSubview(restartButton)
         
-        if !GameManager.shared.rewardedPlayed {
-            addSubview(adButton)
-        }
+        addSubview(mainButton)
+        addSubview(secondaryButtonOne)
+        addSubview(secondaryButtonTwo)
     }
     
     private func setUpConstraints() {
@@ -52,14 +51,12 @@ class GameOverView: UIView {
             background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.15).isActive = true
             background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.55).isActive = true
         }
+
+        mainButton.centerXAnchor.constraint(equalTo: background.centerXAnchor).isActive = true
+        mainButton.centerYAnchor.constraint(equalTo: background.centerYAnchor).isActive = true
         
-        restartButton.leadingAnchor.constraint(equalTo: background.leadingAnchor).isActive = true
-        restartButton.trailingAnchor.constraint(equalTo: background.trailingAnchor).isActive = true
-        
-        if !GameManager.shared.rewardedPlayed {
-            adButton.centerXAnchor.constraint(equalTo: background.centerXAnchor).isActive = true
-            adButton.centerYAnchor.constraint(equalTo: background.centerYAnchor).isActive = true
-        }
+        secondaryButtonOne.leadingAnchor.constraint(equalTo: background.leadingAnchor).isActive = true
+        secondaryButtonOne.trailingAnchor.constraint(equalTo: background.trailingAnchor).isActive = true
     }
     
     private lazy var background: UIImageView = {
@@ -70,43 +67,57 @@ class GameOverView: UIView {
         return view
     }()
     
-    private lazy var restartButton: UIButton = {
+    private lazy var mainButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "restartButton"), for: .normal)
-        button.addTarget(nil, action: #selector(didTapRestart), for: .touchUpInside)
+        
+        if GameManager.shared.rewardedPlayed {
+            button.setTitle("RESTART", for: .normal)
+        } else {
+            button.setTitle("ADS", for: .normal)
+        }
+        
+        button.addTarget(nil, action: #selector(didTapMain), for: .touchUpInside)
+
+        return button
+    }()
+
+    private lazy var secondaryButtonOne: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        if GameManager.shared.rewardedPlayed {
+            button.setTitle("REMOVE ADS", for: .normal)
+        } else {
+            button.setTitle("RESTART", for: .normal)
+        }
+        
+        button.addTarget(nil, action: #selector(didTapSecondaryOne), for: .touchUpInside)
+
+        return button
+    }()
+
+    private lazy var secondaryButtonTwo: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+    
+        button.setTitle("HOME", for: .normal)
+    
+        button.addTarget(nil, action: #selector(didTapSecondaryTwo), for: .touchUpInside)
         
         return button
     }()
     
-    private lazy var menuButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "menuTinyButton"), for: .normal)
-        button.addTarget(nil, action: #selector(didTapMenu), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    private lazy var adButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("ANUNCIO", for: .normal)
-        button.addTarget(nil, action: #selector(didTapAd), for: .touchUpInside)
-        
-        return button
-    }()
-    
-    @objc private func didTapRestart() {
-        onRestart?()
+    @objc private func didTapMain() {
+        onMain?()
     }
     
-    @objc private func didTapMenu() {
-        onMenu?()
+    @objc private func didTapSecondaryOne() {
+        onSecondaryOne?()
     }
     
-    @objc private func didTapAd() {
-        onAd?()
+    @objc private func didTapSecondaryTwo() {
+        onSecondaryTwo?()
     }
 
 }
