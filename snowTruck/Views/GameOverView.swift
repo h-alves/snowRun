@@ -35,6 +35,13 @@ class GameOverView: UIView {
     
     private func addSubviews() {
         addSubview(background)
+        addSubview(gameOverLabel)
+        
+        addSubview(scoreLabel)
+        addSubview(scoreText)
+        
+        addSubview(highscoreLabel)
+        addSubview(highscoreText)
         
         addSubview(mainButton)
         addSubview(secondaryButtonOne)
@@ -42,21 +49,97 @@ class GameOverView: UIView {
     }
     
     private func setUpConstraints() {
-        background.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIScreen.main.bounds.width * 0.07).isActive = true
-        background.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIScreen.main.bounds.width * 0.07).isActive = true
+        background.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UIScreen.main.bounds.width * 0.08).isActive = true
+        background.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIScreen.main.bounds.width * 0.08).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             
         } else {
-            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.15).isActive = true
-            background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.55).isActive = true
+            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.27).isActive = true
+            background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.53).isActive = true
         }
-
-        mainButton.centerXAnchor.constraint(equalTo: background.centerXAnchor).isActive = true
-        mainButton.centerYAnchor.constraint(equalTo: background.centerYAnchor).isActive = true
         
-        secondaryButtonOne.leadingAnchor.constraint(equalTo: background.leadingAnchor).isActive = true
-        secondaryButtonOne.trailingAnchor.constraint(equalTo: background.trailingAnchor).isActive = true
+        gameOverLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: UIScreen.main.bounds.width * 0.01).isActive = true
+        gameOverLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.01).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            gameOverLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
+            gameOverLabel.bottomAnchor.constraint(equalTo: gameOverLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
+        }
+        
+        // MARK: - Score
+        
+        scoreLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: UIScreen.main.bounds.width * 0.23).isActive = true
+        scoreLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.23).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            scoreLabel.topAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.13).isActive = true
+            scoreLabel.bottomAnchor.constraint(equalTo: scoreLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
+        }
+        
+        scoreText.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            scoreText.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
+        }
+        
+        // MARK: - Highscore
+        
+        highscoreLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: UIScreen.main.bounds.width * 0.18).isActive = true
+        highscoreLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.18).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            highscoreLabel.topAnchor.constraint(equalTo: scoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.025).isActive = true
+            highscoreLabel.bottomAnchor.constraint(equalTo: highscoreLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
+        }
+        
+        highscoreText.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            highscoreText.topAnchor.constraint(equalTo: highscoreLabel.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.01).isActive = true
+        }
+        
+        // MARK: - Buttons
+        
+        secondaryButtonOne.trailingAnchor.constraint(equalTo: centerXAnchor, constant: -UIScreen.main.bounds.width * 0.02).isActive = true
+        secondaryButtonOne.leadingAnchor.constraint(equalTo: secondaryButtonOne.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            secondaryButtonOne.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
+            secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
+        }
+        
+        secondaryButtonTwo.leadingAnchor.constraint(equalTo: centerXAnchor, constant: UIScreen.main.bounds.width * 0.02).isActive = true
+        secondaryButtonTwo.trailingAnchor.constraint(equalTo: secondaryButtonTwo.leadingAnchor, constant: UIScreen.main.bounds.width * 0.16).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            secondaryButtonTwo.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
+            secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
+        }
+        
+        mainButton.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: UIScreen.main.bounds.width * 0.04).isActive = true
+        mainButton.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.04).isActive = true
+        
+        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
+            
+        } else {
+            mainButton.topAnchor.constraint(equalTo: secondaryButtonOne.bottomAnchor, constant: UIScreen.main.bounds.height * 0.027).isActive = true
+            mainButton.bottomAnchor.constraint(equalTo: mainButton.topAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
+        }
     }
     
     private lazy var background: UIImageView = {
@@ -67,19 +150,48 @@ class GameOverView: UIView {
         return view
     }()
     
-    private lazy var mainButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var gameOverLabel: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "gameOverTitle")
         
-        if GameManager.shared.rewardedPlayed {
-            button.setTitle("RESTART", for: .normal)
-        } else {
-            button.setTitle("ADS", for: .normal)
-        }
+        return view
+    }()
+    
+    private lazy var scoreLabel: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "score")
         
-        button.addTarget(nil, action: #selector(didTapMain), for: .touchUpInside)
-
-        return button
+        return view
+    }()
+    
+    private lazy var scoreText: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "\(Int(GameManager.shared.currentDistance)) km"
+        view.textColor = .white
+        view.font = UIFont(name: "UpheavalTT-BRK-", size: 32)
+        
+        return view
+    }()
+    
+    private lazy var highscoreLabel: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = UIImage(named: "bestScore")
+        
+        return view
+    }()
+    
+    private lazy var highscoreText: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.text = "\(Int(GameManager.shared.highestDistance)) km"
+        view.textColor = .white
+        view.font = UIFont(name: "UpheavalTT-BRK-", size: 32)
+        
+        return view
     }()
 
     private lazy var secondaryButtonOne: UIButton = {
@@ -87,9 +199,9 @@ class GameOverView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         
         if GameManager.shared.rewardedPlayed {
-            button.setTitle("REMOVE ADS", for: .normal)
+            button.setImage(UIImage(named: "removeAds"), for: .normal)
         } else {
-            button.setTitle("RESTART", for: .normal)
+            button.setImage(UIImage(named: "restart"), for: .normal)
         }
         
         button.addTarget(nil, action: #selector(didTapSecondaryOne), for: .touchUpInside)
@@ -101,10 +213,25 @@ class GameOverView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
     
-        button.setTitle("HOME", for: .normal)
+        button.setImage(UIImage(named: "home"), for: .normal)
     
         button.addTarget(nil, action: #selector(didTapSecondaryTwo), for: .touchUpInside)
         
+        return button
+    }()
+    
+    private lazy var mainButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        if GameManager.shared.rewardedPlayed {
+            button.setImage(UIImage(named: "playAgain"), for: .normal)
+        } else {
+            button.setImage(UIImage(named: "revive"), for: .normal)
+        }
+        
+        button.addTarget(nil, action: #selector(didTapMain), for: .touchUpInside)
+
         return button
     }()
     

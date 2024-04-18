@@ -19,18 +19,18 @@ extension GameScene: PlayerContactDelegate {
             
             gameIsOver = true
             
-            controller.adSpacing += Int.random(in: 1...3)
+            if controller.currentDistance > controller.highestDistance {
+                controller.highestDistance = controller.currentDistance
+                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
+            }
+            
+            controller.adSpacing += Int.random(in: 0...2)
             showGameOver()
             
             objectFactory.stop()
             
             controller.totalCoins += controller.currentCoins
             print("total de moedas: \(controller.totalCoins)")
-            
-            if controller.currentDistance > controller.highestDistance {
-                controller.highestDistance = controller.currentDistance
-                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
-            }
             
         }
     }
@@ -74,6 +74,8 @@ extension GameScene: PlayerContactDelegate {
     }
     
     func addGas(object: ObjectNode) {
+        HapticsService.shared.play(.light)
+        
         truck.addGas()
         
         controller.currentGas = truck.gas
@@ -86,12 +88,12 @@ extension GameScene: PlayerContactDelegate {
     }
     
     func addCoin(object: ObjectNode) {
+        HapticsService.shared.play(.light)
+        
         controller.currentCoins += 1
         print(controller.currentCoins)
         
         deleteItem(item: object)
-        
-//        coinsNode.label.text = "\(controller.currentCoins)"
         
         NotificationCenter.default.post(name: Notification.Name("CoinLabelUpdated"), object: nil)
     }

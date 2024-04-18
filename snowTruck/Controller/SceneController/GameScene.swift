@@ -51,8 +51,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(objectFactory)
         
         truck.consumeGas()
-        
-        self.view?.showsPhysics = true
     }
     
     // MARK: Touch
