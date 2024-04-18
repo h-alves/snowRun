@@ -65,8 +65,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
     }
     
     private func setUpConstraints() {
-        gasBar.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.095).isActive = true
-        gasBar.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.095).isActive = true
+        gasBar.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.17).isActive = true
+        gasBar.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.17).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.024).isActive = true
@@ -76,8 +76,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
             gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.032).isActive = true
         }
         
-        gasOverlay.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
-        gasOverlay.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.16).isActive = true
+        gasOverlay.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.18).isActive = true
+        gasOverlay.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.18).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             gasOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.018).isActive = true
@@ -113,19 +113,19 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         coinLabel.trailingAnchor.constraint(equalTo: coin.trailingAnchor, constant: UIScreen.main.bounds.width * 0.1).isActive = true
         coinLabel.centerYAnchor.constraint(equalTo: coin.centerYAnchor).isActive = true
         
-        distanceBackground.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.03).isActive = true
-        distanceBackground.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.33).isActive = true
+        distanceBackground.leadingAnchor.constraint(equalTo: gasBar.leadingAnchor, constant: UIScreen.main.bounds.width * 0.03).isActive = true
+        distanceBackground.trailingAnchor.constraint(equalTo: gasBar.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.03).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            distanceBackground.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.08).isActive = true
-            distanceBackground.bottomAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
-        } else {
-            distanceBackground.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.05).isActive = true
+            distanceBackground.topAnchor.constraint(equalTo: gasOverlay.bottomAnchor).isActive = true
             distanceBackground.bottomAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
+        } else {
+            distanceBackground.topAnchor.constraint(equalTo: gasOverlay.bottomAnchor).isActive = true
+            distanceBackground.bottomAnchor.constraint(equalTo: distanceBackground.topAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
         }
         
-        distanceLabel.leadingAnchor.constraint(equalTo: distanceBackground.leadingAnchor, constant: UIScreen.main.bounds.width * 0.05).isActive = true
-        distanceLabel.trailingAnchor.constraint(equalTo: distanceBackground.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.05).isActive = true
+        distanceLabel.leadingAnchor.constraint(equalTo: distanceBackground.leadingAnchor, constant: UIScreen.main.bounds.width * 0.04).isActive = true
+        distanceLabel.trailingAnchor.constraint(equalTo: distanceBackground.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.04).isActive = true
         distanceLabel.centerYAnchor.constraint(equalTo: distanceBackground.centerYAnchor).isActive = true
     }
     

@@ -53,10 +53,10 @@ class GameOverView: UIView {
         background.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIScreen.main.bounds.width * 0.08).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.23).isActive = true
+            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.27).isActive = true
             background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.6).isActive = true
         } else {
-            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.27).isActive = true
+            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.32).isActive = true
             background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.53).isActive = true
         }
         
@@ -64,10 +64,10 @@ class GameOverView: UIView {
         gameOverLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.01).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gameOverLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
+            gameOverLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.1).isActive = true
             gameOverLabel.bottomAnchor.constraint(equalTo: gameOverLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
         } else {
-            gameOverLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
+            gameOverLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.1).isActive = true
             gameOverLabel.bottomAnchor.constraint(equalTo: gameOverLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
         }
         
@@ -123,7 +123,7 @@ class GameOverView: UIView {
             secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
         } else {
             secondaryButtonOne.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
-            secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
+            secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
         }
         
         secondaryButtonTwo.leadingAnchor.constraint(equalTo: centerXAnchor, constant: UIScreen.main.bounds.width * 0.02).isActive = true
@@ -134,7 +134,7 @@ class GameOverView: UIView {
             secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
         } else {
             secondaryButtonTwo.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
-            secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
+            secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
         }
         
         mainButton.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: UIScreen.main.bounds.width * 0.04).isActive = true
