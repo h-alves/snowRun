@@ -20,10 +20,10 @@ class GameManager: ObservableObject {
     
     @Published var onMenu: Bool = true
     
-    @Published var currentDistance = 2000.0
+    @Published var currentDistance = 0.0
     @Published var currentLevel = 1
     
-    @Published var currentCoins = 15
+    @Published var currentCoins = 0
     @Published var currentGas = 100
     
     @Published var currentObjects = [ObjectNode]()
