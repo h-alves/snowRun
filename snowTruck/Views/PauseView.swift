@@ -50,7 +50,8 @@ class PauseView: UIView {
         background.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UIScreen.main.bounds.width * 0.08).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.2).isActive = true
+            background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.6).isActive = true
         } else {
             background.topAnchor.constraint(equalTo: topAnchor, constant: UIScreen.main.bounds.height * 0.2).isActive = true
             background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.51).isActive = true
@@ -60,7 +61,8 @@ class PauseView: UIView {
         pauseLabel.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.205).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            pauseLabel.topAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.11).isActive = true
+            pauseLabel.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.175).isActive = true
         } else {
             pauseLabel.topAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.11).isActive = true
             pauseLabel.bottomAnchor.constraint(equalTo: background.topAnchor, constant: UIScreen.main.bounds.height * 0.175).isActive = true
@@ -70,7 +72,8 @@ class PauseView: UIView {
         scoreLabel.trailingAnchor.constraint(equalTo: pauseLabel.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.04).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            scoreLabel.topAnchor.constraint(equalTo: pauseLabel.bottomAnchor, constant: UIScreen.main.bounds.height * 0.01).isActive = true
+            scoreLabel.bottomAnchor.constraint(equalTo: scoreLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
         } else {
             scoreLabel.topAnchor.constraint(equalTo: pauseLabel.bottomAnchor, constant: UIScreen.main.bounds.height * 0.01).isActive = true
             scoreLabel.bottomAnchor.constraint(equalTo: scoreLabel.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
@@ -79,7 +82,7 @@ class PauseView: UIView {
         scoreText.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            scoreText.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
         } else {
             scoreText.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
         }
@@ -88,7 +91,8 @@ class PauseView: UIView {
         restartButton.leadingAnchor.constraint(equalTo: restartButton.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            restartButton.topAnchor.constraint(equalTo: scoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
+            restartButton.bottomAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
         } else {
             restartButton.topAnchor.constraint(equalTo: scoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
             restartButton.bottomAnchor.constraint(equalTo: restartButton.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
@@ -98,7 +102,8 @@ class PauseView: UIView {
         menuButton.trailingAnchor.constraint(equalTo: menuButton.leadingAnchor, constant: UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            menuButton.topAnchor.constraint(equalTo: scoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
+            menuButton.bottomAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
         } else {
             menuButton.topAnchor.constraint(equalTo: scoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
             menuButton.bottomAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
@@ -108,7 +113,8 @@ class PauseView: UIView {
         continueButton.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            
+            continueButton.topAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.13).isActive = true
+            continueButton.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
         } else {
             continueButton.topAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.13).isActive = true
             continueButton.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true

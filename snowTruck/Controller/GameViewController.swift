@@ -69,7 +69,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         gasBar.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.095).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gasBar.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.042).isActive = true
+            gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.024).isActive = true
             gasBar.bottomAnchor.constraint(equalTo: gasBar.topAnchor, constant: UIScreen.main.bounds.height * 0.035).isActive = true
         } else {
             gasBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.006).isActive = true
@@ -80,7 +80,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         gasOverlay.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            gasOverlay.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
+            gasOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.018).isActive = true
             gasOverlay.bottomAnchor.constraint(equalTo: gasOverlay.topAnchor, constant: UIScreen.main.bounds.height * 0.052).isActive = true
         } else {
             gasOverlay.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -91,8 +91,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         pauseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.03).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            pauseButton.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.036).isActive = true
-            pauseButton.bottomAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.1).isActive = true
+            pauseButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            pauseButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.0964).isActive = true
         } else {
             pauseButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
             pauseButton.bottomAnchor.constraint(equalTo: pauseButton.topAnchor, constant: UIScreen.main.bounds.height * 0.055).isActive = true
@@ -102,8 +102,8 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         coin.trailingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.12).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            coin.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.045).isActive = true
-            coin.bottomAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.09).isActive = true
+            coin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.027).isActive = true
+            coin.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.063).isActive = true
         } else {
             coin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
             coin.bottomAnchor.constraint(equalTo: coin.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
