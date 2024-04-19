@@ -63,25 +63,13 @@ class MenuViewController: UIViewController {
     }
     
     private func addSubviews() {
-        view.addSubview(titleImage)
         view.addSubview(startButton)
         view.addSubview(gameCenterButton)
     }
     
     private func setUpConstraints() {
-        titleImage.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIScreen.main.bounds.width * 0.05).isActive = true
-        titleImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.05).isActive = true
-        
-        if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            titleImage.topAnchor.constraint(equalTo: view.topAnchor, constant: UIScreen.main.bounds.height * 0.1).isActive = true
-            titleImage.bottomAnchor.constraint(equalTo: titleImage.topAnchor, constant: UIScreen.main.bounds.height * 0.35).isActive = true
-        } else {
-            titleImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.05).isActive = true
-            titleImage.bottomAnchor.constraint(equalTo: titleImage.topAnchor, constant: UIScreen.main.bounds.height * 0.3).isActive = true
-        }
-        
         startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: UIScreen.main.bounds.height * 0.1).isActive = true
+        startButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: UIScreen.main.bounds.height * 0.15).isActive = true
         
         gameCenterButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -UIScreen.main.bounds.width * 0.08).isActive = true
         gameCenterButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: UIScreen.main.bounds.width * 0.08).isActive = true
@@ -94,23 +82,6 @@ class MenuViewController: UIViewController {
             gameCenterButton.topAnchor.constraint(equalTo: gameCenterButton.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.08).isActive = true
         }
     }
-    
-    private lazy var backgroundImage: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
-        view.image = UIImage(named: "menuBackground")
-        
-        return view
-    }()
-    
-    private lazy var titleImage: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.image = UIImage(named: "menuLogo")
-        
-        return view
-    }()
     
     private lazy var startButton: UIButton = {
         let view = UIButton()

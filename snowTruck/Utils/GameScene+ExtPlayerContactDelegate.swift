@@ -11,6 +11,8 @@ extension GameScene: PlayerContactDelegate {
     
     func gameOver() {
         if gameIsOver == false {
+            HapticsService.shared.play(.heavy)
+            
             truck.stop()
             
             for obstacle in controller.currentObjects {
@@ -21,7 +23,7 @@ extension GameScene: PlayerContactDelegate {
             
             if controller.currentDistance > controller.highestDistance {
                 controller.highestDistance = controller.currentDistance
-                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
+                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highestDistance"]) {}
             }
             
             controller.adSpacing += Int.random(in: 0...2)
@@ -33,10 +35,6 @@ extension GameScene: PlayerContactDelegate {
             print("total de moedas: \(controller.totalCoins)")
             
         }
-    }
-    
-    func collide() {
-        HapticsService.shared.play(.heavy)
     }
     
     func reduceSpeed() {

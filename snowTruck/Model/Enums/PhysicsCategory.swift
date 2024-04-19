@@ -21,4 +21,8 @@ struct PhysicsCategory {
     // MARK: Items
     static let gas: UInt32 = 0x1 << 20
     static let coin: UInt32 = 0x1 << 21
+    
+    static let titleOne: UInt32 = 0x1 << 30
+    static let titleTwo: UInt32 = 0x1 << 31
+    static let emptyBlock: UInt32 = 0x1 << 32
 }

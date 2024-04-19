@@ -120,7 +120,7 @@ class GameOverView: UIView {
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             secondaryButtonOne.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
-            secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
+            secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.075).isActive = true
         } else {
             secondaryButtonOne.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
             secondaryButtonOne.bottomAnchor.constraint(equalTo: secondaryButtonOne.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true
@@ -131,7 +131,7 @@ class GameOverView: UIView {
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             secondaryButtonTwo.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
-            secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.07).isActive = true
+            secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.075).isActive = true
         } else {
             secondaryButtonTwo.topAnchor.constraint(equalTo: highscoreText.bottomAnchor, constant: UIScreen.main.bounds.height * 0.03).isActive = true
             secondaryButtonTwo.bottomAnchor.constraint(equalTo: secondaryButtonTwo.topAnchor, constant: UIScreen.main.bounds.height * 0.06).isActive = true

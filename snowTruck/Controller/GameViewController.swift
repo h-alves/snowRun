@@ -103,7 +103,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
             coin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.027).isActive = true
-            coin.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.063).isActive = true
+            coin.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.074).isActive = true
         } else {
             coin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: UIScreen.main.bounds.height * 0.005).isActive = true
             coin.bottomAnchor.constraint(equalTo: coin.topAnchor, constant: UIScreen.main.bounds.height * 0.04).isActive = true
@@ -136,7 +136,7 @@ class GameViewController: UIViewController, GADFullScreenContentDelegate {
         let view = UIProgressView(progressViewStyle: .bar)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.trackTintColor = .darkGray
-        view.progressTintColor = .red
+        view.progressTintColor = .green
         view.setProgress(1, animated: false)
         
         return view

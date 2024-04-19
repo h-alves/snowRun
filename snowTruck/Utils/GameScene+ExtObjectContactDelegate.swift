@@ -19,8 +19,13 @@ extension GameScene: ObjectContactDelegate {
     
     func deleteOnPosition(objectA: ObjectNode, objectB: ObjectNode) {
         print("ObjectA: \(objectA) ObjectB: \(objectB)")
-        objectB.removeFromParent()
-        self.controller.currentObjects.removeAll { $0.id == objectB.id }
+        if objectB.name == "gas" {
+            objectA.removeFromParent()
+            self.controller.currentObjects.removeAll { $0.id == objectA.id }
+        } else {
+            objectB.removeFromParent()
+            self.controller.currentObjects.removeAll { $0.id == objectB.id }
+        }
     }
     
 }

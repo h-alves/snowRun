@@ -113,7 +113,7 @@ class PauseView: UIView {
         continueButton.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -UIScreen.main.bounds.width * 0.16).isActive = true
         
         if UIScreen.main.bounds.height / UIScreen.main.bounds.width < 18 / 9 {
-            continueButton.topAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.13).isActive = true
+            continueButton.topAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.15).isActive = true
             continueButton.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.055).isActive = true
         } else {
             continueButton.topAnchor.constraint(equalTo: background.bottomAnchor, constant: -UIScreen.main.bounds.height * 0.13).isActive = true

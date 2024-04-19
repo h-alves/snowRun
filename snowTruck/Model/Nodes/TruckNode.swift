@@ -54,7 +54,12 @@ class TruckNode: SKSpriteNode {
     func addGas() {
         stop()
         
-        self.gas += 20
+        let random = Int.random(in: 2...3)
+        
+        if self.gas <= 20 {
+            self.gas += 10
+        }
+        self.gas += (10 * random)
         
         if self.gas > self.maxGas {
             self.gas = self.maxGas
@@ -119,7 +124,6 @@ extension TruckNode {
             delegate?.gameOver()
         case "block":
             delegate?.gameOver()
-            delegate?.collide()
             delegate?.moveLandslideUp()
         case "hole":
             delegate?.reduceSpeed()
