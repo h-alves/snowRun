@@ -23,10 +23,10 @@ extension GameScene: PlayerContactDelegate {
             
             if controller.currentDistance > controller.highestDistance {
                 controller.highestDistance = controller.currentDistance
-                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highestDistance"]) {}
+                GameService.shared.submitScore(Int(controller.highestDistance), ids: ["highscore"]) {}
             }
             
-            controller.adSpacing += Int.random(in: 0...2)
+            controller.adSpacing += Int.random(in: 1...3)
             showGameOver()
             
             objectFactory.stop()
