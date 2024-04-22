@@ -54,7 +54,7 @@ class TruckNode: SKSpriteNode {
     func addGas() {
         stop()
         
-        let random = Int.random(in: 2...3)
+        let random = Int.random(in: 1...3)
         
         if self.gas <= 20 {
             self.gas += 10
