@@ -19,8 +19,6 @@ class MenuScene: SKScene {
         setUpTitle()
         
         moveTitle()
-        
-        self.view?.showsPhysics = true
     }
     
     func setUpBackground() {
