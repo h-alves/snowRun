@@ -48,13 +48,13 @@
 		788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */; };
 		788A8F792BBDD009005D2F90 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F782BBDD009005D2F90 /* BannerAdView.swift */; };
 		788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */; };
+		78A0AFF42BD97D6500C1ACA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */; };
 		78C8FEC52BD05F110056BD04 /* upheavtt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78C8FEC42BD05F110056BD04 /* upheavtt.ttf */; };
 		78D5DE052BC428C50011190D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78D5DE042BC428C50011190D /* FacebookCore */; };
 		78D5DE072BC431A80011190D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE062BC431A80011190D /* AdSupport.framework */; };
 		78D5DE092BC431B40011190D /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */; };
 		78D5DE0B2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */; };
 		78D5DE0D2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */; };
-		78D5DE112BC4A1C90011190D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78D5DE102BC4A1C90011190D /* GoogleService-Info.plist */; };
 		78FC159E2BB342D700798BC5 /* LandslideDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159D2BB342D700798BC5 /* LandslideDirection.swift */; };
 		78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78FC159F2BB3484700798BC5 /* ObstacleNode.swift */; };
 		78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 78FC15A22BB353D100798BC5 /* MenuScene.sks */; };
@@ -104,12 +104,12 @@
 		788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
 		788A8F782BBDD009005D2F90 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBarNode.swift; sourceTree = "<group>"; };
-		78C8FEC42BD05F110056BD04 /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = upheavtt.ttf; path = ../../../../../../../Downloads/upheavtt.ttf; sourceTree = "<group>"; };
+		78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78C8FEC42BD05F110056BD04 /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = upheavtt.ttf; path = ../../../../../../Design/Fontes/upheavtt.ttf; sourceTree = "<group>"; };
 		78D5DE062BC431A80011190D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+ExtPlayerContactDelegate.swift"; sourceTree = "<group>"; };
 		78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+ExtObjectContactDelegate.swift"; sourceTree = "<group>"; };
-		78D5DE102BC4A1C90011190D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78FC159D2BB342D700798BC5 /* LandslideDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandslideDirection.swift; sourceTree = "<group>"; };
 		78FC159F2BB3484700798BC5 /* ObstacleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObstacleNode.swift; sourceTree = "<group>"; };
 		78FC15A22BB353D100798BC5 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				788A8F712BBDC969005D2F90 /* Info.plist */,
-				78D5DE102BC4A1C90011190D /* GoogleService-Info.plist */,
 				78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */,
+				78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */,
 				788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */,
 				78179D1A2BCD9F1B00DA96C2 /* Starbirl.otf */,
 				78179D1F2BCDAB4C00DA96C2 /* Gameshow.ttf */,
@@ -416,9 +416,9 @@
 				786E27342BACA58600F73394 /* Base in Resources */,
 				786E27362BACA58700F73394 /* Assets.xcassets in Resources */,
 				78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */,
+				78A0AFF42BD97D6500C1ACA9 /* GoogleService-Info.plist in Resources */,
 				786E27392BACA58700F73394 /* Base in Resources */,
 				78179D1C2BCD9F8900DA96C2 /* Starbirl.otf in Resources */,
-				78D5DE112BC4A1C90011190D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +660,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -698,7 +698,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
