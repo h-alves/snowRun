@@ -30,7 +30,7 @@ class ObjectNode: SKSpriteNode, Object {
     }
     
     func configureCollision() {
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: self.size.width - 10, height: self.size.height - 10))
+        self.physicsBody = SKPhysicsBody(circleOfRadius: size.width / 2)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         
@@ -49,9 +49,9 @@ class ObjectNode: SKSpriteNode, Object {
         scene.addChild(self)
         self.delegate = scene as? any ObjectContactDelegate
         
-        GameController.shared.currentObjects.append(self)
+        GameManager.shared.currentObjects.append(self)
         
-        let speed = max((GameController.shared.currentDistance / 1000), 1.0) * 6.0
+        let speed = 6.0
         
         self.moveDown(scene.frame.minY - 100, speed: speed)
     }

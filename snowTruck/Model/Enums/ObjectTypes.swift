@@ -8,8 +8,8 @@
 import Foundation
 
 enum ObjectTypes: Double, CaseIterable {
-    case block = 2.0
-    case hole = 5.0
-    case gas = 3.0
+    case block = 1.0
+    case hole = 3.0
+    case gas = 5.0
     case coin = 12.0
 }

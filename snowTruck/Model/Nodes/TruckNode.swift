@@ -15,12 +15,13 @@ class TruckNode: SKSpriteNode {
     var distance: CGFloat = 0
     
     var gas: Int = 100
+    let maxGas: Int = 100
     var holes: Int = 0
     
     init(texture: SKTexture, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size.width * 0.85, height: size.height * 0.85))
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.categoryBitMask = PhysicsCategory.player
@@ -32,6 +33,43 @@ class TruckNode: SKSpriteNode {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func consumeGas() {
+        let sequence: [SKAction] = [.wait(forDuration: 2.0), .run {
+            self.gas -= 10
+            
+            self.delegate?.reduceGas()
+            
+            if self.gas <= 0 {
+                self.gas = 0
+                self.delegate?.gameOver()
+                self.delegate?.moveLandslideUp()
+            }
+        }]
+        
+        self.run(.repeatForever(.sequence(sequence)))
+    }
+    
+    func addGas() {
+        stop()
+        
+        let random = Int.random(in: 1...3)
+        
+        if self.gas <= 20 {
+            self.gas += 10
+        }
+        self.gas += (10 * random)
+        
+        if self.gas > self.maxGas {
+            self.gas = self.maxGas
+        }
+        
+        consumeGas()
+    }
+    
+    func stop() {
+        self.removeAllActions()
     }
     
     func move(targetPosition: CGPoint?) {

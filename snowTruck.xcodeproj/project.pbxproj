@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78179D0A2BC8596D00DA96C2 /* PauseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D092BC8596D00DA96C2 /* PauseView.swift */; };
+		78179D0C2BC85CEB00DA96C2 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D0B2BC85CEB00DA96C2 /* GameOverView.swift */; };
+		78179D0E2BC85EE500DA96C2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D0D2BC85EE500DA96C2 /* MenuView.swift */; };
+		78179D162BC9BCE300DA96C2 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D152BC9BCE300DA96C2 /* MenuScene.swift */; };
+		78179D1B2BCD9F5100DA96C2 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */; };
+		78179D1C2BCD9F8900DA96C2 /* Starbirl.otf in Resources */ = {isa = PBXBuildFile; fileRef = 78179D1A2BCD9F1B00DA96C2 /* Starbirl.otf */; };
+		78179D1E2BCDA67600DA96C2 /* CGSize+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78179D1D2BCDA67600DA96C2 /* CGSize+Ext.swift */; };
+		78179D202BCDAB4C00DA96C2 /* Gameshow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78179D1F2BCDAB4C00DA96C2 /* Gameshow.ttf */; };
 		786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDB2BB490590064BD6F /* GasNode.swift */; };
 		786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BDE2BB490E30064BD6F /* CoinNode.swift */; };
-		786B7BE12BB491910064BD6F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameController.swift */; };
+		786B7BE12BB491910064BD6F /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE02BB491910064BD6F /* GameManager.swift */; };
 		786B7BE92BB72F410064BD6F /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BE82BB72F410064BD6F /* Object.swift */; };
 		786B7BEB2BB737BD0064BD6F /* ItemNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BEA2BB737BD0064BD6F /* ItemNode.swift */; };
 		786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */; };
@@ -34,13 +42,14 @@
 		788A8F602BBC382D005D2F90 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F5F2BBC382D005D2F90 /* FirebaseAnalytics */; };
 		788A8F622BBC382D005D2F90 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F612BBC382D005D2F90 /* FirebaseAnalyticsSwift */; };
 		788A8F652BBC3874005D2F90 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F642BBC3874005D2F90 /* FirebaseCrashlytics */; };
-		788A8F6A2BBC4C08005D2F90 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */; };
 		788A8F6D2BBC72E1005D2F90 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F6C2BBC72E1005D2F90 /* MenuViewController.swift */; };
 		788A8F702BBDC8E1005D2F90 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 788A8F6F2BBDC8E1005D2F90 /* GoogleMobileAds */; };
 		788A8F752BBDCAE2005D2F90 /* IntersticialAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F742BBDCAE2005D2F90 /* IntersticialAdView.swift */; };
 		788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */; };
 		788A8F792BBDD009005D2F90 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F782BBDD009005D2F90 /* BannerAdView.swift */; };
 		788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */; };
+		78A0AFF42BD97D6500C1ACA9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */; };
+		78C8FEC52BD05F110056BD04 /* upheavtt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 78C8FEC42BD05F110056BD04 /* upheavtt.ttf */; };
 		78D5DE052BC428C50011190D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 78D5DE042BC428C50011190D /* FacebookCore */; };
 		78D5DE072BC431A80011190D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE062BC431A80011190D /* AdSupport.framework */; };
 		78D5DE092BC431B40011190D /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */; };
@@ -55,9 +64,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		78179D092BC8596D00DA96C2 /* PauseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseView.swift; sourceTree = "<group>"; };
+		78179D0B2BC85CEB00DA96C2 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		78179D0D2BC85EE500DA96C2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		78179D152BC9BCE300DA96C2 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		78179D1A2BCD9F1B00DA96C2 /* Starbirl.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Starbirl.otf; path = ../../../../../../../Library/Fonts/Starbirl.otf; sourceTree = "<group>"; };
+		78179D1D2BCDA67600DA96C2 /* CGSize+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Ext.swift"; sourceTree = "<group>"; };
+		78179D1F2BCDAB4C00DA96C2 /* Gameshow.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Gameshow.ttf; path = ../../../../../../../Library/Fonts/Gameshow.ttf; sourceTree = "<group>"; };
 		786B7BDB2BB490590064BD6F /* GasNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasNode.swift; sourceTree = "<group>"; };
 		786B7BDE2BB490E30064BD6F /* CoinNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinNode.swift; sourceTree = "<group>"; };
-		786B7BE02BB491910064BD6F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		786B7BE02BB491910064BD6F /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		786B7BE82BB72F410064BD6F /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
 		786B7BEA2BB737BD0064BD6F /* ItemNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemNode.swift; sourceTree = "<group>"; };
 		786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectFactory.swift; sourceTree = "<group>"; };
@@ -81,13 +98,14 @@
 		788A8F592BBB423A005D2F90 /* HapticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsService.swift; sourceTree = "<group>"; };
 		788A8F5B2BBB460A005D2F90 /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = snowTruck.entitlements; sourceTree = "<group>"; };
-		788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		788A8F6C2BBC72E1005D2F90 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		788A8F712BBDC969005D2F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		788A8F742BBDCAE2005D2F90 /* IntersticialAdView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntersticialAdView.swift; sourceTree = "<group>"; };
 		788A8F762BBDCDE3005D2F90 /* RewardAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardAdView.swift; sourceTree = "<group>"; };
 		788A8F782BBDD009005D2F90 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
 		788A8F7A2BBF20C9005D2F90 /* GasBarNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GasBarNode.swift; sourceTree = "<group>"; };
+		78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		78C8FEC42BD05F110056BD04 /* upheavtt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = upheavtt.ttf; path = ../../../../../../Design/Fontes/upheavtt.ttf; sourceTree = "<group>"; };
 		78D5DE062BC431A80011190D /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		78D5DE082BC431B40011190D /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameScene+ExtPlayerContactDelegate.swift"; sourceTree = "<group>"; };
@@ -168,8 +186,12 @@
 			isa = PBXGroup;
 			children = (
 				788A8F712BBDC969005D2F90 /* Info.plist */,
+				78179D042BC4DC5800DA96C2 /* PrivacyInfo.xcprivacy */,
+				78A0AFF32BD97D6500C1ACA9 /* GoogleService-Info.plist */,
 				788A8F5D2BBB4E27005D2F90 /* snowTruck.entitlements */,
-				788A8F692BBC4C08005D2F90 /* GoogleService-Info.plist */,
+				78179D1A2BCD9F1B00DA96C2 /* Starbirl.otf */,
+				78179D1F2BCDAB4C00DA96C2 /* Gameshow.ttf */,
+				78C8FEC42BD05F110056BD04 /* upheavtt.ttf */,
 				78FC159B2BB33D2300798BC5 /* App */,
 				78FC15A62BB35B3800798BC5 /* Protocols */,
 				786E27402BACA5F100F73394 /* Model */,
@@ -187,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				786E272E2BACA58600F73394 /* GameScene.swift */,
+				78179D152BC9BCE300DA96C2 /* MenuScene.swift */,
 			);
 			path = SceneController;
 			sourceTree = "<group>";
@@ -197,7 +220,7 @@
 				786B7BEC2BB7393A0064BD6F /* Enums */,
 				786E27472BACF5EC00F73394 /* Nodes */,
 				786B7BED2BB7395D0064BD6F /* ObjectFactory.swift */,
-				786B7BE02BB491910064BD6F /* GameController.swift */,
+				786B7BE02BB491910064BD6F /* GameManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -223,6 +246,7 @@
 				788A8F562BBB415B005D2F90 /* SKScene+Ext.swift */,
 				78D5DE0A2BC45C950011190D /* GameScene+ExtPlayerContactDelegate.swift */,
 				78D5DE0C2BC45CD00011190D /* GameScene+ExtObjectContactDelegate.swift */,
+				78179D1D2BCDA67600DA96C2 /* CGSize+Ext.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +283,9 @@
 			isa = PBXGroup;
 			children = (
 				788A8F732BBDCACF005D2F90 /* AdsViews */,
+				78179D0D2BC85EE500DA96C2 /* MenuView.swift */,
+				78179D092BC8596D00DA96C2 /* PauseView.swift */,
+				78179D0B2BC85CEB00DA96C2 /* GameOverView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -383,11 +410,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				786E272B2BACA58600F73394 /* GameScene.sks in Resources */,
+				78C8FEC52BD05F110056BD04 /* upheavtt.ttf in Resources */,
+				78179D202BCDAB4C00DA96C2 /* Gameshow.ttf in Resources */,
+				78179D1B2BCD9F5100DA96C2 /* PrivacyInfo.xcprivacy in Resources */,
 				786E27342BACA58600F73394 /* Base in Resources */,
 				786E27362BACA58700F73394 /* Assets.xcassets in Resources */,
 				78FC15A32BB353D100798BC5 /* MenuScene.sks in Resources */,
+				78A0AFF42BD97D6500C1ACA9 /* GoogleService-Info.plist in Resources */,
 				786E27392BACA58700F73394 /* Base in Resources */,
-				788A8F6A2BBC4C08005D2F90 /* GoogleService-Info.plist in Resources */,
+				78179D1C2BCD9F8900DA96C2 /* Starbirl.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78179D0E2BC85EE500DA96C2 /* MenuView.swift in Sources */,
 				786B7BF32BB779D50064BD6F /* ObjectNode.swift in Sources */,
 				788A8F772BBDCDE3005D2F90 /* RewardAdView.swift in Sources */,
 				786E27442BACBE5F00F73394 /* LandslideNode.swift in Sources */,
@@ -443,17 +475,21 @@
 				78FC15A02BB3484700798BC5 /* ObstacleNode.swift in Sources */,
 				786B7BF62BB8CC960064BD6F /* TextNode.swift in Sources */,
 				786B7BEE2BB7395D0064BD6F /* ObjectFactory.swift in Sources */,
+				78179D162BC9BCE300DA96C2 /* MenuScene.swift in Sources */,
 				788A8F752BBDCAE2005D2F90 /* IntersticialAdView.swift in Sources */,
 				786B7BE92BB72F410064BD6F /* Object.swift in Sources */,
+				78179D0C2BC85CEB00DA96C2 /* GameOverView.swift in Sources */,
 				788A8F792BBDD009005D2F90 /* BannerAdView.swift in Sources */,
 				78FC15A82BB35B4A00798BC5 /* PlayerContactDelegate.swift in Sources */,
 				786E27312BACA58600F73394 /* GameViewController.swift in Sources */,
+				78179D0A2BC8596D00DA96C2 /* PauseView.swift in Sources */,
 				786E27292BACA58600F73394 /* AppDelegate.swift in Sources */,
 				788A8F6D2BBC72E1005D2F90 /* MenuViewController.swift in Sources */,
 				786E27512BAE13A100F73394 /* HoleNode.swift in Sources */,
 				786B7BDC2BB490590064BD6F /* GasNode.swift in Sources */,
 				788A8F7B2BBF20C9005D2F90 /* GasBarNode.swift in Sources */,
-				786B7BE12BB491910064BD6F /* GameController.swift in Sources */,
+				78179D1E2BCDA67600DA96C2 /* CGSize+Ext.swift in Sources */,
+				786B7BE12BB491910064BD6F /* GameManager.swift in Sources */,
 				786B7BDF2BB490E30064BD6F /* CoinNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -611,18 +647,20 @@
 				DEVELOPMENT_TEAM = 225S533H7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = snowTruck/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow Run";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.action-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -647,18 +685,20 @@
 				DEVELOPMENT_TEAM = 225S533H7W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = snowTruck/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow Run";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.action-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.4;
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.haskz.snowTruck;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -717,7 +757,7 @@
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 14.1.0;
+				minimumVersion = 17.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

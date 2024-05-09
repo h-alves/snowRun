@@ -12,6 +12,8 @@ protocol PlayerContactDelegate: AnyObject {
     func moveLandslideUp()
     func reduceSpeed()
     
+    func reduceGas()
+    
     func addCoin(object: ObjectNode)
     func addGas(object: ObjectNode)
 }
